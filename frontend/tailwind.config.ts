@@ -9,6 +9,12 @@ export default {
   ],
   theme: {
   	extend: {
+		backgroundImage:{
+			'btn-gradient': 'linear-gradient(89.51deg, #761EFE -22.31%, #A22CFC 3.65%, #766BF3 51.69%, #38C1E5 111.57%)',
+			'music-card-gradient':'linear-gradient(155.14deg, rgba(255, 255, 255, 0) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)',
+
+		},
+
 		fontFamily: {
 			monoBold: 'var(--font-mont-bold)',
 			monoLight: 'var(--font-mont-light)',
@@ -36,6 +42,7 @@ export default {
 			'brand-gray':'#fffdf9',
   			'brand-base-color': '#072F5F',
   			'brand-hue-color': '#3895D3',
+			'brand-rcc': '#211f3a',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

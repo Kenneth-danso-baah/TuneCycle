@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-           className={`${montBold.variable} ${poppins.variable} ${montLight.variable} antialiased font-monoLight`}
+           className={`${montBold.variable} ${poppins.variable} ${montLight.variable} antialiased font-monoLight globally`}
 
       >
             {children}

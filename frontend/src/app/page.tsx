@@ -1,9 +1,8 @@
 import React from 'react'
+import MainPage from '@/components/mainContent'
 
 function page() {
-  return (
-    <div>page</div>
-  )
+  return <MainPage/>
 }
 
 export default page
