@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -8,16 +8,23 @@ import clsx from 'clsx';
 import { musicNavLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import Logo from '../../../public/images/logox.svg'
+import { CgMenuOreos } from "react-icons/cg";
+import MenuDrawer from '../common/menu-drawer';
 
 
 
 function Header() {
     const pathname = usePathname();
+    const [open,setOpen] = useState<boolean>(false);
+
+    const handleOpenClose=()=>{
+      setOpen((prevState)=>!prevState)
+    }
 
   return (
     <header className='w-full bg-[#0B0E1F] z-50 top-0 sticky  border border-b border-brand-hue-color border-l-0 border-r-0 border-t-0'>
 
-      <div className='leftRightSpacing py-5 flex flex-col lg:flex-row items-center justify-between gap-4'>
+      <div className='mx-5 lg:leftRightSpacing py-5 flex  overflow-x-hidden lg:flex-row items-center justify-between gap-4'>
 
         <Link href="/" className='flex-shrink-0 '>
           <Image
@@ -50,8 +57,15 @@ function Header() {
           </Button>
         </div>
 
+        <CgMenuOreos onClick={handleOpenClose} className='block lg:hidden text-3xl mr-5 cursor-pointer'/>
+
 
       </div>
+      {
+        open && (
+          <MenuDrawer/>
+        )
+      }
     </header>
   );
 }

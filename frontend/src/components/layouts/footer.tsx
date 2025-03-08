@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { footerLinks } from '@/lib/data';
-import X from '../../../public/images/x.svg'
+1
 
 
 
@@ -45,10 +45,10 @@ function Footer() {
 
         </div>
 
-        <div className='border pt-5 md:pt-16 pb-10 text-[13px] md:text-[18px] font-bold border-t border-l-0  border-r-0 border-b border-brand-hue-color flex flex-col md:flex-row justify-between'>
+        <div className='border pt-5 md:pt-16 pb-10 text-[13px] md:text-[18px] font-bold border-t border-l-0  border-r-0 border-b-0 border-brand-hue-color flex flex-col md:flex-row justify-between'>
         
           <div>
-            <h1> &copy;2025 BeatBack.Allrights reserved</h1>
+            <h1> &copy;2025 TuneCycle, Allrights reserved</h1>
           </div>
 
           <div className='flex flex-col md:flex-row gap-10 md:gap-20 mb-5'>

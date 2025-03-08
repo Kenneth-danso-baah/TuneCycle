@@ -19,11 +19,11 @@ function  MainPage() {
     <div>
          <Header/>
          <BaseContent/>
-         <CryptoBanner/>
-         <OwnSound/>
+         <CryptoBanner/> 
+         <OwnSound/> 
          <Unlock/>
          <NewOpportunities/>
-         <PerfectMatch/>
+          <PerfectMatch/>
          <RecommendationHolder/>
          <WhatMakesUsGreat/>
          <Footer/>

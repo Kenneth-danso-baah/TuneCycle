@@ -8,9 +8,9 @@ import Notice2 from '../../../public/images/notice2.svg'
 
 function PerfectMatch() {
   return (
-    <div className='mb-20 mt-10 md:mt-20 lg:mt-0 flex flex-col lg:flex-row items-center md:mb-32 gap-20'>
+    <div className='p-5  lg:p-0 mb-20 mt-10 md:mt-20 lg:mt-0 flex flex-col lg:flex-row items-center md:mb-32 gap-20'>
 
-        <div className='ml-20 flex-[100%]  md:flex-[50%] w-full space-y-5  md:space-y-10'>
+        <div className='lg:ml-20 flex-[100%]  md:flex-[50%] w-full space-y-5  md:space-y-10'>
             <div className='space-y-5  md:space-y-10'>
                  <h1 className='font-monoBold text-[20px] md:text-4xl capitalize'>Find your perfect match</h1>
                 <p className='text-[17px] md:w-[80%]  md:leading-[2rem] md:text-[20px] font-bold'>Discover the ideal track for your project. Browse our diverse catalog and find your sound</p>
@@ -27,7 +27,7 @@ function PerfectMatch() {
 
         </div>
 
-        <div className='mr-20 flex-[50%] space-y-10'>
+        <div className='lg:mr-20 flex-[50%] space-y-10 w-full'>
 
              <div>
                 <Image src={Notice2} alt='notice-2' width={700} height={600}/>

@@ -4,7 +4,7 @@ import { recommendationData } from '@/lib/data'
 
 function RecommendationHolder() {
     return (
-        <div className='leftRightSpacing flex flex-col  lg:flex-row  gap-10 mb-10 md:mb-32'>
+        <div className='p-5 lg:p-0 lg:leftRightSpacing flex flex-col  lg:flex-row  gap-10 mb-10 md:mb-32'>
             {recommendationData.map((item, index)=>{
               return(
                 <RecommendationCard
