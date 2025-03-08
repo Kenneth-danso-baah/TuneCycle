@@ -1,26 +1,421 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+  scroll-behavior: smooth;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bl: #322d2f;
+  --p: #b161c7;
+  --r: #fd6262;
+  --b: #55c6d9;
+  --y: #cbaf69;
+  --w: #f2fdff;
+  --r: #e91e63;
+  --b: #2196f3;
+  --o: #ff5722;
+  --g: #4caf50;
+  --y: #ffc107;
+  --expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --elastic: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.bg-wineTexture{
+  background: radial-gradient(
+    circle at center,
+    var(--r) 0.5px,
+    var(--w) 0.5px,
+    var(--w) 5px
+  )
+  50% 50% / 5px 5px repeat;
+  color: var(--w);
+  }
+  
+  
+  .bg-softBlend {
+  background: radial-gradient(
+      circle at center,
+      var(--w) 0.5px,
+      var(--p) 1px,
+      var(--b) 3px,
+      var(--y) 5px
+    )
+    50% 50% / 5px 5px repeat;
+  color: var(--w);
+  }
+  
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.button-cutout {
+  position: relative;
+  filter: drop-shadow(0 1px 0 #000) drop-shadow(-1px 0 0 #000)
+    drop-shadow(1px 0 0 #000) drop-shadow(0 -1px 0 #000)
+    drop-shadow(8px 8px 0 #000);
+
+  &:hover {
+    filter: drop-shadow(0 1px 0 #000) drop-shadow(-1px 0 0 #000)
+      drop-shadow(1px 0 0 #000) drop-shadow(0 -1px 0 #000)
+      drop-shadow(2px 2px 0 #000);
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: calc(100% - 1px);
+    content: "";
+    background: inherit;
+    width: 1rem;
+    height: 100%;
+    clip-path: polygon(
+      23% 19%,
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      29% 79%,
+      9% 80%,
+      0 33%
+    );
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 1px);
+    content: "";
+    background: inherit;
+    width: 1rem;
+    height: 100%;
+    clip-path: polygon(
+      100% 0,
+      74% 28%,
+      100% 29%,
+      100% 70%,
+      84% 78%,
+      100% 100%,
+      0 100%,
+      0 0
+    );
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-texture{
+  background-image: url("/images/bg-texture.webp");
+  background-size: 720px 460px;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+.article {
+  padding: 10vmin 12vmin 8vmin;
+}
+
+.article div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15vmin 0;
+  position: relative;
+  --x: 10vmin;
+}
+
+.article div img,
+.article div p {
+  width: 50%;
+  position: relative;
+}
+
+.article div img {
+  transform: scale(1.25) translateX(var(--x));
+  filter: saturate(1) blur(0px);
+  box-shadow: 0 0 0 2.5vmin var(--w), 0 0 0 calc(2.5vmin + 1px) var(--y),
+    0 5vmin 10vmin -5vmin var(--bl);
+  opacity: 1;
+}
+
+.article div:not(:first-of-type) img {
+  margin-top: -13vmin;
+  z-index: 1; /* Ensure the images overlap properly */
+}
+
+.article div p {
+  font-size: 2.25vmin;
+  margin: 0;
+  z-index: 2;
+  background: #58CCED;
+  color: var(--bl);
+  padding: 2rem;
+  position: relative;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  box-shadow: 0 3vmin 10vmin -4.5vmin red;
+}
+
+.article div p:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: red;
+  transform-origin: top;
+  top: 0;
+  left: 0;
+  transform: scaleY(0);
+}
+
+.article div p:after {
+  content: "";
+  position: absolute;
+  height: 5vmin;
+  width: 25%;
+  right: 100%;
+  background: radial-gradient(
+      circle at center,
+      var(--r) 1vmin,
+      rgba(255, 255, 255, 0.001) 1vmin
+    ),
+    linear-gradient(to right, var(--r), var(--w));
+  background-size: 2vmin 2vmin, 100% 2px;
+  background-repeat: no-repeat;
+  background-position: 0px 50%, 50% 50%;
+  top: calc(50% - 2.5vmin);
+  transform-origin: right;
+}
+
+.article div:nth-of-type(even) {
+  flex-direction: row-reverse;
+  --x: -10vmin;
+}
+
+.article div:nth-of-type(even) p:after {
+  right: auto;
+  left: 100%;
+  transform-origin: left;
+}
+
+.article div:nth-of-type(1) img,
+.article div:nth-of-type(2) img,
+.article div:nth-of-type(3) img {
+  transition: 0.5s var(--expo) 1.6s, opacity 2s ease-in-out 0s;
+}
+
+.article div:nth-of-type(1) p,
+.article div:nth-of-type(2) p,
+.article div:nth-of-type(3) p {
+  transition: transform 0.5s var(--expo) 1.1s;
+}
+
+.article div:nth-of-type(1) p:before,
+.article div:nth-of-type(2) p:before,
+.article div:nth-of-type(3) p:before,
+.article div:nth-of-type(1) p:after,
+.article div:nth-of-type(2) p:after,
+.article div:nth-of-type(3) p:after {
+  transition: transform 0.5s var(--expo) 1.6s,
+    background-size 0.75s var(--expo) 2.1s;
+}
+
+
+.stack-layout {
+  display: grid;
+  grid-template-areas: "stack";
+  place-items: center;
+}
+
+.stack-layout > * {
+  grid-area: stack;
+}
+
+.skater-scribble-path {
+  opacity: 0.8;
+  stroke-dasharray: 2300;
+  stroke-dashoffset: -2300;
+  transition: stroke-dashoffset 1s ease-in-out 0.2s;
+  transform-origin: center center;
+}
+
+
+.container-frame{
+  display: flex;
+  transform-style: preserve-3d;
+  gap:10px;
+  transform: rotateY(30deg) rotateX(10deg);
+}
+.container-frame .text{
+  position: relative;
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  transition: 2.5s ease-in-out;
+  transition-delay: calc(0.25s * var(--j));
+}
+
+.container-frame:hover .text
+{
+  transform: rotateX(-360deg);
+}
+
+.container-frame:hover .text:last-child
+{
+  transform: rotateX(630deg);
+}
+
+.container-frame .text::before
+{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #072F5F;
+  transform-origin: left;
+  transform: rotateY(90deg) translateX(-60px);
+}
+
+.container-frame .text span,
+.container-frame .text:last-child img
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(#1261A0, #58CCED);
+  font-size: 6em;
+  color: #fff;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(90deg * var(--i))) translateZ(60px);
+}
+
+.container-frame .text:last-child span
+{
+  background: linear-gradient(#072F5F, #3895D3);
+  color: #fff;
+}
+
+.container-frame .text:last-child::before
+{
+  background: #bbaa89;
+}
+
+
+.question-card-container{
+  width: 400px;
+  height: 400px;
+  perspective: 1000px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .question-card-container {
+    max-width: 300px; /* Smaller width for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .question-card-container {
+    max-width: 250px; /* Even smaller width for mobile */
+  }
+}
+
+.card{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 1s ease;
+}
+
+.card:hover{
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+}
+
+.card-front{
+  background-color:#BBAA89 ;
+}
+
+.card-back{
+  background-color: #1261A0;
+  transform: rotateY(180deg);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+
+
+.toast-success {
+    background-color: #4CAF50 !important;
+    color: white !important;
 }
