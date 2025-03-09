@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
+import { Providers } from "@/components/common/privy-provider";
 
 const montBold = localFont({
   src: '../../public/fonts/Montserrat-Bold.ttf',
@@ -34,10 +35,10 @@ export default function RootLayout({
     <html lang="en">
       <body
            className={`${montBold.variable} ${poppins.variable} ${montLight.variable} antialiased font-monoLight globally`}
-
       >
+        <Providers>
             {children}
-
+        </Providers>
       </body>
     </html>
   );
