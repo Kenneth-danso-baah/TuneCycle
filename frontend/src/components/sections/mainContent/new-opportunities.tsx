@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import Graffiti from '../../../public/images/graffiti.svg'
-import Male from '../../../public/images/male.svg'
+import Graffiti from '../../../../public/images/graffiti.svg'
+import Male from '../../../../public/images/male.svg'
 
 
 

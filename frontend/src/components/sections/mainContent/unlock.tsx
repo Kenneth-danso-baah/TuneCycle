@@ -1,5 +1,6 @@
+import ArrowTextLink from '@/components/common/arrow-text-link'
 import React from 'react'
-import ArrowTextLink from '../common/arrow-text-link'
+
 
 
 function Unlock() {

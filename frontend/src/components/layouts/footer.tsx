@@ -13,7 +13,7 @@ function Footer() {
 
             <div className='space-y-5 md:max-w-[30%] lg:max-w-[20%]'>
             <div>
-                <Image src='/images/logox.svg' alt="app-image" width={250} height={250}/>
+                <Image src='/images/tc-turner.svg' alt="app-image" width={250} height={250}/>
             </div>
 
             <p className='font-bold'>Our vision is to provide convenience for both music artists and buyers.</p>

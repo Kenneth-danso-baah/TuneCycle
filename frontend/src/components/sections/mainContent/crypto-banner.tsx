@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Binace from '../../../public/images/binance.svg'
-import TrustWallet from '../../../public/images/trustwallet.svg'
-import Meta from '../../../public/images/meta.svg'
+import Binace from '../../../../public/images/binance.svg'
+import TrustWallet from '../../../../public/images/trustwallet.svg'
+import Meta from '../../../../public/images/meta.svg'
 
 
 

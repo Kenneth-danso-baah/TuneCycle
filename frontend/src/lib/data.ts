@@ -1,7 +1,7 @@
 export const musicNavLinks=[
     {name:'home', href:'/'},
     {name:'dashboard', href:'/dashboard'},
-    {name:'marketplace', href:'/marketplace'},
+    {name:'marketplace', href:'/market_place'},
     {name:'for artists', href:'/for_artist'},
     {name:'for buyers', href:'/for_buyers'}
 ]
@@ -112,3 +112,128 @@ export const footerLinks = [
     },
   ];
   
+
+  export const genres=[
+    {name:'pop',href:'pop'},
+    {name:'Hip pop',href:'pop'},
+    {name:'Afro',href:'pop'},
+    {name:'Rock',href:'pop'},
+    {name:'country',href:'pop'}
+  ]
+  
+  export const musicOptions = [
+    { value: "hiphop", label: "HipHop" },
+    { value: "afro", label: "Afro" },
+    { value: "highlife", label: "High Life" },
+  ];
+    
+
+  export const resultsMusic = [
+    {
+      mainImage: '/images/album1.svg',
+      subImage: '/images/male.png',
+      title: 'Midnight Groove',
+      artist: 'DJ Pulse',
+      price: '2ETH',
+      state: 'New Release',
+      duration: '3:45',
+      isNegotiable: false,
+      available: false,
+    },
+    {
+      mainImage: '/images/album2.svg',
+      subImage: '/images/male.png',
+      title: 'Electric Dreams',
+      artist: 'Synthwave Queen',
+      price: '8ETH',
+      state: 'On Sale',
+      duration: '4:12',
+      isNegotiable: true,
+      available: true,
+    },
+    {
+      mainImage: '/images/album3.svg',
+      subImage: '/images/male.png',
+      title: 'Sunset Vibes',
+      artist: 'Chill Beats Collective',
+      price: '2ETH',
+      state: 'Popular',
+      duration: '5:02',
+      isNegotiable: false,
+      available: false,
+    },
+    {
+      mainImage: '/images/album4.svg',
+      subImage: '/images/male.png',
+      title: 'Neon Nights',
+      artist: 'Retro Wave',
+      price: '4ETH',
+      state: 'New Release',
+      duration: '3:58',
+      isNegotiable: true,
+      available: false,
+    },
+    {
+      mainImage: '/images/album5.svg',
+      subImage: '/images/male.png',
+      title: 'Ocean Breeze',
+      artist: 'Ambient Sounds',
+      price: '1ETH',
+      state: 'On Sale',
+      duration: '6:15',
+      isNegotiable: false,
+    },
+    {
+      mainImage: '/images/album1.svg',
+      subImage: '/images/male.png',
+      title: 'Urban Beats',
+      artist: 'Hip-Hop Nation',
+      price: '6ETH',
+      state: 'Popular',
+      duration: '4:30',
+      isNegotiable: true,
+    },
+  ];
+  
+
+export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
+    const year = 2025 - i;
+    return { value: year.toString(), label: year.toString() };
+  });
+  
+
+  export const leaseStatusOptions = [
+    { value: "available", label: "Available" },
+    { value: "leased", label: "Leased" },
+    { value: "exclusive", label: "Exclusive" },
+    { value: "non_profit", label: "Non-Profit Use" },
+  ];
+  
+  export const artistStatusOptions = [
+    { value: "independent", label: "Independent" },
+    { value: "signed", label: "Signed" },
+    { value: "featured", label: "Featured Artist" },
+    { value: "collaborator", label: "Collaborator" },
+  ];
+  
+  export const genreOptions = [
+    { value: "hiphop", label: "HipHop" },
+    { value: "afro", label: "Afro" },
+    { value: "highlife", label: "HighLife" },
+    { value: "edm", label: "EDM" },
+  ];
+  
+  export const languageOptions = [
+    { value: "english", label: "English" },
+    { value: "spanish", label: "Spanish" },
+    { value: "french", label: "French" },
+    { value: "german", label: "German" },
+  ];
+  
+
+  export const durationOptions = [
+    { value: "30s", label: "30 Seconds" },
+    { value: "1m", label: "1 Minute" },
+    { value: "3m", label: "3 Minutes" },
+    { value: "5m+", label: "5+ Minutes" },
+  ];

@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { musicNavLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import Logo from '../../../public/images/logox.svg'
+import Logo from '../../../public/images/tc-turner.svg'
 import { CgMenuOreos } from "react-icons/cg";
 import MenuDrawer from '../common/menu-drawer';
 

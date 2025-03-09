@@ -1,5 +1,6 @@
+import ArrowTextLink from '@/components/common/arrow-text-link'
 import Image from 'next/image'
-import ArrowTextLink from '../common/arrow-text-link'
+
 
 
 function OwnSound() {

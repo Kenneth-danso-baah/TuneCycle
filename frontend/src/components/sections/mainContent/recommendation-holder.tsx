@@ -1,9 +1,10 @@
 "use client"
 
 import React, { useState } from 'react';
-import RecommendationCard from '../common/cards/recommendation-card';
 import { recommendationData } from '@/lib/data';
-import Indicators from '../common/indicators';
+import Indicators from '@/components/common/indicators';
+import RecommendationCard from '@/components/common/cards/recommendation-card';
+
 
 function RecommendationHolder() {
   const itemsPerPage = 3;

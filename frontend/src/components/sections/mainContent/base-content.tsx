@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button } from '../ui/button';
 import Link from 'next/link';
-import Curves from '../common/curves';
+import { Button } from '@/components/ui/button';
+import Curves from '@/components/common/curves';
+
 
 function BaseContent() {
     return (

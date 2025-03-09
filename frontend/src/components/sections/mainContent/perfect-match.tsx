@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import Notice1 from '../../../public/images/notice1.svg'
-import Notice2 from '../../../public/images/notice2.svg'
+import Notice1 from '../../../../public/images/notice1.svg'
+import Notice2 from '../../../../public/images/notice2.svg'
 
 
 
