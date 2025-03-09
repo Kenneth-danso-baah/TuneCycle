@@ -248,4 +248,58 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
   
   ]
   
+  export const leasingRights = [
+    {
+      title: 'Exclusive lease',
+      description:'Secure sole access to a master recording for a defined period or specific project. This option ensures your project features a truly unique and exclusive soundtrack perfect for you.',
+      feature:'features',
+      terms: [
+        { name: 'Exclusive usage rights',  icon: '/images/rightarrow.svg'},
+        { name: 'Defined lease Duration',   icon: '/images/rightarrow.svg'},
+        { name: 'potential royalties splits', icon: '/images/rightarrow.svg'},
+        { name: 'restictions apply(No ownership transfer)', icon: '/images/rightarrow.svg'}
+      ]
+    },
+    
+  
+    {
+      title: 'Non-Exclusive Lease',
+      description:'Utilize a master recording for your project, while the artist retains the right to lease it to others. This flexible option offers access to original music without exclusive ownership.',
+      feature:'features',
+      terms: [
+        { name: 'Usage Rights',  icon: '/images/rightarrow.svg'},
+        { name: 'Defined lease Duration',   icon: '/images/rightarrow.svg'},
+        { name: 'potential royalties splits', icon: '/images/rightarrow.svg'},
+        { name: 'restictions apply(No ownership transfer)', icon: '/images/rightarrow.svg'}
+      ]
+    },
+  
+    {
+      title: 'Project-Specific Lease',
+      description:'Lease a master recording for a single, defined project, such as a film, game, or advertisement. This option provides targeted access to original music for specific creative endeavors.',
+      feature:'features',
+      terms: [
+        { name: 'Exclusive usage rights',  icon: '/images/rightarrow.svg'},
+        { name: 'Defined lease Duration',   icon: '/images/rightarrow.svg'},
+        { name: 'potential royalties splits', icon: '/images/rightarrow.svg'},
+        { name: 'restictions apply(No ownership transfer)', icon: '/images/rightarrow.svg'}
+      ]
+    },
+  ];
+  
+  
+  export const askQuestion=[
+    {question:'QuesWhat is master rights leasing, and how does it benefit my project?tion:', 
+      answers:'You lease the original recording for temporary use, giving your project a unique, professional sound without buying the rights outright.'
+    },
+    {question:'How are royalty splits handled when leasing master rights, and what should I expect?:', 
+      answers:'Royalty splits are negotiated and outlined in the lease. Expect a clear breakdown of percentages based on usage and distribution.'
+    },
+    {question:'What are the key differences between exclusive, non-exclusive, and project-specific leases, and which is right for me?:', 
+      answers:'Exclusive is sole use, non-exclusive is shared, and project-specific is for one project. Choose based on your needs, and desired exclusivity.'
+    },
+    {question:'What happens to the master recording and my project\'s usage rights after the lease term ends, and how can I ensure continuity?', 
+      answers:'Rights revert to the artist. Plan for renewal if needed. Discuss options with the artist to ensure continued usage'
+    }
+  ]
   

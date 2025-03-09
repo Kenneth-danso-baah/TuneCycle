@@ -5,6 +5,7 @@ import Basecontent from './base-content'
 import HowItWorksHolder from './how-it-work-holder'
 import EarningPrice from './earning-price-content'
 
+
 function ForArtistPage() {
   return (
     <div>
