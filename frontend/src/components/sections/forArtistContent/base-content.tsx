@@ -8,7 +8,7 @@ function BaseContent() {
     <div className='h-dvh  flex items-center gap-20 leftRightSpacing '>
         <div className='flex-[50%] space-y-10 z-30'>
             <h1 className='text-5xl uppercase w-[90%] text-center font-monoBold '>monetize yOUR mUSIC ON YOUR TERMS </h1>
-            <p className='text-[20px] font-bold leading-[2rem] '>Take control of your music's revenue potential. Lease your tracks directly to a global network of creators while retaining 
+            <p className='text-[20px] font-bold leading-[2rem] '>Take control of your music&apos;s revenue potential. Lease your tracks directly to a global network of creators while retaining 
                 ownership. Set your own terms, reach 
                 new audiences, and build a sustainable music career with BeatBack</p>
 

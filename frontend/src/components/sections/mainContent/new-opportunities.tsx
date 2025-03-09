@@ -1,7 +1,4 @@
 import Image from 'next/image'
-import Graffiti from '../../../../public/images/graffiti.svg'
-import Male from '../../../../public/images/male.svg'
-
 
 
 
@@ -13,12 +10,12 @@ function NewOpportunities() {
             <p className='w-full font-bold md:text-[20px] md:leading-[2rem]'>Discover the latest tracks available and find the perfect fit for your project. Fresh music, fresh ideas - right at your fingertips</p>
 
             <div>
-            <Image src={Male} className=' w-full transform scale-x-[-1]  object-contain' width={200} height={200} alt="gee"/>
+            <Image src='/images/male.svg' className=' w-full transform scale-x-[-1]  object-contain' width={200} height={200} alt="gee"/>
             </div>
         </div>
 
         <div className='lg:mr-20 flex-[60%]'>
-         <Image src={Graffiti} className='object-cover w-full h-[78%] rounded-[20px]' width={600} height={600} alt="gee"/>
+         <Image src='/images/graffiti.svg' className='object-cover w-full h-[78%] rounded-[20px]' width={600} height={600} alt="gee"/>
         </div>
 
     </div>

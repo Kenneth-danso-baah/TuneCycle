@@ -1,8 +1,4 @@
 import Image from 'next/image'
-import Notice1 from '../../../../public/images/notice1.svg'
-import Notice2 from '../../../../public/images/notice2.svg'
-
-
 
 
 
@@ -17,7 +13,7 @@ function PerfectMatch() {
             </div>
 
             <div>
-                <Image src={Notice1} alt='notice-1' width={700} height={600}/>
+                <Image src='/images/notice1.svg' alt='notice-1' width={700} height={600}/>
             </div>
 
             <div className='space-y-5'>
@@ -30,7 +26,7 @@ function PerfectMatch() {
         <div className='lg:mr-20 flex-[50%] space-y-10 w-full'>
 
              <div>
-                <Image src={Notice2} alt='notice-2' width={700} height={600}/>
+                <Image src='/images/notice2.svg' alt='notice-2' width={700} height={600}/>
             </div>
 
 
