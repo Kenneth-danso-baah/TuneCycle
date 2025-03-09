@@ -237,3 +237,15 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
     { value: "3m", label: "3 Minutes" },
     { value: "5m+", label: "5+ Minutes" },
   ];
+
+
+  export const howItWorksItems=[
+    {title:'create account',image:'/images/account.svg', description:'Sign up for a free artist account to start leasing your music and managing your profile.'},
+    {title:'upload music',image:'/images/upload.svg', description:'Easily upload your tracks, add metadata, and showbase your music to buyers.'},
+    {title:'set terms',image:'/images/set_terms.svg', description:'Define your lease options, pricing, and usage rights to control how your music is used.'},
+    {title:'get discovered',image:'/images/get_discovered.svg', description:'Reach a global audience of creators and businesses searching for high-quality music.'},
+    {title:'get paid',image:'/images/get_paid.svg', description:'Track your earnings and receive secure payments directly to your chosen payment method'}
+  
+  ]
+  
+  
