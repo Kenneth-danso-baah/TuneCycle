@@ -302,4 +302,86 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
       answers:'Rights revert to the artist. Plan for renewal if needed. Discuss options with the artist to ensure continued usage'
     }
   ]
+
+  export const sideBarData=[
+    {name:'home', href:'/dashboard/',images:'/images/home.svg'},
+    {name:'music', href:'/dashboard/music',images:'/images/music.svg'},
+    {name:'leases', href:'/dashboard/leases',images:'/images/leases.svg'},
+    {name:'earnings', href:'/dashboard/earnings',images:'/images/wallet.svg'},
+    {name:'profile', href:'/dashboard/profile',images:'/images/profile.svg'},
+    {name:'support', href:'/dashboard/support',images:'/images/support.svg'},
+  
+  ]
+
+  export const statisticsDB = [
+    {
+      name:'total earnings',
+      amount:'12.08 M',
+      info:'all time total earnings made',
+      base:'USD'
+    },
+    
+  
+    {
+      name:'total earnings',
+      amount:'12.08 M',
+      info:'all time total earnings made',
+      base:'USD'
+    },
+    
+  
+    {
+      name:'total leases',
+      amount:'64',
+      info:'overall songs leased so far',
+      base:'50% of all'
+    },
+  
+  
+    {
+      name:'current leases',
+      amount:'16',
+      info:'songs that have currently been leased',
+      base:'25% of total leased songs'
+    },
+  
+    {
+      name:'current leases',
+      amount:'16',
+      info:'songs that have currently been leased',
+      base:'25% of total leased songs'
+    },
+  
+    {
+      name:'current leases',
+      amount:'16',
+      info:'songs that have currently been leased',
+      base:'25% of total leased songs'
+    },  
+  ];
+  
+
+  export const leasingData = [
+    { month: "September", desktop: 14, mobile: 120 },
+    { month: "October", desktop: 1, mobile: 190 },
+    { month: "November", desktop: 1, mobile: 130 },
+    { month: "December", desktop: 1, mobile: 140 },
+  ];
+  
+  
+  export const yearlyData = [
+    { month: "January", desktop: 1 , mobile: 80 },
+    { month: "February", desktop: 0.6 , mobile: 200 },
+    { month: "March", desktop: 0.3, mobile: 120 },
+    { month: "April", desktop: 0.1, mobile: 190 },
+    { month: "May", desktop: 0.1, mobile: 130 },
+    { month: "June", desktop: 0.1, mobile: 140 },
+    { month: "July", desktop: 0.1, mobile: 80 },
+    { month: "August", desktop: 0.1, mobile: 200 },
+    { month: "September", desktop: 0.1, mobile: 120 },
+    { month: "October", desktop: 0.1, mobile: 190 },
+    { month: "November", desktop: 0.1, mobile: 130 },
+    { month: "December", desktop: 0.1, mobile: 140 },
+  ];
+  
   

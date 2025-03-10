@@ -1,4 +1,5 @@
 import ForArtistPage from '@/components/sections/forArtistContent'
+import ProtectedRoute from '@/lib/protected-route';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -9,7 +10,11 @@ export const metadata: Metadata = {
 
 
 function Page() {
-  return <ForArtistPage/>
+  return (
+    <ProtectedRoute>
+      <ForArtistPage/>
+    </ProtectedRoute>
+  ) 
 }
 
 export default Page

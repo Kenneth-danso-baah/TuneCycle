@@ -1,3 +1,5 @@
+import DashboardEntryPoint from '@/components/sections/dashboardContent/entryPointContent';
+import ProtectedRoute from '@/lib/protected-route';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -9,9 +11,8 @@ export const metadata: Metadata = {
 
 
 function Page() {
-  return (
-    <div>page</div>
-  )
+  return <DashboardEntryPoint/>
+      
 }
 
 export default Page

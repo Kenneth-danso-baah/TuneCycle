@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
 import { Providers } from "@/components/common/privy-provider";
+import {Provider} from 'react-redux'
+import { store } from "./store";
+import ClientRootLayout from "@/components/common/client-root-layout";
+
 
 const montBold = localFont({
   src: '../../public/fonts/Montserrat-Bold.ttf',
@@ -36,9 +40,7 @@ export default function RootLayout({
       <body
            className={`${montBold.variable} ${poppins.variable} ${montLight.variable} antialiased font-monoLight globally`}
       >
-        <Providers>
-            {children}
-        </Providers>
+            <ClientRootLayout>{children}</ClientRootLayout>   
       </body>
     </html>
   );

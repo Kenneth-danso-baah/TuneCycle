@@ -11,13 +11,15 @@ import Logo from '../../../public/images/tc-turner.svg'
 import { CgMenuOreos } from "react-icons/cg";
 import MenuDrawer from '../common/menu-drawer';
 import { usePrivy } from '@privy-io/react-auth';
+import { useAuth } from '@/hooks/useAuth';
 
 
 
 function Header() {
     const pathname = usePathname();
     const [open,setOpen] = useState<boolean>(false);
-    const {login, authenticated,user,logout} = usePrivy()
+    const {isAuthenticated, login,logout} = useAuth()
+    const {user} = usePrivy()
     const walletAddress = user?.wallet?.address;
 
     const handleOpenClose=()=>{
@@ -56,14 +58,14 @@ function Header() {
  
         <div className='hidden  lg:flex-shrink-0 lg:flex items-center gap-20  '>
 
-          {authenticated && (
+          {isAuthenticated && (
             <div>
               <h1 className='font-bold font-poppins text-[20px]'>{walletAddress?.slice(0,6)}...{walletAddress?.slice(-4)}</h1>
             </div>
           )}
       
           {
-            authenticated ? (
+            isAuthenticated ? (
               <Button  onClick={logout} className='font-bold rounded-[5px] bg-btn-gradient capitalize text-[16px] border-white text-white hover:bg-white hover:text-brand-primary'>
               logout
             </Button>

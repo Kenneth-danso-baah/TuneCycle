@@ -1,4 +1,5 @@
 import MarketPlacePage from '@/components/sections/marketplaceContent'
+import ProtectedRoute from '@/lib/protected-route';
 import { Metadata } from 'next';
 import React from 'react'
 
@@ -11,7 +12,11 @@ export const metadata: Metadata = {
 
 
 function Page() {
-  return <MarketPlacePage/>
+  return (
+    <ProtectedRoute>
+        <MarketPlacePage/>
+    </ProtectedRoute>
+  )
 }
 
 export default Page
