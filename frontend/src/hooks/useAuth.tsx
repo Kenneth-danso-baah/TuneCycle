@@ -9,7 +9,7 @@ export const useAuth = () => {
     const dispatch = useDispatch();
     const { ready, authenticated, login, user, logout: privyLogout } = usePrivy();
 
-    // Get the current auth state from Redux
+   
     const authState = useSelector((state: RootState) => state.auth);
 
   
