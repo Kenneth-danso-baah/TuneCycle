@@ -12,21 +12,21 @@ export const useAuth = () => {
     // Get the current auth state from Redux
     const authState = useSelector((state: RootState) => state.auth);
 
-    // Sync Privy's authentication state with Redux
+  
     useEffect(() => {
         if (ready) {
             console.log("Privy ready. Authenticated:", authenticated);
             console.log("User:", user);
 
-            // Update Redux state with Privy's authentication state
+          
             dispatch(setAuthenticated(authenticated));
 
-            // Sanitize and set the user data in Redux
+           
             if (user) {
                 const sanitizedUser: PrivyUser = {
                     ...user,
-                    createdAt: user.createdAt instanceof Date ? user.createdAt.toISOString() : null, // Convert Date to string
-                    email: user.email ? user.email.address : undefined, // Convert Email object to string
+                    createdAt: user.createdAt instanceof Date ? user.createdAt.toISOString() : null,
+                    email: user.email ? user.email.address : undefined,
                 };
                 dispatch(setUser(sanitizedUser));
             } else {
@@ -35,7 +35,7 @@ export const useAuth = () => {
         }
     }, [ready, authenticated, user, dispatch]);
 
-    // Handle login
+
     const handleLogin = async () => {
         try {
             console.log("Logging in...");
@@ -46,13 +46,13 @@ export const useAuth = () => {
         }
     };
 
-    // Handle logout
+
     const handleLogout = async () => {
         try {
             console.log("Logging out...");
-            await privyLogout(); // Log out from Privy
+            await privyLogout(); 
             console.log("Privy logout complete.");
-            dispatch(logout()); // Update Redux state
+            dispatch(logout()); 
             console.log("Redux state updated.");
         } catch (error) {
             console.error("Logout failed:", error);
@@ -60,7 +60,7 @@ export const useAuth = () => {
     };
     
 
-    // Return the auth state and functions
+  
     return {
         isAuthenticated: authState.isAuthenticated,
         user: authState.user,

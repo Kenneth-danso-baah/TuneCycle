@@ -384,4 +384,21 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
     { month: "December", desktop: 0.1, mobile: 140 },
   ];
   
+
+  export const columnLayout ="grid grid-cols-[50px_200px_120px_150px_120px_200px_150px_120px_100px_50px] items-center py-4 border-b border-gray-300";
+
+
+  export const songHeaders = [
+    { cover: '/images/av1.svg', songs: 'Insane', id: 1, genre: 'Pop', uploaded_date: '24.05.2024', status: 'Leased', leased_by: 'Passion Sounds', earnings: '20.1M', lease_period: '10y', listeners: '33.5K', edit: '_' },
+    { cover: '/images/av2.svg', songs: 'Midnight Waves', id: 2, genre: 'R&B', uploaded_date: '15.06.2024', status: 'Available', leased_by: '-', earnings: '12.3M', lease_period: '-', listeners: '25.7K', edit: '_' },
+    { cover: '/images/av3.svg', songs: 'Echoes of You', id: 3, genre: 'Rock', uploaded_date: '10.07.2024', status: 'Leased', leased_by: 'Dream Records', earnings: '18.6M', lease_period: '5y', listeners: '40.2K', edit: '_' },
+    { cover: '/images/av4.svg', songs: 'Lost Frequencies', id: 4, genre: 'Electronic', uploaded_date: '02.08.2024', status: 'Available', leased_by: '-', earnings: '9.5M', lease_period: '-', listeners: '22.1K', edit: '_' },
+    { cover: '/images/av5.svg', songs: 'Golden Hour', id: 5, genre: 'Jazz', uploaded_date: '18.09.2024', status: 'Leased', leased_by: 'Sunset Records', earnings: '15.2M', lease_period: '3y', listeners: '30.8K', edit: '_' },
+    { cover: '/images/av6.svg', songs: 'Neon Lights', id: 6, genre: 'Hip-Hop', uploaded_date: '29.09.2024', status: 'Leased', leased_by: 'Urban Beats', earnings: '22.7M', lease_period: '7y', listeners: '45.3K', edit: '_' },
+    { cover: '/images/av7.svg', songs: 'Silent Dreams', id: 7, genre: 'Classical', uploaded_date: '05.10.2024', status: 'Available', leased_by: '-', earnings: '7.8M', lease_period: '-', listeners: '15.9K', edit: '_' },
+    { cover: '/images/av8.svg', songs: 'Fading Memories', id: 8, genre: 'Indie', uploaded_date: '20.10.2024', status: 'Leased', leased_by: 'Moonlight Studios', earnings: '14.9M', lease_period: '6y', listeners: '28.4K', edit: '_' },
+    { cover: '/images/av2.svg', songs: 'Ocean Breeze', id: 9, genre: 'Reggae', uploaded_date: '01.11.2024', status: 'Available', leased_by: '-', earnings: '11.4M', lease_period: '-', listeners: '19.6K', edit: '_' },
+    { cover: '/images/av3.svg', songs: 'Velvet Night', id: 10, genre: 'Blues', uploaded_date: '12.11.2024', status: 'Leased', leased_by: 'Soul Music Co.', earnings: '17.3M', lease_period: '4y', listeners: '32.7K', edit: '_' }
+  ];
+  
   
