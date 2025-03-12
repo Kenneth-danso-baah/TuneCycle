@@ -126,7 +126,12 @@ export const footerLinks = [
     { value: "afro", label: "Afro" },
     { value: "highlife", label: "High Life" },
   ];
-    
+  
+  export const cryptoOptions = [
+    { value: "usdc", label: "USDC" },
+    { value: "eth", label: "ETH" },
+    { value: "solona", label: "SOLANA" },
+  ];
 
   export const resultsMusic = [
     {
@@ -360,6 +365,30 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
     },  
   ];
   
+  export const earningDB = [
+    {
+      name:'total earnings',
+      amount:'12.08 M',
+      info:'all time total earnings made',
+      base:'USD'
+    },
+    
+  
+    {
+      name:'total earnings',
+      amount:'12.08 M',
+      info:'all time total earnings made',
+      base:'USD'
+    },
+    
+  
+    {
+      name:'total leases',
+      amount:'64',
+      info:'overall songs leased so far',
+      base:'50% of all'
+    }  
+  ];
 
   export const leasingData = [
     { month: "September", desktop: 14, mobile: 120 },
