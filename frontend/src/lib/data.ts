@@ -431,3 +431,14 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
   ];
   
   
+  export const supportiveTags=[
+    {image:'/images/rocket.svg', title:'getting started', text:'New to licensing or leasing? Learn the basics here!'},
+    {image:'/images/licence.svg', title:'Licensing & Leases', text:'Understand the different lease types and usage rights.'},
+    {image:'/images/verified 1.svg', title:'Account & Profile', text:'Manage your settings, payment methods, and profile information.'},
+    {image:'/images/searcher.svg', title:'find music', text:'Tips and tricks for finding the perfect tracks for your projects.'},
+    {image:'/images/copyright.svg', title:'legal & copyright', text:'Information on copyright, licensing agreements, and legal considerations.'},
+    {image:'/images/troubleshooting.svg', title:'trouble shooting', text:'Solutions to common issues and technical problems.'},
+    {image:'/images/planning.svg', title:'project management', text:'Organize your leased music and manage your projects effectively'},
+    {image:'/images/payment-method 1.svg', title:'payments & billing ', text:'Questions about payments, invoices, and billing procedures?'},
+
+  ]
