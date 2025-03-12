@@ -3,6 +3,8 @@ import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-inf
 import LeaseHolder from './lease-holder'
 import Summary from './summary'
 import LeasedCharts from './leased-chart'
+import Titlecontent from './title-content'
+import UploadMusicHolder from '../musicContent/upload-music-holder'
 
 function LeasePage() {
   return (
@@ -11,6 +13,7 @@ function LeasePage() {
          <LeaseHolder/>
          <Summary/>
          <LeasedCharts/>
+         <UploadMusicHolder/>
       </div>
   )
 }
