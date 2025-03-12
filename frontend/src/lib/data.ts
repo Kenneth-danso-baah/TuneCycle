@@ -440,5 +440,10 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
     {image:'/images/troubleshooting.svg', title:'trouble shooting', text:'Solutions to common issues and technical problems.'},
     {image:'/images/planning.svg', title:'project management', text:'Organize your leased music and manage your projects effectively'},
     {image:'/images/payment-method 1.svg', title:'payments & billing ', text:'Questions about payments, invoices, and billing procedures?'},
-
   ]
+
+
+  export const leasingOptions = [
+    { value: "negotiable", label: "Negotiation" },
+    { value: "non-negotiable", label: "NON-NEGOTIABLE" },
+  ];

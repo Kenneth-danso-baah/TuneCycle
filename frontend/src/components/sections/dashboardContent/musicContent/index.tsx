@@ -3,7 +3,7 @@ import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-inf
 import UploadMusicHolder from './upload-music-holder'
 
 
-function UploadMusicPage() {
+function MusicUploadPage() {
   return (
     <div className=' p-10  h-auto bg-[#161212]'>
          <DashboardHeaderSearchInfo dashboard_location="music"/>
@@ -12,4 +12,4 @@ function UploadMusicPage() {
   )
 }
 
-export default UploadMusicPage
+export default MusicUploadPage

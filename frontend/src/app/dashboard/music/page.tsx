@@ -1,17 +1,16 @@
-import UploadMusicPage from '@/components/sections/dashboardContent/musicContent'
-import ProtectedRoute from '@/lib/protected-route'
+import MusicUploadPage from '@/components/sections/dashboardContent/musicContent';
 import { Metadata } from 'next';
 import React from 'react'
 
 
 export const metadata: Metadata = {
-  title: "Upload content",
+  title: "Music  content",
   description: "Leased Artist Hub",
 };
 
 
 function Page() {
-  return <UploadMusicPage/>
+  return <MusicUploadPage/>
 }
 
 export default Page
