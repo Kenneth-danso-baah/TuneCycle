@@ -9,19 +9,11 @@ contract ERC4097 is ERC721 {
         uint64 expires; // unix timestamp, user expires
     }
     mapping(uint256 => UserInfo) private _users;
-    mapping(uint256 tokenId => string tokenUri) private s_tokenIdToUri;
-    uint256 private s_tokenCounter;
 
     constructor(
         string memory name_,
         string memory symbol_
     ) ERC721(name_, symbol_) {}
-
-    function mintNft(string memory tokenUri) public {
-        s_tokenIdToUri[s_tokenCounter] = tokenUri;
-        _safeMint(msg.sender, s_tokenCounter);
-        s_tokenCounter = s_tokenCounter + 1;
-    }
 
     function setUser(
         uint256 tokenId,
