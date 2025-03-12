@@ -10,7 +10,7 @@ contract DeployMarketPlace is Script {
         vm.startBroadcast();
 
         // Deploy the Item contract first
-        Item itemContract = new Item("ItemName", "ITEM");
+        Item itemContract = new Item("TuneCycle", "TC");
         address itemContractAddress = address(itemContract);
 
         // Now deploy the MarketPlace contract with the Item contract address
