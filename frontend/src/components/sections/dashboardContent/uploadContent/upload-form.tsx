@@ -4,6 +4,7 @@ import LeaseYearsSlider from '@/components/common/lease-slider';
 import { Button } from '@/components/ui/button';
 import { cryptoOptions, leasingOptions } from '@/lib/data';
 import React, { useState } from 'react';
+import { pinata } from '@/lib/pinanta';
 
 function UploadForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,25 @@ function UploadForm() {
     musicFile: null,
     coverImage: null,
   });
+
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+
+        const response = await pinata.upload.file(file);
+       
+        const ipfsHash = response.IpfsHash;
+      
+        const imageURL = `https://ipfs.io/ipfs/${ipfsHash}`;
+
+        console.log(`Kenny ${imageURL}`)
+        // setUser((prevUser) => ({
+        //     ...prevUser, 
+        //     profilePic: imageURL,
+        //     imageURL
+        // }));
+    }
+};
 
   const handleChange = (e:any) => {
     const { name, value, files } = e.target;
