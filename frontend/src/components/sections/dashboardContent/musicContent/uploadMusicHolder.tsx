@@ -1,8 +1,8 @@
 import React from 'react'
-import SearchFilterColumn from './search-filter-column'
-import TableTitle from './table-title'
+import SearchFilterColumn from './searchFilterColumn'
+import TableTitle from './tableTitle'
 import { Button } from '@/components/ui/button'
-import MusicContentForUpload from './music-content-for-upload'
+import MusicContentForUpload from './musicContentForUpload'
 import { songHeaders } from '@/lib/data'
 import Link from 'next/link'
 

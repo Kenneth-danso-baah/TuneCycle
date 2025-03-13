@@ -2,7 +2,7 @@
 
 import { store } from "@/app/store"
 import { Provider } from "react-redux"
-import { Providers } from "./privy-provider"
+import { Providers } from "./privyProvider"
 
 
 export default function ClientRootLayout({ children }: { children: React.ReactNode }) {

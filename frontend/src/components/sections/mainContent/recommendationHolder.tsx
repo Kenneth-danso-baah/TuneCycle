@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { recommendationData } from '@/lib/data';
 import Indicators from '@/components/common/indicators';
-import RecommendationCard from '@/components/common/cards/recommendation-card';
+import RecommendationCard from '@/components/common/cards/recommendationCard';
 
 
 function RecommendationHolder() {

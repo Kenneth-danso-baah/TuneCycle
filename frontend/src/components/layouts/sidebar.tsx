@@ -6,7 +6,7 @@ import Image from 'next/image'
 import React from 'react'
 import { usePathname, useRouter } from 'next/navigation';
 import clsx from 'clsx';
-import SidebarContent from '../common/sidebar-content';
+import SidebarContent from '../common/sidebarContent';
 import { useAuth } from '@/hooks/useAuth';
 
 

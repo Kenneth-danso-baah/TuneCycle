@@ -1,10 +1,12 @@
 "use client"
 
 import React from 'react'
-import DashboardHeaderSearchInfo from './dashboard-search-info'
-import DashBoardStatisticContent from './dashboard-statistics-holder'
-import DashBoardFooter from './dashboard-statistic-footer'
-import DashBoardCharts from './dashboard-charts'
+import DashboardHeaderSearchInfo from './dashboardSearchInfo'
+
+import DashBoardCharts from './dashbaordCharts'
+import DashBoardStatisticContent from './dashboardStatisticHolder'
+import DashBoardFooter from './dashboardStatisticFooter'
+
 
 function DashboardEntryPoint() {
   return (

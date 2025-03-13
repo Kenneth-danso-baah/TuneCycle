@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ChartB from './chart-b'
-import ChartA from './chart-a'
+import ChartB from './chartB'
+import ChartA from './chartA'
 
 function DashBoardCharts() {
   return (

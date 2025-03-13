@@ -5,7 +5,7 @@ import ProtectedRoute from '@/lib/protected-route';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import FlipperLoader from '@/components/common/flipper-loader';
+import FlipperLoader from '@/components/common/flipperLoader';
 
 function Layout({ children }: { children: ReactNode }) {
   const [showContent, setShowContent] = useState(false);
