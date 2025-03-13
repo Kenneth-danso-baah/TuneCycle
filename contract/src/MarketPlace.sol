@@ -13,6 +13,10 @@ contract MarketPlace {
     Item private _itemContract;
     mapping(uint256 => Listing) private _listings;
 
+    Listing[] public s_allListing;
+
+    mapping(address => Listing[]) private s_eachListing;
+
     constructor(address itemContractAddress) {
         _itemContract = Item(itemContractAddress);
     }
@@ -22,6 +26,16 @@ contract MarketPlace {
             _itemContract.ownerOf(tokenId) == msg.sender,
             "Only the owner can list the NFT"
         );
+
+        // Create a memory copy for the all users array
+        Listing memory newListing = Listing({
+            owner: msg.sender,
+            price: price,
+            isListed: true
+        });
+
+        s_allListing.push(newListing);
+
         _listings[tokenId] = Listing({
             owner: msg.sender,
             price: price,

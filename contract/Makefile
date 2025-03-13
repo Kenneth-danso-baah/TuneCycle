@@ -39,7 +39,15 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 	NETWORK_ARGS := --rpc-url $(SEPOLIA_RPC_URL) --account $(ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 endif
 
+# Add Celo Alfajores network arguments
+ifeq ($(findstring --network alfajores,$(ARGS)),--network alfajores)
+	NETWORK_ARGS := --rpc-url $(CELO_RPC_URL) --account $(ACCOUNT) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+endif
+
 deploy-sepolia:
+	@forge script script/DeployMarketPlace.s.sol:DeployMarketPlace $(NETWORK_ARGS)
+
+deploy-alfajores:
 	@forge script script/DeployMarketPlace.s.sol:DeployMarketPlace $(NETWORK_ARGS)
 
 
