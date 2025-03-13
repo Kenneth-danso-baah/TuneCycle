@@ -13,8 +13,8 @@ function UploadForm() {
     currency: 'USDC',
     leaseStatus: 'Negotiable',
     leaseYears: 1, 
-    musicFile: null,
-    coverImage: null,
+    musicFile: '',
+    coverImage: '',
   });
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,12 +28,32 @@ function UploadForm() {
         const imageURL = `https://ipfs.io/ipfs/${ipfsHash}`;
 
         console.log(`Kenny ${imageURL}`)
-        // setUser((prevUser) => ({
-        //     ...prevUser, 
-        //     profilePic: imageURL,
-        //     imageURL
-        // }));
+
+        setFormData((prevUser) => ({
+          ...prevUser,
+          coverImage: imageURL
+        }))
     }
+};
+
+const handleMusicUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  if (file) {
+
+      const response = await pinata.upload.file(file);
+     
+      const ipfsHash = response.IpfsHash;
+    
+      const videoURL = `https://ipfs.io/ipfs/${ipfsHash}`;
+
+      console.log(`Kenny ${videoURL}`)
+
+      setFormData((prevUser) => ({
+        ...prevUser,
+        musicFile: videoURL
+      }))
+    
+  }
 };
 
   const handleChange = (e:any) => {
@@ -113,7 +133,7 @@ function UploadForm() {
             <input
               type='file'
               name='musicFile'
-              onChange={handleChange}
+              onChange={ handleMusicUpload}
               className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
               accept='audio/*'
             />
@@ -124,7 +144,7 @@ function UploadForm() {
             <input
               type='file'
               name='coverImage'
-              onChange={handleChange}
+              onChange={ handleImageUpload}
               className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
               accept='image/*'
             />
