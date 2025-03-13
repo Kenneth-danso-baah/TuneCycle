@@ -1,4 +1,4 @@
-import { DropDownCategories } from '@/components/common/drop-down-categories'
+import { DropDownCategories } from '@/components/common/dropDownCategories'
 import { genres, musicOptions } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'

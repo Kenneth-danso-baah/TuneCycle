@@ -1,7 +1,7 @@
 import React from 'react'
-import MusicContentContainer from './music-content-container'
-import PriceRangeslider from '@/components/common/price-range-slider'
-import { DropDownCategories } from '@/components/common/drop-down-categories'
+import MusicContentContainer from './musicContentContainer'
+import PriceRangeslider from '@/components/common/priceRangeSlider'
+import { DropDownCategories } from '@/components/common/dropDownCategories'
 import { leaseStatusOptions, yearlyOption,genreOptions, artistStatusOptions, languageOptions, durationOptions } from '@/lib/data'
 
 function MarketPlaceHolder() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { askQuestion } from '@/lib/data'
-import FrequentAskQuestionCard from '@/components/common/cards/frequent-ask-card'
+import FrequentAskQuestionCard from '@/components/common/cards/frequentAskCard'
 
 function FrequentAskQuestion() {
   return (

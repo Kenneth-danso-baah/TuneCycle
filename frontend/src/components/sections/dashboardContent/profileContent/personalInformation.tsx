@@ -1,4 +1,4 @@
-import { DropDownCategories } from '@/components/common/drop-down-categories'
+import { DropDownCategories } from '@/components/common/dropDownCategories'
 import { Button } from '@/components/ui/button'
 import { cryptoOptions } from '@/lib/data'
 import React from 'react'

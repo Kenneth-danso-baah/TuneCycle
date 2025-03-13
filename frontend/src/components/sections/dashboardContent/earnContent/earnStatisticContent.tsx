@@ -1,4 +1,4 @@
-import StatisticCard from '@/components/common/cards/statistic-card'
+import StatisticCard from '@/components/common/cards/statisticCard'
 import { earningDB } from '@/lib/data'
 import React from 'react'
 

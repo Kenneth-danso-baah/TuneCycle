@@ -1,7 +1,7 @@
 import React from 'react'
-import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-info'
-import ProfileBanner from './profile-banner'
-import PersonalInformation from './personal-information'
+import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
+import ProfileBanner from './profileBanner'
+import PersonalInformation from './personalInformation'
 
 function ProfilePage() {
   return (

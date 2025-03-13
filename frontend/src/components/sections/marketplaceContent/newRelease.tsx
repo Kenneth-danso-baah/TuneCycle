@@ -1,4 +1,4 @@
-import MusicPlayerCard from '@/components/common/cards/music-player-card'
+import MusicPlayerCard from '@/components/common/cards/musicPlayerCard'
 import { Button } from '@/components/ui/button'
 import { resultsMusic } from '@/lib/data'
 import React from 'react'

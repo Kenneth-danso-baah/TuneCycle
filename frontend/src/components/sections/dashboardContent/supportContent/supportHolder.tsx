@@ -1,5 +1,5 @@
-import FrequentAskQuestionCard from '@/components/common/cards/frequent-ask-card'
-import SupportCard from '@/components/common/cards/support-card'
+import FrequentAskQuestionCard from '@/components/common/cards/frequentAskCard'
+import SupportCard from '@/components/common/cards/supportCard'
 import { supportiveTags } from '@/lib/data'
 import React from 'react'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { leasingRights } from '@/lib/data'
-import CoupleOfStepsCard from '@/components/common/cards/couple-of-section-card'
+import CoupleOfStepsCard from '@/components/common/cards/coupleOfSectionCard'
 
 function UnlockOriginalContent() {
   return (

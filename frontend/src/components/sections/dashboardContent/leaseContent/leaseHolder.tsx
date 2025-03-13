@@ -1,4 +1,4 @@
-import LeasedCard from '@/components/common/cards/leased-card'
+import LeasedCard from '@/components/common/cards/leasedCard'
 import React from 'react'
 
 function LeaseHolder() {
