@@ -8,6 +8,13 @@ contract MarketPlace {
         address owner;
         uint256 price;
         bool isListed;
+        Music music;
+    }
+
+    struct Music {
+        string title;
+        string music;
+        string image;
     }
 
     Item private _itemContract;
