@@ -1,6 +1,6 @@
 import React from 'react'
-import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-info'
-import UploadMusicHolder from './upload-music-holder'
+import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
+import UploadMusicHolder from './uploadMusicHolder'
 
 
 function MusicUploadPage() {

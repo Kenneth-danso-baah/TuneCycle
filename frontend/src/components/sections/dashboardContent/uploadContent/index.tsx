@@ -1,6 +1,6 @@
-import DashboardHeaderSearchInfo from '@/components/sections/dashboardContent/entryPointContent/dashboard-search-info'
+import DashboardHeaderSearchInfo from '@/components/sections/dashboardContent/entryPointContent/dashboardSearchInfo'
 import React from 'react'
-import UploadForm from './upload-form'
+import UploadForm from './uploadForm'
 
 function UploadMusicPage() {
   return (

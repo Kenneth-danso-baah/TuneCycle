@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ExplainTextIcon from '@/components/common/explain-text-icon'
+import ExplainTextIcon from '@/components/common/explainTextIcon'
 
 
 function WhatMakesUsGreat() {

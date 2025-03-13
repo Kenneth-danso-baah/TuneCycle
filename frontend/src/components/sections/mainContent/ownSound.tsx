@@ -1,4 +1,4 @@
-import ArrowTextLink from '@/components/common/arrow-text-link'
+import ArrowTextLink from '@/components/common/arrowTextLink'
 import Image from 'next/image'
 
 

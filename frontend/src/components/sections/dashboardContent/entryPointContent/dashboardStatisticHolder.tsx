@@ -1,6 +1,6 @@
 import React from 'react'
 import { statisticsDB } from '@/lib/data'
-import StatisticCard from '@/components/common/cards/statistic-card'
+import StatisticCard from '@/components/common/cards/statisticCard'
 
 function DashBoardStatisticContent() {
   return (

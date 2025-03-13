@@ -9,7 +9,7 @@ import { musicNavLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import Logo from '../../../public/images/tc-turner.svg'
 import { CgMenuOreos } from "react-icons/cg";
-import MenuDrawer from '../common/menu-drawer';
+import MenuDrawer from '../common/menuDrawer';
 import { usePrivy } from '@privy-io/react-auth';
 import { useAuth } from '@/hooks/useAuth';
 
