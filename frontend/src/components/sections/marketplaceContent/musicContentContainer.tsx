@@ -1,7 +1,7 @@
 import { resultsMusic } from '@/lib/data'
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import MusicPlayerCard from '@/components/common/cards/music-player-card'
+import MusicPlayerCard from '@/components/common/cards/musicPlayerCard'
 
 function MusicContentContainer() {
   return (

@@ -1,4 +1,4 @@
-import Summarycard from '@/components/common/cards/summary-card'
+import Summarycard from '@/components/common/cards/summaryCard'
 import React from 'react'
 
 function Summary() {

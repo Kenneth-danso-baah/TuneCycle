@@ -1,5 +1,5 @@
-import InfoAlertIcon from '@/components/common/info-alert-icon'
-import ChartA from '../entryPointContent/chart-a'
+import InfoAlertIcon from '@/components/common/infoAlertIcon'
+import ChartA from '../entryPointContent/chartA'
 
 function LeasedCharts() {
   return (

@@ -3,13 +3,13 @@
 import Footer from '@/components/layouts/footer';
 import Header from '@/components/layouts/header';
 import React, { useEffect, useState } from 'react';
-import MarketPlaceSubHeader from './market-place-sub-header';
-import MarketPlaceHolder from './market-place-holder';
-import NewRelease from './new-releases';
-import NowAvailableAgain from './now-available';
-import FlipperLoader from '@/components/common/flipper-loader';
+import MarketPlaceSubHeader from './marketPlaceSubHeader';
+import MarketPlaceHolder from './marketPlaceHolder';
+import NowAvailableAgain from './nowAvailable';
+import FlipperLoader from '@/components/common/flipperLoader';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
+import NewRelease from './newRelease';
 
 function MarketPlacePage() {
   const [isLoading,setIsLoading]=useState(true)

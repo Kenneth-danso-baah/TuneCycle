@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Image from 'next/image'
-import EarnCard from '@/components/common/cards/earn-card'
+import EarnCard from '@/components/common/cards/earnCard'
 
 function EarningPrice() {
   return (

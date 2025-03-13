@@ -1,8 +1,8 @@
 import React from 'react'
-import EarnChart from './earn-chart'
-import EarnstatisticContent from './earn-statistic-content'
-import UploadMusicHolder from '../musicContent/upload-music-holder'
-import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-info'
+import EarnChart from './earnChart'
+import EarnstatisticContent from './earnStatisticContent'
+import UploadMusicHolder from '../musicContent/uploadMusicHolder'
+import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
 
 function EarnPage() {
   return (

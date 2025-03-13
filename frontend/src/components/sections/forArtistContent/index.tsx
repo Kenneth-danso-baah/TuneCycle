@@ -3,10 +3,10 @@
 import Footer from '@/components/layouts/footer'
 import Header from '@/components/layouts/header'
 import React, { useState, useEffect } from 'react'
-import Basecontent from './base-content'
-import HowItWorksHolder from './how-it-work-holder'
-import EarningPrice from './earning-price-content'
-import FlipperLoader from '@/components/common/flipper-loader'
+import Basecontent from './baseContent'
+import HowItWorksHolder from './howItWorkHolder'
+import EarningPrice from './earningPriceContent'
+import FlipperLoader from '@/components/common/flipperLoader'
 
 
 

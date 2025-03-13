@@ -3,10 +3,11 @@
 import Footer from '@/components/layouts/footer'
 import Header from '@/components/layouts/header'
 import React, { useEffect, useState } from 'react'
-import BaseContent from './base-content'
-import UnlockOriginalContent from './unlock-original-holder'
-import FrequentAskQuestion from './frequent-ask-question-holder'
-import FlipperLoader from '@/components/common/flipper-loader'
+import BaseContent from './baseContent'
+
+import FrequentAskQuestion from './frequentAskQuestionHolder'
+import FlipperLoader from '@/components/common/flipperLoader'
+import UnlockOriginalContent from './unlockOriginal'
 
 function ForBuyersPage() {
 

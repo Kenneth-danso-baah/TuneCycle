@@ -1,4 +1,4 @@
-import MusicPlayerCard from '@/components/common/cards/music-player-card'
+import MusicPlayerCard from '@/components/common/cards/musicPlayerCard'
 import { resultsMusic } from '@/lib/data'
 import React from 'react'
 import { FaAngleRight } from 'react-icons/fa';

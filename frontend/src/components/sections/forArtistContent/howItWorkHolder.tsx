@@ -1,4 +1,4 @@
-import IntroductionCard from '@/components/common/cards/introduction-card'
+import IntroductionCard from '@/components/common/cards/introductionCard'
 import { howItWorksItems } from '@/lib/data'
 import React from 'react'
 

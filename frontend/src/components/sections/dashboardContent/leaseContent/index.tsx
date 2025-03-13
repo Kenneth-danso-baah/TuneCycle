@@ -1,10 +1,10 @@
 import React from 'react'
-import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-info'
-import LeaseHolder from './lease-holder'
+import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
+import LeaseHolder from './leaseHolder'
 import Summary from './summary'
-import LeasedCharts from './leased-chart'
-import Titlecontent from './title-content'
-import UploadMusicHolder from '../musicContent/upload-music-holder'
+import LeasedCharts from './leasedChart'
+import Titlecontent from './titleContent'
+import UploadMusicHolder from '../musicContent/uploadMusicHolder'
 
 function LeasePage() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react'
-import DashboardHeaderSearchInfo from '../entryPointContent/dashboard-search-info'
-import SupportHolder from './support-holder'
-import GetSupport from './get-support'
+import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
+import SupportHolder from './supportHolder'
+import GetSupport from './getSupport'
 import { Metadata } from 'next';
 
 

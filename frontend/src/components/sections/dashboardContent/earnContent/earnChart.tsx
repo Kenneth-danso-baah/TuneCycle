@@ -1,5 +1,5 @@
 import React from 'react'
-import ChartA from '../entryPointContent/chart-a'
+import ChartA from '../entryPointContent/chartA'
 
 function EarnChart() {
   return (
