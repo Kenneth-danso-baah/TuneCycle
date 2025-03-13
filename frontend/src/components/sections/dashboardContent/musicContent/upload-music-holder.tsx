@@ -4,6 +4,7 @@ import TableTitle from './table-title'
 import { Button } from '@/components/ui/button'
 import MusicContentForUpload from './music-content-for-upload'
 import { songHeaders } from '@/lib/data'
+import Link from 'next/link'
 
 function UploadMusicHolder() {
   return (
@@ -24,9 +25,9 @@ function UploadMusicHolder() {
          ))}
 
 
-        <div className='flex justify-center py-10'>
+        <Link href="/dashboard/upload" className='flex justify-center py-10'>
             <Button className="text-3xl bg-btn-gradient py-7  font-extrabold ">upload</Button>
-         </div>
+         </Link>
 
     </div>
   )

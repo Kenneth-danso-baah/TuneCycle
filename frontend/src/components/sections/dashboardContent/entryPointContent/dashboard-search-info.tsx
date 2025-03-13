@@ -9,7 +9,7 @@ function DashboardHeaderSearchInfo({dashboard_location}:{dashboard_location:stri
     <div className="flex items-center w-full gap-5">
         <div className='flex items-center gap-2 flex-[10%]'>
             <RiArrowLeftSLine className="text-3xl "/>
-            <span className="font-monoBold text-[20px]">{dashboard_location}</span>
+            <span className="font-monoBold text-[20px] text-nowrap">{dashboard_location}</span>
         </div>
 
         <div className=" flex items-center py-4 gap-5 px-5 bg-[#151718] rounded-[5px] flex-[80%]">
