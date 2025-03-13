@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { DropDownCategories } from '@/components/common/drop-down-categories';
 import LeaseYearsSlider from '@/components/common/lease-slider';
 import { Button } from '@/components/ui/button';
@@ -11,19 +11,23 @@ function UploadForm() {
     amount: '',
     currency: 'USDC',
     leaseStatus: 'Negotiable',
-    leaseYears: 1,
-    streamingPrice: '',
-    streamingCurrency: 'USDC',
+    leaseYears: 1, 
+    musicFile: null,
+    coverImage: null,
   });
 
   const handleChange = (e:any) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
+    console.log('Form Data:', formData); // leaseYears will be included here
   };
 
   return (
@@ -77,27 +81,33 @@ function UploadForm() {
 
         <div>
           <div className='flex flex-col py-5 space-y-3'>
-            <LeaseYearsSlider />
+            {/* Pass years and setYears as props */}
+            <LeaseYearsSlider
+              years={formData.leaseYears}
+              setYears={(value) => setFormData((prev) => ({ ...prev, leaseYears: value }))}
+            />
           </div>
 
           <div className='flex flex-col py-5 space-y-3'>
-            <label className='block text-[18px] font-bold'>Streaming Price</label>
-            <div className='flex items-center gap-5'>
-              <input
-                type='text'
-                name='streamingPrice'
-                value={formData.streamingPrice}
-                onChange={handleChange}
-                className='p-3 outline-none bg-[#363c46] flex-1 border border-[#363346] placeholder:font-bold'
-                placeholder='Enter price for users to stream this song'
-              />
-              <DropDownCategories
-                className='bg-[#363c46] py-6'
-                options={cryptoOptions}
-                placeholder='USDC'
-                label='USDC'
-              />
-            </div>
+            <label className='block text-[18px] font-bold'>Upload Music</label>
+            <input
+              type='file'
+              name='musicFile'
+              onChange={handleChange}
+              className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
+              accept='audio/*'
+            />
+          </div>
+
+          <div className='flex flex-col py-5 space-y-3'>
+            <label className='block text-[18px] font-bold'>Upload Cover Image</label>
+            <input
+              type='file'
+              name='coverImage'
+              onChange={handleChange}
+              className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
+              accept='image/*'
+            />
           </div>
 
           <div className='flex flex-col py-5 space-y-3'>
@@ -108,8 +118,6 @@ function UploadForm() {
           </div>
         </div>
       </div>
-
-
     </form>
   );
 }

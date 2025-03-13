@@ -1,32 +1,31 @@
 "use client";
 
-import { useState } from "react";
+interface LeaseYearsSliderProps {
+  years: number;
+  setYears: (value: number) => void; 
+}
 
-function LeaseYearsSlider() {
-  const [years, setYears] = useState(1);
-
+function LeaseYearsSlider({ years, setYears }: LeaseYearsSliderProps) {
   return (
     <div className="relative w-full flex flex-col items-center p-4">
-      {/* Title */}
       <div className="place-self-start mb-5">
         <h1 className="text-[20px] font-bold">Lease Duration (Years)</h1>
       </div>
 
-
       <div
         className="absolute -top-3 bg-white text-black font-bold px-3 py-1 text-sm shadow-md transition-all duration-200"
         style={{
-          left: `calc(${(years - 1) * 5}% - 15px)`, 
+          left: `calc(${(years - 1) * 5}% - 15px)`,
         }}
       >
         {years} Year{years > 1 ? "s" : ""}
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 
+        <div
+          className="absolute left-1/2 transform -translate-x-1/2 w-0 h-0 
           border-l-8 border-l-transparent 
           border-r-8 border-r-transparent 
           border-t-8 border-t-white"
         ></div>
       </div>
-
 
       <input
         type="range"
@@ -34,14 +33,13 @@ function LeaseYearsSlider() {
         max="20"
         step="1"
         value={years}
-        onChange={(e) => setYears(parseInt(e.target.value))}
+        onChange={(e) => setYears(parseInt(e.target.value))} 
         className="w-full appearance-none h-3 rounded-[2px] cursor-pointer lease-slider"
         style={{
           background: `linear-gradient(to right,  #FFA500 ${(years - 1) * 5}%, #232638 ${(years - 1) * 5}%)`,
         }}
       />
 
-     
       <div className="flex justify-between w-full text-[14px] font-bold mt-3">
         {Array.from({ length: 20 }, (_, i) => (
           <span key={i} className="text-gray-300 text-xs">
@@ -50,7 +48,6 @@ function LeaseYearsSlider() {
         ))}
       </div>
 
-
       <style>
         {`
           .lease-slider::-webkit-slider-thumb {
@@ -58,7 +55,7 @@ function LeaseYearsSlider() {
             appearance: none;
             width: 22px;
             height: 22px;
-            background: #FFA500; /* Same color as slider */
+            background: #FFA500; 
             border: 4px solid white;
             border-radius: 50%;
             cursor: pointer;
@@ -73,7 +70,7 @@ function LeaseYearsSlider() {
           .lease-slider::-moz-range-thumb {
             width: 22px;
             height: 22px;
-            background: #0084ff; /* Same color as slider */
+            background: #0084ff; 
             border: 4px solid white;
             border-radius: 50%;
             cursor: pointer;
