@@ -1,6 +1,7 @@
 "use client"
 import { ReactNode } from "react";
 import { PrivyProvider } from "@privy-io/react-auth";
+import { SmartWalletsProvider } from "@privy-io/react-auth/smart-wallets";
 import { mainnet, sepolia } from "viem/chains";
 
 export function Providers({children}:{children:ReactNode}){
@@ -13,7 +14,7 @@ export function Providers({children}:{children:ReactNode}){
             "google", 
         ],
         embeddedWallets:{
-            createOnLogin: 'users-without-wallets',
+            createOnLogin: 'all-users',
             
         },
         defaultChain: sepolia,
@@ -21,8 +22,8 @@ export function Providers({children}:{children:ReactNode}){
         
     }}
     appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}>
-       
+       <SmartWalletsProvider>
         {children}
-       
+        </SmartWalletsProvider>
         </PrivyProvider>
 }

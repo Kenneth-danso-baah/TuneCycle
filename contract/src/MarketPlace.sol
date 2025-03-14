@@ -31,12 +31,13 @@ contract MarketPlace {
         string memory coverImage,
         string memory title,
         uint256 amount,
-        uint64 leaseYear
+        uint64 leaseYear,
+        address reciever
     ) public {
-        _itemContract.mintNft(musicFile);
+        _itemContract.mintNft(musicFile, reciever);
 
         Listing memory newListing = Listing({
-            owner: msg.sender,
+            owner: reciever,
             price: amount,
             tokenId: _itemContract.s_tokenCounter(),
             title: title,
@@ -45,15 +46,15 @@ contract MarketPlace {
             leaseYear: leaseYear,
             isListed: false
         });
-        s_eachListing[msg.sender].push(newListing);
+        s_eachListing[reciever].push(newListing);
         s_allListing.push(newListing);
     }
 
-    function list(uint256 _id) public {
-        Listing storage listing = s_eachListing[msg.sender][_id];
+    function list(uint256 _id, address reciever) public {
+        Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
         require(
-            _itemContract.ownerOf(listing.tokenId) == msg.sender,
+            _itemContract.ownerOf(listing.tokenId) == reciever,
             "Only the owner can list the NFT"
         );
 
@@ -75,8 +76,8 @@ contract MarketPlace {
         // });
     }
 
-    function rent(uint256 _id) public payable {
-        Listing storage listing = s_eachListing[msg.sender][_id];
+    function rent(uint256 _id, address reciever) public payable {
+        Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
         require(allListing.isListed, "NFT is not listed for rent");
         require(msg.value < allListing.price, "Incorrect rental price");
@@ -85,11 +86,25 @@ contract MarketPlace {
 
         _itemContract.setUser(
             allListing.tokenId,
-            msg.sender,
+            reciever,
             allListing.leaseYear
         );
 
         allListing.isListed = false;
         listing.isListed = false;
     }
+
+    // Getter for s_allListing
+    function getAllListings() public view returns (Listing[] memory) {
+        return s_allListing;
+    }
+
+    // Getter for s_eachListing
+    function getUserListings(
+        address user
+    ) public view returns (Listing[] memory) {
+        return s_eachListing[user];
+    }
+
+    // Getter for _itemContract
 }

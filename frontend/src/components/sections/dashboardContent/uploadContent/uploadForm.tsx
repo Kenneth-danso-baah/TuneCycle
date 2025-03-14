@@ -9,11 +9,17 @@ import { sepolia } from 'viem/chains'
 import { createWalletClient, custom,getContract } from 'viem'
 import {  contractAbi,contractAddress } from '@/lib/integrations/viem/abi'
 import { usePrivy, useWallets } from '@privy-io/react-auth';
+import { useSmartWallets } from "@privy-io/react-auth/smart-wallets";
+import { encodeFunctionData } from "viem";
 
 function UploadForm() {
   const { wallets} = useWallets();
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
+  const { client } = useSmartWallets();
+  const [loading, setLoading] = useState(false);
+  const [nftTx, setNftTx] = useState("");
+  const [errorMessageNft, setErrorMessageNft] = useState("");
 
   const [formData, setFormData] = useState({
     title: '',
@@ -24,7 +30,7 @@ function UploadForm() {
     coverImage: '',
   });
 
-  const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e:any) => {
     const { name, value, files } = e.target;
@@ -38,54 +44,81 @@ function UploadForm() {
   const  handleSubmit  = async (e:any) => {
     e.preventDefault();
     setLoading(true);
-    console.log('wcca', formData);
+    setNftTx("");
+    if (!client) {
+      console.error("No smart account client found");
+      return;
+    }
+
+    setErrorMessageNft("");
     try {
-      if (!wallets || wallets.length === 0) {
-        console.error("No wallet connected");
-        return;
-      }
+      // if (!wallets || wallets.length === 0) {
+      //   console.error("No wallet connected");
+      //   return;
+      // }
   
-      const wallet = wallets[0];
-      if (!wallet) {
-        console.error("Wallet is undefined");
-        return;
-      }
+      // const wallet = wallets[0];
+      // if (!wallet) {
+      //   console.error("Wallet is undefined");
+      //   return;
+      // }
   
 
-      const provider = await wallet.getEthereumProvider();
-      if (!provider) {
-        console.error("Provider is undefined");
-        return;
-      }
+      // const provider = await wallet.getEthereumProvider();
+      // if (!provider) {
+      //   console.error("Provider is undefined");
+      //   return;
+      // }
   
-      const currentChainId = await provider.request({ method: "eth_chainId" });
+      // const currentChainId = await provider.request({ method: "eth_chainId" });
 
-      if (currentChainId !== `0x${sepolia.id.toString(16)}`) {
-        await wallet.switchChain(sepolia.id);
-      }
+      // if (currentChainId !== `0x${sepolia.id.toString(16)}`) {
+      //   await wallet.switchChain(sepolia.id);
+      // }
 
 
-      const client = createWalletClient({
+      // const client = createWalletClient({
+      //   chain: sepolia,
+      //   transport: custom(provider),
+      //   account: walletAddress as `0x${string}`,
+      // });
+      // const contract = getContract({
+      //   address: contractAddress,
+      //   abi: contractAbi,
+      //   client,
+      // });
+  
+      // const tsxx =    await contract.write.mint([
+      //   formData.musicFile, 
+      //   formData.coverImage,
+      //   formData.title,
+      //   BigInt(formData.amount),
+      //   BigInt(formData.leaseYears)
+      //   ]);
+      const tx = await client.sendTransaction({
         chain: sepolia,
-        transport: custom(provider),
-        account: walletAddress as `0x${string}`,
+        to: contractAddress,
+        value: BigInt(0),
+        data: encodeFunctionData({
+          abi: contractAbi,
+          functionName: "mint",
+          args: [
+               formData.musicFile, 
+                formData.coverImage,
+                formData.title,
+                BigInt(formData.amount),
+                BigInt(formData.leaseYears)
+                ],
+        }),
       });
-      const contract = getContract({
-        address: contractAddress,
-        abi: contractAbi,
-        client,
-      });
-  
-      const tsxx =    await contract.write.mint([
-        formData.musicFile, 
-        formData.coverImage,
-        formData.title,
-        BigInt(formData.amount),
-        BigInt(formData.leaseYears)
-        ]);
+      console.log("tx", tx);
+      setNftTx(tx);
   
     } catch (error) {
       console.error("Failed to update blockchain:", error);
+      console.error("Transaction failed:", error);
+      setErrorMessageNft("Transaction failed. Please try again.");
+
     } finally {
       setLoading(false);
     }
@@ -126,6 +159,10 @@ function UploadForm() {
     <form onSubmit={handleSubmit} className='my-20 bg-[#252B36] rounded-[10px] p-10'>
       <h1 className='text-3xl font-monoBold'>Upload Song</h1>
       {loading && <p className='text-yellow-500'>Uploading, please wait...</p>}
+      
+      {nftTx && <p className='text-green-500'>Transaction Successful: {nftTx}</p>}
+      {errorMessageNft && <p className='text-red-500'>Error: {errorMessageNft}</p>}
+
       <div className='grid grid-cols-2 gap-10'>
         <div>
           <div className='flex flex-col py-5 space-y-3'>

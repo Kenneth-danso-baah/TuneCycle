@@ -18,9 +18,9 @@ contract ERC4097 is ERC721 {
     mapping(uint256 tokenId => string tokenUri) private s_tokenIdToUri;
     uint256 public s_tokenCounter;
 
-    function mintNft(string memory tokenUri) public {
+    function mintNft(string memory tokenUri, address reciever) public {
         s_tokenIdToUri[s_tokenCounter] = tokenUri;
-        _safeMint(msg.sender, s_tokenCounter);
+        _safeMint(reciever, s_tokenCounter);
         s_tokenCounter = s_tokenCounter + 1;
     }
 
