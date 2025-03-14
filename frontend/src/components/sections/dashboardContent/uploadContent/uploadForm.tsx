@@ -4,17 +4,19 @@ import LeaseYearsSlider from '@/components/common/leaseSlider';
 import { Button } from '@/components/ui/button';
 import { cryptoOptions, leasingOptions } from '@/lib/data';
 import React, { useState } from 'react';
+import { pinata } from '@/lib/pinanta';
 
 function UploadForm() {
   const [formData, setFormData] = useState({
     title: '',
     amount: '',
     currency: 'USDC',
-    leaseStatus: 'Negotiable',
     leaseYears: 1, 
-    musicFile: null,
-    coverImage: null,
+    musicFile: '',
+    coverImage: '',
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e:any) => {
     const { name, value, files } = e.target;
@@ -27,13 +29,43 @@ function UploadForm() {
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Form Data:', formData); // leaseYears will be included here
+    console.log('Form Data:', formData);
+  };
+
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setLoading(true);
+      const response = await pinata.upload.file(file);
+      const ipfsHash = response.IpfsHash;
+      const imageURL = `https://ipfs.io/ipfs/${ipfsHash}`;
+      setFormData((prevUser) => ({
+        ...prevUser,
+        coverImage: imageURL
+      }));
+      setLoading(false);
+    }
+  };
+
+  const handleMusicUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setLoading(true);
+      const response = await pinata.upload.file(file);
+      const ipfsHash = response.IpfsHash;
+      const videoURL = `https://ipfs.io/ipfs/${ipfsHash}`;
+      setFormData((prevUser) => ({
+        ...prevUser,
+        musicFile: videoURL
+      })); 
+      setLoading(false);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className='my-20 bg-[#252B36] rounded-[10px] p-10'>
       <h1 className='text-3xl font-monoBold'>Upload Song</h1>
-
+      {loading && <p className='text-yellow-500'>Uploading, please wait...</p>}
       <div className='grid grid-cols-2 gap-10'>
         <div>
           <div className='flex flex-col py-5 space-y-3'>
@@ -68,7 +100,7 @@ function UploadForm() {
             </div>
           </div>
 
-          <div className='flex flex-col py-0 space-y-3'>
+          {/* <div className='flex flex-col py-0 space-y-3'>
             <label className='block text-[18px] font-bold'>Lease Status</label>
             <DropDownCategories
               className='bg-[#363c46]'
@@ -76,7 +108,7 @@ function UploadForm() {
               placeholder='Negotiable'
               label='Negotiable'
             />
-          </div>
+          </div> */}
         </div>
 
         <div>
@@ -93,7 +125,7 @@ function UploadForm() {
             <input
               type='file'
               name='musicFile'
-              onChange={handleChange}
+              onChange={ handleMusicUpload}
               className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
               accept='audio/*'
             />
@@ -104,7 +136,8 @@ function UploadForm() {
             <input
               type='file'
               name='coverImage'
-              onChange={handleChange}
+              onChange={ handleImageUpload}
+
               className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
               accept='image/*'
             />
@@ -113,7 +146,9 @@ function UploadForm() {
           <div className='flex flex-col py-5 space-y-3'>
             <label className='block text-[18px] font-bold'>Upload Song</label>
             <div className='place-self-start bg-[#363c46] p-2'>
-              <Button type="submit" className='text-white font-bold'>Upload</Button>
+              {!loading && (
+                <Button type="submit" className='text-white font-bold'>Upload</Button>
+              )}
             </div>
           </div>
         </div>

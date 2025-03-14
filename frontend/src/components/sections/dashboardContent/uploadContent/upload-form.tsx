@@ -17,22 +17,23 @@ function UploadForm() {
     coverImage: '',
   });
 
+  const [coverImageURL, setCoverImageURL] = useState('');
+
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-
         const response = await pinata.upload.file(file);
-       
         const ipfsHash = response.IpfsHash;
-      
         const imageURL = `https://ipfs.io/ipfs/${ipfsHash}`;
 
-        console.log(`Kenny ${imageURL}`)
+        console.log(`Kenny ${imageURL}`);
 
         setFormData((prevUser) => ({
-          ...prevUser,
-          coverImage: imageURL
-        }))
+            ...prevUser,
+            coverImage: imageURL
+        }));
+
+        setCoverImageURL(imageURL);
     }
 };
 
@@ -59,15 +60,25 @@ const handleMusicUpload = async (event: React.ChangeEvent<HTMLInputElement>) => 
   const handleChange = (e:any) => {
     const { name, value, files } = e.target;
     if (files) {
-      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+      setFormData((prev) => ({ ...prev, 
+        // [name]: files[0]
+       }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({ ...prev, 
+        // [name]: value 
+      }));
     }
   };
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Form Data:', formData); // leaseYears will be included here
+    console.log('Form Data:', {
+      ...formData,
+      videoURL: formData.musicFile,
+      imageURL:coverImageURL,
+    });
+    
+    console.log('Cover Image URL:', coverImageURL);
   };
 
   return (
@@ -108,7 +119,7 @@ const handleMusicUpload = async (event: React.ChangeEvent<HTMLInputElement>) => 
             </div>
           </div>
 
-          <div className='flex flex-col py-0 space-y-3'>
+          {/* <div className='flex flex-col py-0 space-y-3'>
             <label className='block text-[18px] font-bold'>Lease Status</label>
             <DropDownCategories
               className='bg-[#363c46]'
@@ -116,7 +127,7 @@ const handleMusicUpload = async (event: React.ChangeEvent<HTMLInputElement>) => 
               placeholder='Negotiable'
               label='Negotiable'
             />
-          </div>
+          </div> */}
         </div>
 
         <div>
