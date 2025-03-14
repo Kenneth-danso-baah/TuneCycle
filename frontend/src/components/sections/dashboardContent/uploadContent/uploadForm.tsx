@@ -5,8 +5,16 @@ import { Button } from '@/components/ui/button';
 import { cryptoOptions, leasingOptions } from '@/lib/data';
 import React, { useState } from 'react';
 import { pinata } from '@/lib/pinanta';
+import { sepolia } from 'viem/chains'
+import { createWalletClient, custom,getContract } from 'viem'
+import {  contractAbi,contractAddress } from '@/lib/integrations/viem/abi'
+import { usePrivy, useWallets } from '@privy-io/react-auth';
 
 function UploadForm() {
+  const { wallets} = useWallets();
+  const { user} = usePrivy()
+  const walletAddress = user?.wallet?.address;
+
   const [formData, setFormData] = useState({
     title: '',
     amount: '',
@@ -27,8 +35,60 @@ function UploadForm() {
     }
   };
 
-  const handleSubmit = (e:any) => {
+  const  handleSubmit  = async (e:any) => {
     e.preventDefault();
+    setLoading(true);
+    console.log('wcca', formData);
+    try {
+      if (!wallets || wallets.length === 0) {
+        console.error("No wallet connected");
+        return;
+      }
+  
+      const wallet = wallets[0];
+      if (!wallet) {
+        console.error("Wallet is undefined");
+        return;
+      }
+  
+
+      const provider = await wallet.getEthereumProvider();
+      if (!provider) {
+        console.error("Provider is undefined");
+        return;
+      }
+  
+      const currentChainId = await provider.request({ method: "eth_chainId" });
+
+      if (currentChainId !== `0x${sepolia.id.toString(16)}`) {
+        await wallet.switchChain(sepolia.id);
+      }
+
+
+      const client = createWalletClient({
+        chain: sepolia,
+        transport: custom(provider),
+        account: walletAddress as `0x${string}`,
+      });
+      const contract = getContract({
+        address: contractAddress,
+        abi: contractAbi,
+        client,
+      });
+  
+      const tsxx =    await contract.write.mint([
+        formData.musicFile, 
+        formData.coverImage,
+        formData.title,
+        BigInt(formData.amount),
+        BigInt(formData.leaseYears)
+        ]);
+  
+    } catch (error) {
+      console.error("Failed to update blockchain:", error);
+    } finally {
+      setLoading(false);
+    }
     console.log('Form Data:', formData);
   };
 

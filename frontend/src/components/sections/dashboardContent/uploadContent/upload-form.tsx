@@ -161,12 +161,12 @@ const handleMusicUpload = async (event: React.ChangeEvent<HTMLInputElement>) => 
             />
           </div>
 
-          <div className='flex flex-col py-5 space-y-3'>
+          {/* <div className='flex flex-col py-5 space-y-3'>
             <label className='block text-[18px] font-bold'>Upload Song</label>
             <div className='place-self-start bg-[#363c46] p-2'>
               <Button type="submit" className='text-white font-bold'>Upload</Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </form>
