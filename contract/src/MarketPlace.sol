@@ -7,14 +7,12 @@ contract MarketPlace {
     struct Listing {
         address owner;
         uint256 price;
-        bool isListed;
-        Music music;
-    }
-
-    struct Music {
+        uint256 tokenId;
+        uint64 leaseYear;
         string title;
         string music;
         string image;
+        bool isListed;
     }
 
     Item private _itemContract;
@@ -28,37 +26,70 @@ contract MarketPlace {
         _itemContract = Item(itemContractAddress);
     }
 
-    function list(uint256 tokenId, uint256 price) public {
+    function mint(
+        string memory musicFile,
+        string memory coverImage,
+        string memory title,
+        uint256 amount,
+        uint64 leaseYear
+    ) public {
+        _itemContract.mintNft(musicFile);
+
+        Listing memory newListing = Listing({
+            owner: msg.sender,
+            price: amount,
+            tokenId: _itemContract.s_tokenCounter(),
+            title: title,
+            music: musicFile,
+            image: coverImage,
+            leaseYear: leaseYear,
+            isListed: false
+        });
+        s_eachListing[msg.sender].push(newListing);
+        s_allListing.push(newListing);
+    }
+
+    function list(uint256 _id) public {
+        Listing storage listing = s_eachListing[msg.sender][_id];
+        Listing storage allListing = s_allListing[_id];
         require(
-            _itemContract.ownerOf(tokenId) == msg.sender,
+            _itemContract.ownerOf(listing.tokenId) == msg.sender,
             "Only the owner can list the NFT"
         );
 
+        listing.isListed = true;
+        allListing.isListed = true;
         // Create a memory copy for the all users array
-        Listing memory newListing = Listing({
-            owner: msg.sender,
-            price: price,
-            isListed: true
-        });
+        // Listing memory newListing = Listing({
+        //     owner: msg.sender,
+        //     price: price,
+        //     isListed: true
+        // });
 
-        s_allListing.push(newListing);
+        // s_allListing.push(newListing);
 
-        _listings[tokenId] = Listing({
-            owner: msg.sender,
-            price: price,
-            isListed: true
-        });
+        // _listings[tokenId] = Listing({
+        //     owner: msg.sender,
+        //     price: price,
+        //     isListed: true
+        // });
     }
 
-    function rent(uint256 tokenId, uint64 expires) public payable {
-        Listing storage listing = _listings[tokenId];
-        require(listing.isListed, "NFT is not listed for rent");
-        require(msg.value < listing.price, "Incorrect rental price");
+    function rent(uint256 _id) public payable {
+        Listing storage listing = s_eachListing[msg.sender][_id];
+        Listing storage allListing = s_allListing[_id];
+        require(allListing.isListed, "NFT is not listed for rent");
+        require(msg.value < allListing.price, "Incorrect rental price");
 
-        payable(listing.owner).transfer(msg.value);
+        payable(allListing.owner).transfer(msg.value);
 
-        _itemContract.setUser(tokenId, msg.sender, expires);
+        _itemContract.setUser(
+            allListing.tokenId,
+            msg.sender,
+            allListing.leaseYear
+        );
 
+        allListing.isListed = false;
         listing.isListed = false;
     }
 }

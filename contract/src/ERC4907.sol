@@ -16,7 +16,7 @@ contract ERC4097 is ERC721 {
     ) ERC721(name_, symbol_) {}
 
     mapping(uint256 tokenId => string tokenUri) private s_tokenIdToUri;
-    uint256 private s_tokenCounter;
+    uint256 public s_tokenCounter;
 
     function mintNft(string memory tokenUri) public {
         s_tokenIdToUri[s_tokenCounter] = tokenUri;
