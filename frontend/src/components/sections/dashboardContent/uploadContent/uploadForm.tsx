@@ -107,7 +107,8 @@ function UploadForm() {
                 formData.coverImage,
                 formData.title,
                 BigInt(formData.amount),
-                BigInt(formData.leaseYears)
+                BigInt(formData.leaseYears),
+                `${walletAddress}`
                 ],
         }),
       });
