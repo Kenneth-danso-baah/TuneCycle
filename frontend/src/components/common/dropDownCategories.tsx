@@ -19,7 +19,7 @@ export interface DropDownSelectProps {
   onValueChange?: (value: string) => void;
 }
 
-export function DropDownCategories({ options, placeholder, label, onValueChange,className }: DropDownSelectProps) {
+export function DropDownCategories({ options, placeholder, label, onValueChange,className}: DropDownSelectProps) {
   return (
     <Select onValueChange={onValueChange}  >
       <SelectTrigger className={clsx(`w-[180px] rounded-[5px] bg-brand-primary py-2 font-bold border-brand-mouve`,className)}>

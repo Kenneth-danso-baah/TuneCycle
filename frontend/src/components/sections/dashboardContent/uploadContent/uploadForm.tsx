@@ -2,7 +2,7 @@
 import { DropDownCategories } from '@/components/common/dropDownCategories';
 import LeaseYearsSlider from '@/components/common/leaseSlider';
 import { Button } from '@/components/ui/button';
-import { cryptoOptions, leasingOptions } from '@/lib/data';
+import { cryptoOptions, genreOptions, leasingOptions } from '@/lib/data';
 import React, { useState } from 'react';
 import { pinata } from '@/lib/pinanta';
 import { sepolia } from 'viem/chains'
@@ -24,10 +24,12 @@ function UploadForm() {
   const [formData, setFormData] = useState({
     title: '',
     amount: '',
-    currency: 'USDC',
+    currency: 'ETH',
     leaseYears: 1, 
     musicFile: '',
     coverImage: '',
+    genre:''
+
   });
 
 
@@ -159,7 +161,14 @@ function UploadForm() {
   return (
     <form onSubmit={handleSubmit} className='my-20 bg-[#252B36] rounded-[10px] p-10'>
       <h1 className='text-3xl font-monoBold'>Upload Song</h1>
-      {loading && <p className='text-yellow-500'>Uploading, please wait...</p>}
+      
+      {loading && (
+  <div className="flex justify-center my-4">
+    <div className="w-8 h-8 border-4 border-[#761EFE] border-t-transparent rounded-full  animate-gradient-spin"></div>
+  </div>
+)}
+
+
       
       {nftTx && <p className='text-green-500'>Transaction Successful: {nftTx}</p>}
       {errorMessageNft && <p className='text-red-500'>Error: {errorMessageNft}</p>}
@@ -192,26 +201,30 @@ function UploadForm() {
               <DropDownCategories
                 className='bg-[#363c46] py-6'
                 options={cryptoOptions}
-                placeholder='USDC'
-                label='USDC'
+                placeholder='ETH'
+                label='ETH'
               />
             </div>
           </div>
 
-          {/* <div className='flex flex-col py-0 space-y-3'>
-            <label className='block text-[18px] font-bold'>Lease Status</label>
+          <div className='flex flex-col py-0 space-y-3'>
+            <label className='block text-[18px] font-bold'>Genres</label>
             <DropDownCategories
-              className='bg-[#363c46]'
-              options={leasingOptions}
-              placeholder='Negotiable'
-              label='Negotiable'
-            />
-          </div> */}
+            className='bg-[#363c46]'
+          options={genreOptions}
+          placeholder='Select Genre'
+          label='Genre'
+          onValueChange={(selectedGenre) => 
+        setFormData((prev) => ({ ...prev, genre: selectedGenre }))
+        }
+        />
+
+          </div>
         </div>
 
         <div>
           <div className='flex flex-col py-5 space-y-3'>
-            {/* Pass years and setYears as props */}
+         
             <LeaseYearsSlider
               years={formData.leaseYears}
               setYears={(value) => setFormData((prev) => ({ ...prev, leaseYears: value }))}
@@ -243,12 +256,20 @@ function UploadForm() {
 
           <div className='flex flex-col py-5 space-y-3'>
             <label className='block text-[18px] font-bold'>Upload Song</label>
-            <div className='place-self-start bg-[#363c46] p-2'>
-              {!loading && (
-                <Button type="submit" className='text-white font-bold'>Upload</Button>
-              )}
+            <div className='place-self-start bg-[#363c46] '>
+                <button 
+                disabled={!formData.genre || !formData.amount || !formData.currency || !formData.leaseYears || !formData.musicFile || !formData.coverImage}
+                className={`px-4 py-2 rounded ${!formData.genre || !formData.title || !formData.leaseYears || !formData.musicFile || !formData.coverImage 
+                  ? "bg-gray-500 cursor-not-allowed" 
+                  : "bg-green-600 hover:bg-green-700"}`}
+                type="submit">
+                  Upload
+                </button>
+              
             </div>
           </div>
+
+
         </div>
       </div>
     </form>

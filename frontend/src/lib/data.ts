@@ -128,9 +128,7 @@ export const footerLinks = [
   ];
   
   export const cryptoOptions = [
-    { value: "usdc", label: "USDC" },
     { value: "eth", label: "ETH" },
-    { value: "solona", label: "SOLANA" },
   ];
 
   export const resultsMusic = [
