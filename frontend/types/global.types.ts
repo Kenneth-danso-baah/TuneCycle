@@ -4,3 +4,9 @@ export type PrivyUser = {
     name?: string;
     createdAt?: string | null; 
 };
+
+
+export type BotMessgeProps = {
+    text:string;
+    sender: 'user' | 'bot';
+}
