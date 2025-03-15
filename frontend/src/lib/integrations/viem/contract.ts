@@ -3,16 +3,12 @@
 import { getContract } from "viem";
 import { contractAbi, contractAddress, stableCoinAbi, stableCoinAddress } from "./abi";
 import { client } from "./client";
+ 
 
 
-interface SendReceive {
-    action: string;
-    amount: bigint;
-    message: string;
-    otherPartyAddress: string;
-    otherPartyName: string;
-    time:bigint;
-}
+
+
+       
 
 interface Request {
     requestor:string;
@@ -23,20 +19,23 @@ interface Request {
     time:bigint;
 }
 
-interface UserInfo {
-    firstName:string;
-    lastName:string;
-    gender:string;
-    dateOfBirth:string;
-    imageUrl:string;
-    xHandle:string;
-    facebookHandle:string;
-    igHandle:string;
-    location:string;
-    email:string;
-    phone:string;
-    userAddress:string;
-    hasName:boolean;
+ // address owner;
+        // uint256 price;
+        // uint256 tokenId;
+        // uint64 leaseYear;
+        // string title;
+        // string music;
+        // string image;
+        // bool isListed;
+interface Listing {
+    owner:string;
+    price:bigint;
+    tokenId: bigint;
+    leaseYear:bigint;
+    title:string;
+    music: string;
+    image:string;
+    isListed:boolean;
 }
 
 export async function readContractData(userAddress: `0x${string}`): Promise<[string, string, string, string, string, string, string, string,string,string,string,string, boolean] | null> {
@@ -120,7 +119,7 @@ export async function readERC20Balance(tokenAddress: `0x${string}`,userAddress: 
     }
 }
 
-export async function readHistoryData(userAddress: `0x${string}`): Promise<SendReceive[] | null> {
+export async function readUserListings(userAddress: `0x${string}`): Promise<Listing[] | null> {
     try {
         const contract = getContract({
             address: contractAddress,
@@ -128,12 +127,12 @@ export async function readHistoryData(userAddress: `0x${string}`): Promise<SendR
             client,
         });
 
-        const data = await contract.read.getMyHistory([userAddress]);
+        const data = await contract.read.getUserListings([userAddress]);
 
         console.log("History Data:", data);
 
         if (Array.isArray(data)) {
-            return data as SendReceive[];
+            return data as Listing[];
         } else {
             
             return null;
@@ -141,151 +140,6 @@ export async function readHistoryData(userAddress: `0x${string}`): Promise<SendR
     } catch (error) {
         
         console.error("Error reading history:", error);
-        return null;
-    }
-}
-
-export async function readHistoryBetweenFriendsData(userAddress: `0x${string}`,friendAddress: `0x${string}`): Promise<SendReceive[] | null> {
-    try {
-        const contract = getContract({
-            address: contractAddress,
-            abi: contractAbi,
-            client,
-        });
-
-        const data = await contract.read.getMyHistoryWithAFriend([userAddress,friendAddress]);
-
-        console.log("History Data:", data);
-
-        if (Array.isArray(data)) {
-            return data as SendReceive[];
-        } else {
-            
-            return null;
-        }
-    } catch (error) {
-        
-        console.error("Error reading history:", error);
-        return null;
-    }
-}
-
-//
-
-export async function approve(spender: `0x${string}`, amount: bigint): Promise<boolean | null> {
-    try {
-        const contract = getContract({
-            address: stableCoinAddress,
-            abi: stableCoinAbi,
-            client,
-        });
-
-        const tx = await contract.write.approve([spender, amount]);
-        console.log("Approve Transaction:", tx);
-        return true; // Assuming the transaction is successful
-    } catch (error) {
-        console.error("Error approving tokens:", error);
-        return null;
-    }
-}
-
-export async function allowance(owner: `0x${string}`, spender: `0x${string}`): Promise<bigint | null> {
-    try {
-        const contract = getContract({
-            address: stableCoinAddress,
-            abi: stableCoinAbi,
-            client,
-        });
-
-        const data = await contract.read.allowance([owner, spender]);
-
-        console.log(`${data} clauouidb `)
-        if (typeof data === "bigint"
-            && data !== null 
-          
-           ) {
-         
-           return data;
-       } else {
-           // toast({
-           //     variant: 'destructive',
-           //     title:'Unexpected data format',
-           //     description: 'Unexpected data format sent !!!'
-           // })
-           return null;
-       }
-    } catch (error) {
-        console.error("Error fetching allowance:", error);
-        return BigInt(0);
-    }
-}
-
-export async function readMyRequests(userAddress: `0x${string}`): Promise<Request[] | null> {
-    try {
-        const contract = getContract({
-            address: contractAddress,
-            abi: contractAbi,
-            client,
-        });
-
-        const data = await contract.read.getMyRequests([userAddress]);
-
-        console.log("My Requests Data:", data);
-
-        if (Array.isArray(data)) {
-            return data as Request[];
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.error("Error reading my requests:", error);
-        return null;
-    }
-}
-
-
-export async function readAllMembers(): Promise<UserInfo[] | null> {
-    try {
-        const contract = getContract({
-            address: contractAddress,
-            abi: contractAbi,
-            client,
-        });
-
-        const data = await contract.read.getAllUsers();
-
-        console.log("My Requests Data:", data);
-
-        if (Array.isArray(data)) {
-            return data as UserInfo[];
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.error("Error reading my requests:", error);
-        return null;
-    }
-}
-
-export async function readMyFriends(userAddress: `0x${string}`): Promise<UserInfo[] | null> {
-    try {
-        const contract = getContract({
-            address: contractAddress,
-            abi: contractAbi,
-            client,
-        });
-
-        const data = await contract.read.getAllMyFriends([userAddress]);
-
-        console.log("My Friends Data:", data);
-
-        if (Array.isArray(data)) {
-            return data as UserInfo[];
-        } else {
-            return null;
-        }
-    } catch (error) {
-        console.error("Error reading my friends:", error);
         return null;
     }
 }
