@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     #local Apps
     'chatbot.apps.ChatbotConfig',
+    'recommend.apps.RecommendConfig',
     
     #Third Party Apps
     'rest_framework',
