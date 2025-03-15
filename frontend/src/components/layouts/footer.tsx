@@ -44,7 +44,7 @@ function Footer() {
 
         </div>
 
-        <div className='border pt-5 md:pt-16 pb-10 text-[13px] md:text-[18px] font-bold border-t border-l-0  border-r-0 border-b-0 border-brand-hue-color flex flex-col md:flex-row justify-between'>
+        <div className='border pt-5 md:pt-16 pb-10 text-[13px] md:text-[18px] font-bold border-t border-l-0  border-r-0 border-b-0 border-brand-rcc flex flex-col md:flex-row justify-between'>
         
           <div>
             <h1> &copy;2025 TuneCycle, Allrights reserved</h1>

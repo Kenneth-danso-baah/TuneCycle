@@ -100,7 +100,7 @@ export const footerLinks = [
       opinion:
         "I use BeatBack to create immersive audio experiences at events. The variety and ease of use are unbeatable.",
       rating: 5,
-      image: "/images/rc8.svg",
+      image: "/images/rc3.svg",
     },
     {
       name: "Michael Brown",
@@ -108,7 +108,7 @@ export const footerLinks = [
       opinion:
         "Editing videos requires the perfect soundtrack, and BeatBack delivers just that. It's my go-to platform!",
       rating: 4.7,
-      image: "/images/rc9.svg",
+      image: "/images/rc1.svg",
     },
   ];
   

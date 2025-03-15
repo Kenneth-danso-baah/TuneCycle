@@ -27,7 +27,7 @@ function Header() {
     }
 
   return (
-    <header className='w-full bg-[#0B0E1F] z-50 top-0 sticky  border border-b border-brand-hue-color border-l-0 border-r-0 border-t-0'>
+    <header className='w-full bg-[#0B0E1F] z-50 top-0 sticky  border border-b border-brand-rcc border-l-0 border-r-0 border-t-0'>
 
       <div className='mx-5 lg:leftRightSpacing py-5 flex  overflow-x-hidden lg:flex-row items-center justify-between gap-4'>
 
