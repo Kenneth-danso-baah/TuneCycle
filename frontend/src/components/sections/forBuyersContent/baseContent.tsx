@@ -1,6 +1,7 @@
 import Curves from '@/components/common/curves'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 
@@ -16,7 +17,7 @@ function BaseContent() {
                 for your projects. Browse our diverse catalog and secure your soundtrack in minutes.</p>
 
                 <div className='grid place-content-center'>
-                    <Button className='text-[18px] font-bold bg-btn-gradient py-6 rounded-[5px]'>Get Started</Button>
+                    <Link href="/market_place" className='text-[18px] font-bold bg-btn-gradient py-4 px-8 rounded-[5px]'>Get Started</Link>
                 </div>
         </div>
 

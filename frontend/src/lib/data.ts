@@ -1,7 +1,6 @@
 export const musicNavLinks=[
     {name:'home', href:'/'},
     {name:'dashboard', href:'/dashboard'},
-    {name:'marketplace', href:'/market_place'},
     {name:'for artists', href:'/for_artist'},
     {name:'for buyers', href:'/for_buyers'}
 ]
