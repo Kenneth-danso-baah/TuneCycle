@@ -1,9 +1,14 @@
-export type PrivyUser = {
-    id?: string;
-    email?: string;
-    name?: string;
-    createdAt?: string | null; 
-};
+export interface LinkedAccount {
+    provider: string; 
+    verifiedAt?: string | null;
+}
+
+export interface PrivyUser {
+    id: string;
+    email?: { address: string };
+    createdAt?: string;
+    linkedAccounts?: LinkedAccount[];
+}
 
 
 export type BotMessgeProps = {
