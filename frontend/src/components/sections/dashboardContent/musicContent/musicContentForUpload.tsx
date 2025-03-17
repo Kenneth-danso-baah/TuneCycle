@@ -15,10 +15,8 @@ interface SongsIdProps{
     leased_by:string;
     earnings:string;
     lease_period:string;
-    listeners:string;
-    edit:string;
-
 }
+
 function MusicContentForUpload({cover,id,songs}:SongsIdProps) {
   return (
     <div className={`${columnLayout} font-bold text-[15px] `}>
@@ -39,10 +37,6 @@ function MusicContentForUpload({cover,id,songs}:SongsIdProps) {
     </div>
     <div>20.1M</div>
     <div>10y</div>
-    <div>33.5K</div>
-    <div>
-      <HiDotsHorizontal />
-    </div>
   </div>
   )
 }

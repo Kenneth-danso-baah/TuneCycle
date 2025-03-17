@@ -2,31 +2,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/app/store";
 import { usePrivy } from "@privy-io/react-auth";
 import { useEffect } from "react";
-import { PrivyUser } from "../../types/global.types";
 import { logout, setAuthenticated, setUser } from "@/app/features/auth/authSlice";
+import { PrivyUser } from "../../types/global.types";
+
+const toISOStringSafe = (value: unknown): string | null | undefined => {
+    if (value instanceof Date) {
+        return value.toISOString();
+    }
+    if (typeof value === 'string') {
+        return value;
+    }
+    return null;
+};
 
 export const useAuth = () => {
     const dispatch = useDispatch();
     const { ready, authenticated, login, user, logout: privyLogout } = usePrivy();
-
-   
     const authState = useSelector((state: RootState) => state.auth);
 
-  
     useEffect(() => {
         if (ready) {
-            console.log("Privy ready. Authenticated:", authenticated);
-            console.log("User:", user);
 
-          
             dispatch(setAuthenticated(authenticated));
 
-           
             if (user) {
                 const sanitizedUser: PrivyUser = {
-                    ...user,
-                    createdAt: user.createdAt instanceof Date ? user.createdAt.toISOString() : null,
-                    email: user.email ? user.email.address : undefined,
+                    id: user.id,
+                    createdAt: toISOStringSafe(user.createdAt) || undefined,
+                    email: user.email ? { address: user.email.address } : undefined,
+                    linkedAccounts: user.linkedAccounts?.map(account => ({
+                        provider: account.type, 
+                        verifiedAt: toISOStringSafe(account.verifiedAt),
+                    })) || [],
                 };
                 dispatch(setUser(sanitizedUser));
             } else {
@@ -35,17 +42,13 @@ export const useAuth = () => {
         }
     }, [ready, authenticated, user, dispatch]);
 
-
     const handleLogin = async () => {
         try {
-            console.log("Logging in...");
             await login();
-            console.log("Login complete.");
         } catch (error) {
             console.error("Login failed:", error);
         }
     };
-
 
     const handleLogout = async () => {
         try {
@@ -58,9 +61,7 @@ export const useAuth = () => {
             console.error("Logout failed:", error);
         }
     };
-    
 
-  
     return {
         isAuthenticated: authState.isAuthenticated,
         user: authState.user,

@@ -1,6 +1,6 @@
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FiArrowUpRight } from "react-icons/fi";
-// import { columnLayout } from "@/lib/data";
+
 
 
 const columnLayout ="grid grid-cols-[50px_200px_120px_150px_120px_200px_150px_120px_100px_50px] items-center py-4 border-b border-gray-300";
@@ -25,8 +25,7 @@ function TableTitle() {
           <h1>Earnings</h1> ($)
         </div>
         <div>Leased Period</div>
-        <div>Listeners</div>
-        <div>Edit</div>
+
       </div>
       </div>
     );

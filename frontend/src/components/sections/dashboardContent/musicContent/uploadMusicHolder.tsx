@@ -6,6 +6,7 @@ import MusicContentForUpload from './musicContentForUpload'
 import { songHeaders } from '@/lib/data'
 import Link from 'next/link'
 
+
 function UploadMusicHolder() {
   return (
     <div className='my-10 h-auto p-10 rounded-2xl w-full bg-[#252B36]'>
@@ -21,7 +22,7 @@ function UploadMusicHolder() {
               genre={data.genre} 
                uploaded_date={data.uploaded_date}
                 status={data.status} 
-                leased_by={data.leased_by} earnings={data.earnings} lease_period={data.lease_period} listeners={data.listeners} edit={data.edit}             />
+                leased_by={data.leased_by} earnings={data.earnings} lease_period={data.lease_period}/>
          ))}
 
 

@@ -12,11 +12,13 @@ function BaseContent() {
               LEASE YOUR MUSIC RIGHTS RETAIN YOUR OWNERSHIP
             </h1>
             <p className='w-full lg:max-w-[52%]  md:text-[20px] font-bold mt-6 text-center'>
-            BeatBack empowers artistes to generate revenue without losing control of their creative work. Connect with buyers looking for fresh sounds for their projects. </p>
+            TuneCycle empowers artistes to generate revenue without losing control of their creative work. Connect with buyers looking for fresh sounds for their projects. </p>
             
             <div className='flex flex-col md:flex-row gap-10 md:gap-20 items-center mt-10'>
-                <Button className='bg-btn-gradient md:py-7 px-10 rounded-[10px] font-bold md:text-[20px] capitalize'>lease your music</Button>
-                <Link href="/" className='text-nowrap text-[18px] font-extrabold md:text-[20px]'>Explore marketplace</Link>
+
+                <Link href="/dashboard/upload/" className='bg-btn-gradient hover:bg-none hover:text-white md:py-3 px-10 rounded-[10px] font-bold md:text-[20px] capitalize'>lease your music</Link>
+
+                <Link href="/market_place/" className='bg-btn-gradient hover:bg-none hover:text-white md:py-3 px-10 rounded-[10px] font-bold md:text-[20px] capitalize'>Explore marketplace</Link>
             </div>
           </div>
     
