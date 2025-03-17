@@ -27,7 +27,7 @@ function MarketPlacePage() {
         <FlipperLoader />
       ) : (
         <>
-          <Header />
+          {/* <Header /> */}
           <div className='py-7 items-center'>
             <h1 className='text-5xl font-monoBold text-center'>
               DISCOVER <span className='text-brand-brew'>UNLIMITED</span> MUSIC

@@ -19,17 +19,17 @@ function SearchFilterColumn() {
             <input type="text" placeholder="search" className="bg-transparent w-full outline-none placeholder:font-bold text-[18px] italic" />
         </div>
 
-        <div className='flex items-center gap-5 bg-[#333945] p-3 rounded-[5px]'>
+        {/* <div className='flex items-center gap-5 bg-[#333945] p-3 rounded-[5px]'>
           <IoFilterSharp/>
            <h1 className='text-[18px] font-bold'>Filters</h1>
            <MdKeyboardArrowDown className="text-3xl"/>  
-        </div>
+        </div> */}
 
-        <div className='flex items-center gap-5 bg-[#333945] p-3 rounded-[5px]'>
+        {/* <div className='flex items-center gap-5 bg-[#333945] p-3 rounded-[5px]'>
           <BsLayoutThreeColumns/>
            <h1 className='text-[18px] font-bold'>Colums</h1>
            <MdKeyboardArrowDown className="text-3xl"/>  
-        </div>
+        </div> */}
 
 
      </div>

@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Curves from '../../../components/common/curves'
+import Link from 'next/link'
 
 function BaseContent() {
   return (
@@ -13,7 +14,7 @@ function BaseContent() {
                 new audiences, and build a sustainable music career with BeatBack</p>
 
                 <div className='grid place-content-center'>
-                    <Button className='text-[18px] font-bold bg-btn-gradient py-6 rounded-[5px]'>Lease Your Music</Button>
+                    <Link href="/dashboard" className='text-[18px] font-bold bg-btn-gradient py-4  px-10 rounded-[5px]'>Lease Your Music</Link>
                 </div>
         </div>
 

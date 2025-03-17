@@ -1,6 +1,5 @@
 export const musicNavLinks=[
     {name:'home', href:'/'},
-    {name:'dashboard', href:'/dashboard'},
     {name:'for artists', href:'/for_artist'},
     {name:'for buyers', href:'/for_buyers'}
 ]
@@ -415,16 +414,16 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
 
 
   export const songHeaders = [
-    { cover: '/images/av1.svg', songs: 'Insane', id: 1, genre: 'Pop', uploaded_date: '24.05.2024', status: 'Leased', leased_by: 'Passion Sounds', earnings: '20.1M', lease_period: '10y', listeners: '33.5K', edit: '_' },
-    { cover: '/images/av2.svg', songs: 'Midnight Waves', id: 2, genre: 'R&B', uploaded_date: '15.06.2024', status: 'Available', leased_by: '-', earnings: '12.3M', lease_period: '-', listeners: '25.7K', edit: '_' },
-    { cover: '/images/av3.svg', songs: 'Echoes of You', id: 3, genre: 'Rock', uploaded_date: '10.07.2024', status: 'Leased', leased_by: 'Dream Records', earnings: '18.6M', lease_period: '5y', listeners: '40.2K', edit: '_' },
-    { cover: '/images/av4.svg', songs: 'Lost Frequencies', id: 4, genre: 'Electronic', uploaded_date: '02.08.2024', status: 'Available', leased_by: '-', earnings: '9.5M', lease_period: '-', listeners: '22.1K', edit: '_' },
-    { cover: '/images/av5.svg', songs: 'Golden Hour', id: 5, genre: 'Jazz', uploaded_date: '18.09.2024', status: 'Leased', leased_by: 'Sunset Records', earnings: '15.2M', lease_period: '3y', listeners: '30.8K', edit: '_' },
-    { cover: '/images/av6.svg', songs: 'Neon Lights', id: 6, genre: 'Hip-Hop', uploaded_date: '29.09.2024', status: 'Leased', leased_by: 'Urban Beats', earnings: '22.7M', lease_period: '7y', listeners: '45.3K', edit: '_' },
-    { cover: '/images/av7.svg', songs: 'Silent Dreams', id: 7, genre: 'Classical', uploaded_date: '05.10.2024', status: 'Available', leased_by: '-', earnings: '7.8M', lease_period: '-', listeners: '15.9K', edit: '_' },
-    { cover: '/images/av8.svg', songs: 'Fading Memories', id: 8, genre: 'Indie', uploaded_date: '20.10.2024', status: 'Leased', leased_by: 'Moonlight Studios', earnings: '14.9M', lease_period: '6y', listeners: '28.4K', edit: '_' },
-    { cover: '/images/av2.svg', songs: 'Ocean Breeze', id: 9, genre: 'Reggae', uploaded_date: '01.11.2024', status: 'Available', leased_by: '-', earnings: '11.4M', lease_period: '-', listeners: '19.6K', edit: '_' },
-    { cover: '/images/av3.svg', songs: 'Velvet Night', id: 10, genre: 'Blues', uploaded_date: '12.11.2024', status: 'Leased', leased_by: 'Soul Music Co.', earnings: '17.3M', lease_period: '4y', listeners: '32.7K', edit: '_' }
+    { cover: '/images/av1.svg', songs: 'Insane', id: 1, genre: 'Pop', uploaded_date: '24.05.2024', status: 'Leased', leased_by: 'Passion Sounds', earnings: '20.1M', lease_period: '10y' },
+    { cover: '/images/av2.svg', songs: 'Midnight Waves', id: 2, genre: 'R&B', uploaded_date: '15.06.2024', status: 'Available', leased_by: '-', earnings: '12.3M', lease_period: '-' },
+    { cover: '/images/av3.svg', songs: 'Echoes of You', id: 3, genre: 'Rock', uploaded_date: '10.07.2024', status: 'Leased', leased_by: 'Dream Records', earnings: '18.6M', lease_period: '5y',},
+    { cover: '/images/av4.svg', songs: 'Lost Frequencies', id: 4, genre: 'Electronic', uploaded_date: '02.08.2024', status: 'Available', leased_by: '-', earnings: '9.5M', lease_period: '-' },
+    { cover: '/images/av5.svg', songs: 'Golden Hour', id: 5, genre: 'Jazz', uploaded_date: '18.09.2024', status: 'Leased', leased_by: 'Sunset Records', earnings: '15.2M', lease_period: '3y' },
+    { cover: '/images/av6.svg', songs: 'Neon Lights', id: 6, genre: 'Hip-Hop', uploaded_date: '29.09.2024', status: 'Leased', leased_by: 'Urban Beats', earnings: '22.7M', lease_period: '7y' },
+    { cover: '/images/av7.svg', songs: 'Silent Dreams', id: 7, genre: 'Classical', uploaded_date: '05.10.2024', status: 'Available', leased_by: '-', earnings: '7.8M', lease_period: '-' },
+    { cover: '/images/av8.svg', songs: 'Fading Memories', id: 8, genre: 'Indie', uploaded_date: '20.10.2024', status: 'Leased', leased_by: 'Moonlight Studios', earnings: '14.9M', lease_period: '6y' },
+    { cover: '/images/av2.svg', songs: 'Ocean Breeze', id: 9, genre: 'Reggae', uploaded_date: '01.11.2024', status: 'Available', leased_by: '-', earnings: '11.4M', lease_period: '-'},
+    { cover: '/images/av3.svg', songs: 'Velvet Night', id: 10, genre: 'Blues', uploaded_date: '12.11.2024', status: 'Leased', leased_by: 'Soul Music Co.', earnings: '17.3M', lease_period: '4y' }
   ];
   
   
@@ -443,4 +442,187 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
   export const leasingOptions = [
     { value: "negotiable", label: "Negotiation" },
     { value: "non-negotiable", label: "NON-NEGOTIABLE" },
+  ];
+
+  export const carouselNft = [
+    {
+      name: "Pop",
+      title: "All I Want for Christmas Is You",
+      image: "/images/cc1.jpeg",
+      description: "A timeless holiday classic by Mariah Carey that tops charts every year.",
+    },
+    {
+      name: "Rock",
+      title: "Bohemian Rhapsody",
+      image: "/images/cc2.jpeg",
+      description: "Queen's iconic rock anthem that continues to captivate audiences worldwide.",
+    },
+    {
+      name: "Hip-Hop",
+      title: "Hotline Bling",
+      image: "/images/cc3.jpeg",
+      description: "Drake's chart-topping hit that redefined modern hip-hop.",
+    },
+    {
+      name: "Soul",
+      title: "A Change Is Gonna Come",
+      image: "/images/cc4.jpeg",
+      description: "Sam Cooke's powerful soul anthem that inspired generations.",
+    },
+    {
+      name: "Electronic",
+      title: "Strobe",
+      image: "/images/cc5.jpg",
+      description: "Deadmau5's mesmerizing electronic masterpiece that transcends genres.",
+    },
+  ];
+  
+
+
+  export const recentlyAddedMusic = [
+    {
+      image: "/images/cc2.jpeg",
+      title: "All I Want for Christmas Is You",
+      artist: "Mariah Carey",
+      type: "Soul Music",
+    },
+    {
+      image: "/images/cc1.jpeg",
+      title: "Thriller",
+      artist: "Michael Jackson",
+      type: "Pop",
+    },
+    {
+      image: "/images/cc4.jpeg",
+      title: "Shape of You",
+      artist: "Ed Sheeran",
+      type: "Pop",
+    },
+    {
+      image: "/images/cc5.jpg",
+      title: "Bohemian Rhapsody",
+      artist: "Queen",
+      type: "Rock",
+    },
+    {
+      image: "/images/cc5.jpg",
+      title: "Uptown Funk",
+      artist: "Mark Ronson ft. Bruno Mars",
+      type: "Funk",
+    },
+  ];
+
+
+
+ export const purchaseHistory = [
+    {
+      id: 1,
+      image: "/images/cc1.jpeg",
+      name: "Ramsey Noah",
+      genre: "Pop",
+      date: "21/06/03",
+      duration: "2 years",
+    },
+    {
+      id: 2,
+      image: "/images/cc2.jpeg",
+      name: "Mariah Carey",
+      genre: "Soul",
+      date: "20/05/15",
+      duration: "3 years",
+    },
+    {
+      id: 3,
+      image: "/images/cc2.jpeg",
+      name: "Michael Jackson",
+      genre: "Pop",
+      date: "19/04/12",
+      duration: "4 years",
+    },
+    {
+      id: 4,
+      image: "/images/cc2.jpeg",
+      name: "Ed Sheeran",
+      genre: "Pop",
+      date: "18/03/10",
+      duration: "5 years",
+    },
+    {
+      id: 5,
+      image: "/images/cc2.jpeg",
+      name: "Queen",
+      genre: "Rock",
+      date: "17/02/08",
+      duration: "6 years",
+    },
+    {
+      id: 6,
+      image: "/images/cc2.jpeg",
+      name: "Mark Ronson ft. Bruno Mars",
+      genre: "Funk",
+      date: "16/01/05",
+      duration: "7 years",
+    },
+    {
+      id: 7,
+      image: "/images/cc2.jpeg",
+      name: "Adele",
+      genre: "Pop",
+      date: "15/12/03",
+      duration: "8 years",
+    },
+    {
+      id: 8,
+      image: "/images/cc2.jpeg",
+      name: "Drake",
+      genre: "Hip-Hop",
+      date: "14/11/01",
+      duration: "9 years",
+    },
+  ];
+
+
+export  const recommendedSongs = [
+    {
+      image: "/images/cc5.jpg",
+      title: "Way Back",
+      artist: "Wilson",
+      genre: "Shaun",
+    },
+    {
+      image: "/images/cc1.jpeg",
+      title: "All I Want for Christmas Is You",
+      artist: "Mariah Carey",
+      genre: "Soul Music",
+    },
+    {
+      image: "/images/cc3.jpeg",
+      title: "Thriller",
+      artist: "Michael Jackson",
+      genre: "Pop",
+    },
+    {
+      image: "/images/cc6.jpeg",
+      title: "Shape of You",
+      artist: "Ed Sheeran",
+      genre: "Pop",
+    },
+    {
+      image: "/images/cc7.jpeg",
+      title: "Bohemian Rhapsody",
+      artist: "Queen",
+      genre: "Rock",
+    },
+  ];
+
+
+ export const hotSalesData = [
+    { genre: "HipHop", sold: 135, sales: "18 ETH" },
+    { genre: "Pop", sold: 220, sales: "25 ETH" },
+    { genre: "Rock", sold: 90, sales: "12 ETH" },
+    { genre: "Soul", sold: 150, sales: "20 ETH" },
+    { genre: "Funk", sold: 80, sales: "10 ETH" },
+    { genre: "Jazz", sold: 60, sales: "8 ETH" },
+    { genre: "Electronic", sold: 110, sales: "15 ETH" },
+    { genre: "Classical", sold: 45, sales: "6 ETH" },
   ];
