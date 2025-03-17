@@ -19,24 +19,29 @@ interface SongsIdProps{
 
 function MusicContentForUpload({cover,id,songs}:SongsIdProps) {
   return (
-    <div className={`${columnLayout} font-bold text-[15px] `}>
-    <div>{id}</div>
-    <div className="flex items-center gap-3">
-      <Image src={cover} alt="" width={30} height={30} />
+    <div className='flex items-center gap-10 py-4 border-b border-gray-300'>
+    <div className='flex-1 text-center'>{id}</div>
+    <div className="flex-1 flex items-center gap-3">
+      <Image src={cover} alt={`${cover}.txt`} width={30} height={30} />
       <h1>{songs}</h1>
     </div>
 
-    <div className='w-14 px-2 p-1  bg-[#274539]  border-4 rounded-full border-[#70d84d]'>
+    <div className='flex-1 w-14 px-2 p-1  bg-[#274539]  border-4 rounded-full border-[#70d84d]'>
         <h1 className='text-center text-[#70d84d] font-bold'>pop</h1>
     </div>
-    <div>25.02.2014</div>
-    <div>Leased</div>
-    <div className="flex items-center gap-1">
+
+    <div className='flex-1'>25.02.2014</div>
+
+    <div className='flex-1'>Leased</div>
+
+    <div className="flex-1 flex items-center gap-1">
       <Dot className="text-3xl text-blue-500" />
       <h1>Passion Records</h1>
     </div>
-    <div>20.1M</div>
-    <div>10y</div>
+
+    <div className='flex-1'>20.1M</div>
+
+    <div className='flex-1'>10y</div>
   </div>
   )
 }

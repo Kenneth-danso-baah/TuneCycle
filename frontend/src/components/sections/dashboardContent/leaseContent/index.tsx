@@ -12,8 +12,6 @@ function LeasePage() {
          <DashboardHeaderSearchInfo dashboard_location="leases"/>
          <LeaseHolder/>
          <Summary/>
-         <LeasedCharts/>
-         <UploadMusicHolder/>
       </div>
   )
 }
