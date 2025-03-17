@@ -144,3 +144,28 @@ export async function readUserListings(userAddress: `0x${string}`): Promise<List
     }
 }
 
+export async function readListings(): Promise<Listing[] | null> {
+    try {
+        const contract = getContract({
+            address: contractAddress,
+            abi: contractAbi,
+            client,
+        });
+
+        const data = await contract.read.getAllListings();
+
+        console.log("History Data:", data);
+
+        if (Array.isArray(data)) {
+            return data as Listing[];
+        } else {
+            
+            return null;
+        }
+    } catch (error) {
+        
+        console.error("Error reading history:", error);
+        return null;
+    }
+}
+
