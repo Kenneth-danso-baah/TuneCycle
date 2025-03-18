@@ -447,31 +447,31 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
     {
       name: "Pop",
       title: "All I Want for Christmas Is You",
-      image: "/images/cc1.jpeg",
+      image: "/images/kv1.jpg",
       description: "A timeless holiday classic by Mariah Carey that tops charts every year.",
     },
     {
       name: "Rock",
       title: "Bohemian Rhapsody",
-      image: "/images/cc2.jpeg",
+      image: "/images/kv2.jpg",
       description: "Queen's iconic rock anthem that continues to captivate audiences worldwide.",
     },
     {
       name: "Hip-Hop",
       title: "Hotline Bling",
-      image: "/images/cc3.jpeg",
+      image: "/images/kv4.jpg",
       description: "Drake's chart-topping hit that redefined modern hip-hop.",
     },
     {
       name: "Soul",
       title: "A Change Is Gonna Come",
-      image: "/images/cc4.jpeg",
+      image: "/images/kv5.jpg",
       description: "Sam Cooke's powerful soul anthem that inspired generations.",
     },
     {
       name: "Electronic",
       title: "Strobe",
-      image: "/images/cc5.jpg",
+      image: "/images/kv3.jpg",
       description: "Deadmau5's mesmerizing electronic masterpiece that transcends genres.",
     },
   ];
