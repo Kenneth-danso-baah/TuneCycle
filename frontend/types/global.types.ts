@@ -1,5 +1,6 @@
 export interface LinkedAccount {
-    provider: string; // or `type`, depending on your choice
+    provider: string;
+    provider: string;
     verifiedAt?: string | null;
 }
 
@@ -8,4 +9,10 @@ export interface PrivyUser {
     email?: { address: string };
     createdAt?: string;
     linkedAccounts?: LinkedAccount[];
+}
+
+
+export type BotMessgeProps = {
+    text:string;
+    sender: 'user' | 'bot';
 }

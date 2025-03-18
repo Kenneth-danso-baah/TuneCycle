@@ -31,7 +31,11 @@ export const useAuth = () => {
                     createdAt: toISOStringSafe(user.createdAt) || undefined,
                     email: user.email ? { address: user.email.address } : undefined,
                     linkedAccounts: user.linkedAccounts?.map(account => ({
+<<<<<<< HEAD
                         provider: account.type, 
+=======
+                        provider: account.type, // or `type`
+>>>>>>> 72f490cbd609284aa20b9d3aeda71f97b2753ad6
                         verifiedAt: toISOStringSafe(account.verifiedAt),
                     })) || [],
                 };
