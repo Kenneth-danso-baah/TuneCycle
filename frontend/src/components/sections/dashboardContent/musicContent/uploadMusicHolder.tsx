@@ -1,53 +1,69 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react'
-import SearchFilterColumn from './searchFilterColumn'
-import TableTitle from './tableTitle'
-import { Button } from '@/components/ui/button'
-import MusicContentForUpload from './musicContentForUpload'
-import { songHeaders } from '@/lib/data'
-import Link from 'next/link'
-import { readUserListings } from '@/lib/integrations/viem/contract'
-import { usePrivy } from '@privy-io/react-auth'
+import React, { useEffect, useState } from 'react';
+import SearchFilterColumn from './searchFilterColumn';
+import TableTitle from './tableTitle';
+import { Button } from '@/components/ui/button';
+import MusicContentForUpload from './musicContentForUpload';
+import { readUserListings } from '@/lib/integrations/viem/contract';
+import { usePrivy } from '@privy-io/react-auth';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
 
 interface Listing {
-  owner:string;
-  price:bigint;
+  owner: string;
+  price: bigint;
   tokenId: bigint;
-  leaseYear:bigint;
-  title:string;
+  leaseYear: bigint;
+  title: string;
   music: string;
-  image:string;
+  image: string;
   genre: string;
-  isListed:boolean;
+  isListed: boolean;
 }
+
 function UploadMusicHolder() {
-  const { user} = usePrivy()
+  const { user } = usePrivy();
   const walletAddress = user?.wallet?.address;
   const [listing, setListing] = useState<Listing[]>();
+  const query = useSelector((state:RootState)=>state.search.query);
 
-  useEffect(()=> {
+  useEffect(() => {
     const fetchUserData = async () => {
-        if(walletAddress){
-            const balance = await readUserListings(`${walletAddress}` as `0x${string}`);
-            if (balance) {
-              setListing(balance);
-            }
-            
+      if (walletAddress) {
+        const balance = await readUserListings(`${walletAddress}` as `0x${string}`);
+        if (balance) {
+          setListing(balance);
         }
+      }
     };
     fetchUserData();
-},[walletAddress])
+  }, [walletAddress]);
+
+
+  const filteredListings = listing?.filter((item) => 
+    item.title.toLowerCase().includes(query.toLowerCase()) ||
+    item.genre.toLowerCase().includes(query.toLowerCase()) || 
+    item.owner.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <div className='my-10 h-auto p-10 rounded-2xl w-full bg-[#252B36]'>
-        <SearchFilterColumn/>
-        <TableTitle/>
 
-   
+<SearchFilterColumn filterFunction={filteredListings ? (item, query) => 
+  item.title.toLowerCase().includes(query.toLowerCase()) ||
+  item.genre.toLowerCase().includes(query.toLowerCase()) || 
+  item.owner.toLowerCase().includes(query.toLowerCase())
+  : () => false} />
 
-        {listing?.map((data,index)=>(
-             <MusicContentForUpload 
+
+      <TableTitle />
+
+
+      {filteredListings && filteredListings.length > 0 ? (
+        filteredListings.map((data, index) => (
+          <MusicContentForUpload
             key={index}
             image={data.image}
             title={data.title}
@@ -55,20 +71,21 @@ function UploadMusicHolder() {
             genre={data.genre}
             leaseYear={data.leaseYear}
             isListed={data.isListed}
-             owner={''} 
-             price={BigInt(0)}
-              tokenId={BigInt(0)}
-               music={''}               
-                />
-         ))}
+            owner={data.owner}
+            price={data.price}
+            tokenId={data.tokenId}
+            music={data.music}
+          />
+        ))
+      ) : (
+        <p className="text-white text-center mt-4">No results found for "{query}"</p>
+      )}
 
-
-        <Link href="/dashboard/upload" className='flex justify-center py-10'>
-            <Button className="text-[18px] bg-btn-gradient py-6 px-6  font-extrabold ">upload</Button>
-         </Link>
-
+      <Link href="/dashboard/upload" className='flex justify-center py-10'>
+        <Button className="text-[18px] bg-btn-gradient py-6 px-6 font-extrabold">upload</Button>
+      </Link>
     </div>
-  )
+  );
 }
 
-export default UploadMusicHolder
+export default UploadMusicHolder;

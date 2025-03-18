@@ -13,7 +13,6 @@ import { useSmartWallets } from "@privy-io/react-auth/smart-wallets";
 import { encodeFunctionData } from "viem";
 
 function UploadForm() {
-  const { wallets} = useWallets();
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
   const { client } = useSmartWallets();
