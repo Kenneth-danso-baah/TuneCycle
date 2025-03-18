@@ -30,12 +30,15 @@ function MarketPlaceSubHeader() {
 
         </div>
 
-        <div className='flex-[10%]'>
+        {/* <div className='flex-[10%]'>
             <DropDownCategories 
             options={musicOptions}
              placeholder='Choose a genre' 
              label='Rap music' />
-            </div>
+            </div> */}
+            <Link href="/for_buyers/buyers_board">
+                <h1 className='text-[20px] font-poppins text-nowrap  hover:text-blue-500'>Buyers Board</h1>
+            </Link>
         </div>
 
     </div>

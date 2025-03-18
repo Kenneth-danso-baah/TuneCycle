@@ -1,5 +1,4 @@
 import LeasePage from '@/components/sections/dashboardContent/leaseContent'
-import ProtectedRoute from '@/lib/protected-route'
 import { Metadata } from 'next';
 import React from 'react'
 

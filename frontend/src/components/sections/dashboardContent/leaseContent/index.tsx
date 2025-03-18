@@ -2,9 +2,7 @@ import React from 'react'
 import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
 import LeaseHolder from './leaseHolder'
 import Summary from './summary'
-import LeasedCharts from './leasedChart'
-import Titlecontent from './titleContent'
-import UploadMusicHolder from '../musicContent/uploadMusicHolder'
+
 
 function LeasePage() {
   return (

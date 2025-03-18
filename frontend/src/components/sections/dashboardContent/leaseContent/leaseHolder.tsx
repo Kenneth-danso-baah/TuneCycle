@@ -2,7 +2,7 @@
 import LeasedCard from '@/components/common/cards/leasedCard'
 import React, { useEffect, useState } from 'react'
 import { readUserListings } from "@/lib/integrations/viem/contract";
-import { usePrivy, useWallets } from '@privy-io/react-auth';
+import { usePrivy } from '@privy-io/react-auth';
 
 interface Listing {
   owner:string;
@@ -16,7 +16,7 @@ interface Listing {
 }
 
 function LeaseHolder() {
-  const { wallets} = useWallets();
+
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
   const [listing, setListing] = useState<Listing[]>();

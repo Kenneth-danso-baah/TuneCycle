@@ -2,11 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
-import { Providers } from "@/components/common/privyProvider";
-import {Provider} from 'react-redux'
-import { store } from "./store";
 import ClientRootLayout from "@/components/common/clientRootLayout";
-import ChatBot from "@/components/common/chatBot";
 
 
 const montBold = localFont({

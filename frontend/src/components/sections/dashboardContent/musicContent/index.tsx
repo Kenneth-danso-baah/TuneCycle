@@ -1,5 +1,4 @@
 import React from 'react'
-import DashboardHeaderSearchInfo from '../entryPointContent/dashboardSearchInfo'
 import UploadMusicHolder from './uploadMusicHolder'
 
 

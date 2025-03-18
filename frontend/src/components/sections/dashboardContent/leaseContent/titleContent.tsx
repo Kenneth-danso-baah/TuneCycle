@@ -1,6 +1,5 @@
 import React from 'react'
-import { FiArrowUpRight } from 'react-icons/fi'
-import { IoMdArrowDropdown } from 'react-icons/io'
+
 
 const columnLayout ="grid grid-cols-[50px_300px_220px_250px_250px_200px_150px_120px] items-center py-4 border-b border-gray-300";
 
