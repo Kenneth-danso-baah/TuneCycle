@@ -62,7 +62,7 @@ function UploadMusicHolder() {
 
 
         <Link href="/dashboard/upload" className='flex justify-center py-10'>
-            <Button className="text-3xl bg-btn-gradient py-7  font-extrabold ">upload</Button>
+            <Button className="text-[18px] bg-btn-gradient py-6 px-6  font-extrabold ">upload</Button>
          </Link>
 
     </div>
