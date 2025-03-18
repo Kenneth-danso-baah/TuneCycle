@@ -6,6 +6,7 @@ import { Providers } from "@/components/common/privyProvider";
 import {Provider} from 'react-redux'
 import { store } from "./store";
 import ClientRootLayout from "@/components/common/clientRootLayout";
+import ChatBot from "@/components/common/chatBot";
 
 
 const montBold = localFont({
@@ -40,7 +41,9 @@ export default function RootLayout({
       <body
            className={`${montBold.variable} ${poppins.variable} ${montLight.variable} antialiased font-monoLight globally`}
       >
-            <ClientRootLayout>{children}</ClientRootLayout>   
+            <ClientRootLayout>
+              {children}
+            </ClientRootLayout>  
       </body>
     </html>
   );

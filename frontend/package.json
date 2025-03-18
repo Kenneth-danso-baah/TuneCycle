@@ -20,12 +20,16 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@reduxjs/toolkit": "^2.6.1",
     "@svgr/webpack": "^8.1.0",
-    "axios": "^1.7.9",
+    "axios": "^1.8.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+<<<<<<< HEAD
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^12.4.2",
+=======
+    "framer-motion": "^12.5.0",
+>>>>>>> 72f490cbd609284aa20b9d3aeda71f97b2753ad6
     "lucide-react": "^0.474.0",
     "next": "15.1.6",
     "pinata-web3": "^0.5.4",
