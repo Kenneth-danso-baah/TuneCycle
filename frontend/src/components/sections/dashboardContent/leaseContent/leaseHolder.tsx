@@ -42,7 +42,7 @@ function LeaseHolder() {
         }
     };
     fetchUserData();
-},[walletAddress])
+},[walletAddress,nftTx])
 
 const  handleSubmit  = async (index: number) => {
   setLoading(true);
@@ -130,16 +130,21 @@ const  handleSubmit  = async (index: number) => {
     </div>
 
     <div className='grid grid-cols-3 gap-10'>
-      {listing?.filter(item => !item.isListed).map((item,index) => (
-        <LeasedCard
-          key={index}
-          imageSrc={item.image || "/images/mgg.svg"}
-          amount={index.toString()}
-          duration={item.leaseYear.toString()}
-          title={item.title}
-          onClick={() => handleSubmit(index)}
-        />
-      ))}
+      {listing?.map((item, originalIndex) => {
+        if (!item.isListed) {
+          return (
+            <LeasedCard
+              key={originalIndex}
+              imageSrc={item.image || "/images/mgg.svg"}
+              amount={( Number(item.price)/1e18 ).toString()}
+              duration={item.leaseYear.toString()}
+              title={item.title}
+              onClick={() => handleSubmit(originalIndex)}
+            />
+          );
+        }
+        return null;
+      })}
     </div>
 </div>
 

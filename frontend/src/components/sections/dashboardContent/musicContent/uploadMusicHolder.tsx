@@ -44,19 +44,21 @@ function UploadMusicHolder() {
         <SearchFilterColumn/>
         <TableTitle/>
 
+   
 
         {listing?.map((data,index)=>(
-             <MusicContentForUpload
-             key={index} 
-             cover={data.image} 
-             songs={data.title} 
-             id={index}
-              genre={data.genre} 
-               uploaded_date={`30-04-2025`}
-                status={data.isListed.toString()} 
-                leased_by={``} 
-                earnings={``} 
-                lease_period={``}
+             <MusicContentForUpload 
+            key={index}
+            image={data.image}
+            title={data.title}
+            index={index.toString()}
+            genre={data.genre}
+            leaseYear={data.leaseYear}
+            isListed={data.isListed}
+             owner={''} 
+             price={BigInt(0)}
+              tokenId={BigInt(0)}
+               music={''}               
                 />
          ))}
 

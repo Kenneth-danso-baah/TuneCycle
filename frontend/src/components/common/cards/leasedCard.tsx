@@ -47,7 +47,7 @@ function LeasedCard({ imageSrc, amount, duration, title, onClick }: LeasedCardPr
             <h1>Duration</h1>
             <p>{duration} Years</p>
           </div>
-        </div>
+        </div> 
 
         <div className='space-y-5'>
           <h1 className='font-bold'>List Music For It to be Available</h1>
@@ -56,7 +56,7 @@ function LeasedCard({ imageSrc, amount, duration, title, onClick }: LeasedCardPr
               className='text-[#000] font-extrabold rounded-[5px] bg-[#00DF82] py-2' 
               onClick={onClick}
             >
-              List Music
+              Lease Music
             </Button>
           </div>
         </div>
