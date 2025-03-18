@@ -16,6 +16,7 @@ interface Listing {
   title:string;
   music: string;
   image:string;
+  genre: string;
   isListed:boolean;
 }
 

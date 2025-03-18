@@ -1,28 +1,63 @@
-import React from 'react'
+"use client"
+
+import React, { useEffect, useState } from 'react'
 import SearchFilterColumn from './searchFilterColumn'
 import TableTitle from './tableTitle'
 import { Button } from '@/components/ui/button'
 import MusicContentForUpload from './musicContentForUpload'
 import { songHeaders } from '@/lib/data'
 import Link from 'next/link'
+import { readUserListings } from '@/lib/integrations/viem/contract'
+import { usePrivy } from '@privy-io/react-auth'
 
-
+interface Listing {
+  owner:string;
+  price:bigint;
+  tokenId: bigint;
+  leaseYear:bigint;
+  title:string;
+  music: string;
+  image:string;
+  genre: string;
+  isListed:boolean;
+}
 function UploadMusicHolder() {
+  const { user} = usePrivy()
+  const walletAddress = user?.wallet?.address;
+  const [listing, setListing] = useState<Listing[]>();
+
+  useEffect(()=> {
+    const fetchUserData = async () => {
+        if(walletAddress){
+            const balance = await readUserListings(`${walletAddress}` as `0x${string}`);
+            if (balance) {
+              setListing(balance);
+            }
+            
+        }
+    };
+    fetchUserData();
+},[walletAddress])
+
   return (
     <div className='my-10 h-auto p-10 rounded-2xl w-full bg-[#252B36]'>
         <SearchFilterColumn/>
         <TableTitle/>
 
-        {songHeaders.map((data,index)=>(
+
+        {listing?.map((data,index)=>(
              <MusicContentForUpload
              key={index} 
-             cover={data.cover} 
-             songs={data.songs} 
-             id={data.id}
+             cover={data.image} 
+             songs={data.title} 
+             id={index}
               genre={data.genre} 
-               uploaded_date={data.uploaded_date}
-                status={data.status} 
-                leased_by={data.leased_by} earnings={data.earnings} lease_period={data.lease_period}/>
+               uploaded_date={`30-04-2025`}
+                status={data.isListed.toString()} 
+                leased_by={``} 
+                earnings={``} 
+                lease_period={``}
+                />
          ))}
 
 

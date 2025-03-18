@@ -19,14 +19,17 @@ interface Request {
     time:bigint;
 }
 
- // address owner;
+        // address owner;
         // uint256 price;
         // uint256 tokenId;
         // uint64 leaseYear;
         // string title;
         // string music;
         // string image;
+        // string genre;
         // bool isListed;
+
+
 interface Listing {
     owner:string;
     price:bigint;
@@ -35,6 +38,7 @@ interface Listing {
     title:string;
     music: string;
     image:string;
+    genre:string;
     isListed:boolean;
 }
 
