@@ -13,6 +13,7 @@ interface Listing {
   price:bigint;
   tokenId: bigint;
   leaseYear:bigint;
+  artiste?:string;
   title:string;
   music: string;
   image:string;
@@ -136,11 +137,10 @@ const  handleSubmit  = async (index: number) => {
             <LeasedCard
               key={originalIndex}
               imageSrc={item.image || "/images/mgg.svg"}
-              amount={( Number(item.price)/1e18 ).toString()}
+              amount={(Number(item.price) / 1e18).toString()}
               duration={item.leaseYear.toString()}
               title={item.title}
-              onClick={() => handleSubmit(originalIndex)}
-            />
+              onClick={() => handleSubmit(originalIndex)} artiste={item.artiste || 'unknown artiste'}              />
           );
         }
         return null;

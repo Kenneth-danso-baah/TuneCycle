@@ -23,6 +23,7 @@ function UploadForm() {
 
   const [formData, setFormData] = useState({
     title: '',
+    artiste:'',
     amount: '',
     currency: 'ETH',
     leaseYears: 1, 
@@ -109,6 +110,7 @@ function UploadForm() {
                 formData.coverImage,
                 formData.title,
                 formData.genre,
+                formData.artiste,
                 BigInt(Number(formData.amount)*1e18),
                 BigInt(formData.leaseYears),
                 `${walletAddress}`
@@ -254,6 +256,18 @@ function UploadForm() {
               accept='image/*'
             />
           </div>
+
+          <div className='flex flex-col py-5 space-y-3'>
+            <label className='block text-[18px] font-bold'>Artiste</label>
+            <input
+              type='text'
+              name='artiste'
+              onChange={ handleChange}
+              value={formData.artiste}
+              className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
+            />
+          </div>
+
 
           <div className='flex flex-col py-5 space-y-3'>
             <label className='block text-[18px] font-bold'>Upload Song</label>

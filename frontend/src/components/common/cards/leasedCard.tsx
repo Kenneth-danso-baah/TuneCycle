@@ -2,16 +2,16 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
 
-// Add props interface
 interface LeasedCardProps {
   imageSrc: string;
   amount: string;
   duration: string;
+  artiste:string;
   title: string;
   onClick: () => void;
 }
 
-function LeasedCard({ imageSrc, amount, duration, title, onClick }: LeasedCardProps) {
+function LeasedCard({ imageSrc, amount, duration, title, onClick, artiste }: LeasedCardProps) {
   return (
     <div className='p-5 w-full bg-[#252B36] rounded-xl'>
         <div className='flex items-center justify-between'>
@@ -29,13 +29,12 @@ function LeasedCard({ imageSrc, amount, duration, title, onClick }: LeasedCardPr
           </div>
         </div>
 
-        {/* <div className='py-5 space-y-3 font-bold'>
-          <h1>Request By</h1>
+        <div className='py-5 space-y-3 font-bold'>
+          <h1>Artist</h1>
           <div className='flex gap-3 items-center'>
-            <Image src={imageSrc} alt="" width={40} height={40}/>
-            <h1>Monoliver Advertising Agency</h1>
+            <h1>{artiste}</h1>
           </div>
-        </div> */}
+        </div>
 
         <div className='font-bold flex items-center justify-between py-10'>
           <div className='font-bold space-y-3'>
