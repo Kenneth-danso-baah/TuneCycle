@@ -10,14 +10,14 @@ type CardPropsMusic={
     title:string;
     artist:string;
     price:string;
-    state:string;
+    //state:string;
     duration:string;
-    isNegotiable:boolean;  
+    // isNegotiable:boolean;  
 }
 
 
 
-function MusicPlayerCard({mainImage,subImage,isNegotiable,artist,state,duration,title,price}:CardPropsMusic) {
+function MusicPlayerCard({mainImage,subImage,artist,duration,title,price}:CardPropsMusic) {
     return (
  
         <div className=" w-96 border border-brand-mouve rounded-[10px] h-auto py-5 bg-music-card-gradient font-poppins mb-10">
@@ -42,16 +42,16 @@ function MusicPlayerCard({mainImage,subImage,isNegotiable,artist,state,duration,
                 </div>
     
                 <div className="flex items justify-between capitalize font-bold py-5">
-                    <div>
+                    {/* <div>
                         <h1>{price}</h1>
                         <p className={clsx(`text-[12px], ${isNegotiable ? ' text-[#FFA500]' : 'text-red-500'}`)}>
                             {isNegotiable ? 'Negotiable' : 'Not-Negotiable'}
                         </p>
-                    </div>
+                    </div> */}
     
-                    <div>
+                    {/* <div>
                         <h1 className={`${state ? 'text-[#ccc]' : 'text-gray-500'}`}> {state ? 'Available' : 'Not available'}</h1>
-                    </div>
+                    </div> */}
     
                     <div>
                         <h1>{duration}</h1>

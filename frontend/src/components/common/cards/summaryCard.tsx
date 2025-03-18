@@ -1,11 +1,19 @@
+import { title } from 'process';
 import React from 'react'
 
-function Summarycard() {
+// Add props type definition
+interface SummaryCardProps {
+  totalLeases: number;
+  description: string;
+  title: string;
+}
+
+function Summarycard({ totalLeases, description, title }: SummaryCardProps) {
   return (
     <div className='p-5 w-full bg-[#252B36] rounded-xl space-y-5'>
-       <h1 className='font-bold'>Total leases</h1>
-       <h1 className='text-4xl font-monoBold'>64</h1>
-       <p className='font-bold'>Overall songs leased so far</p>
+       <h1 className='font-bold'>{title}</h1>
+       <h1 className='text-4xl font-monoBold'>{totalLeases}</h1>
+       <p className='font-bold'>{description}</p>
     </div>
   )
 }

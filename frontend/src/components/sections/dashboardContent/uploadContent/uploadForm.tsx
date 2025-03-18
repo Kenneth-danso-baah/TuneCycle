@@ -108,7 +108,8 @@ function UploadForm() {
                formData.musicFile, 
                 formData.coverImage,
                 formData.title,
-                BigInt(formData.amount),
+                formData.genre,
+                BigInt(Number(formData.amount)*1e18),
                 BigInt(formData.leaseYears),
                 `${walletAddress}`
                 ],
