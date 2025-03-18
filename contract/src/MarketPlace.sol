@@ -13,6 +13,7 @@ contract MarketPlace {
         string music;
         string image;
         string genre;
+        string artiste;
         bool isListed;
     }
 
@@ -32,6 +33,7 @@ contract MarketPlace {
         string memory coverImage,
         string memory title,
         string memory genre,
+        string memory artiste,
         uint256 amount,
         uint64 leaseYear,
         address reciever
@@ -47,6 +49,7 @@ contract MarketPlace {
             image: coverImage,
             leaseYear: leaseYear,
             genre: genre,
+            artiste: artiste,
             isListed: false
         });
         s_eachListing[reciever].push(newListing);
