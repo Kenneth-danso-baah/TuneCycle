@@ -7,8 +7,8 @@ import { leaseStatusOptions, yearlyOption,genreOptions, artistStatusOptions, lan
 function MarketPlaceHolder() {
     return (
         <div className='flex items-center border-b border-brand-mouve h-auto'>
-            <div className='flex-[20%] place-self-start pt-5'>
-                    <div className='space-y-10 mx-5'>
+            <div className='flex-[20%] place-self-start pt-5  border  border-brand-mouve border-l-0 border-t-0 border-b-0'>
+                    <div className='space-y-10 mx-5 py-5'>
                       
                       <PriceRangeslider/>
 
@@ -79,7 +79,7 @@ function MarketPlaceHolder() {
                     </div>
               </div>
     
-            <div className='flex-[80%]  border border-l border-brand-mouve border-r-0 border-t-0 border-b-0 '>
+            <div className='flex-[80%]  '>
                <MusicContentContainer />
               </div>
         </div>

@@ -5,8 +5,8 @@ import { BotMessgeProps } from "../../types/global.types";
 function useChatBot() {
   const [messages, setMessages] = useState<BotMessgeProps[]>([]);
   const [input, setInput] = useState("");
-  const [isOpen, setIsOpen] = useState(false); // Chat visibility
-  const [isTyping, setIsTyping] = useState(false); // Simulate bot thinking
+  const [isOpen, setIsOpen] = useState(false); 
+  const [isTyping, setIsTyping] = useState(false); 
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -21,7 +21,7 @@ function useChatBot() {
 
     setTimeout(async () => {
       try {
-        const response = await axios.post("http://127.0.0.1:8000/api/chat/", {
+        const response = await axios.post("https://tunecycle.onrender.com/api/chatbot/", {
           message: input,
         });
 

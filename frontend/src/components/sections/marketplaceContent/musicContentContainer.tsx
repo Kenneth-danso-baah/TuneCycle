@@ -38,9 +38,7 @@ function MusicContentContainer() {
 
   return (
     <div className='mx-5 w-full pb-10 p-5'>
-        <div className='py-10'>
-            <h1 className='text-5xl font-bold italic font-monoBold'>3,000 Results</h1>
-        </div>
+
 
         <div className='grid grid-cols-3 gap-5 '>
             {listing?.filter(item => item.isListed).map((item, index)=>(
