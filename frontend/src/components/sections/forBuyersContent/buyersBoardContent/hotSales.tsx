@@ -2,11 +2,7 @@ import { hotSalesData } from "@/lib/data";
 import React from "react";
 import { FaEthereum } from "react-icons/fa";
 
-interface HotSalesProps {
-  genre: string;
-  sold: number;
-  sales: string;
-}
+
 
 function HotSales() {
   return (

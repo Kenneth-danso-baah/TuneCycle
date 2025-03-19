@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { statisticsDB } from '@/lib/data'
 import { usePrivy } from '@privy-io/react-auth';
 import StatisticCard from '@/components/common/cards/statisticCard'
 import { readUserListings } from '@/lib/integrations/viem/contract';
@@ -20,9 +19,9 @@ function DashBoardStatisticContent() {
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
   const [listing, setListing] = useState<Listing[]>();
-  const [totalSongs, setTotalSongs] = useState<number>(0);
-  const [totalListed, setTotalListed] = useState<number>(0);
-  const [totalUnlisted, setTotalUnlisted] = useState<number>(0);
+  const [, setTotalSongs] = useState<number>(0);
+  const [, setTotalListed] = useState<number>(0);
+  const [, setTotalUnlisted] = useState<number>(0);
 
 
   useEffect(()=> {

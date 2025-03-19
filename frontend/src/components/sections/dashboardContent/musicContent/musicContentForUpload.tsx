@@ -2,8 +2,6 @@ import { Dot } from 'lucide-react'
 import React from 'react'
 import Image from 'next/image'
 
-import { HiDotsHorizontal } from "react-icons/hi";
-import { columnLayout } from '@/lib/data';
 
 interface SongsIdProps{
   index: string;

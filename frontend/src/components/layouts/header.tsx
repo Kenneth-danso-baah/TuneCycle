@@ -34,7 +34,7 @@ function Header() {
         <Link href="/" className='flex-shrink-0 '>
           <Image
             src={Logo}
-            alt="BeatBack Logo"
+            alt=" Logo"
             width={150}
             height={150} 
             className='object-contain'

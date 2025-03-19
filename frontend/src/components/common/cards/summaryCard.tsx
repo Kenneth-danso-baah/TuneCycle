@@ -1,7 +1,6 @@
-import { title } from 'process';
 import React from 'react'
 
-// Add props type definition
+
 interface SummaryCardProps {
   totalLeases: number;
   description: string;

@@ -20,7 +20,7 @@ function RecommendationHolder() {
     startIndex + itemsPerPage
   );
 
-  // Navigation handlers
+
   const handlePrev = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
@@ -53,7 +53,7 @@ function RecommendationHolder() {
         ))}
       </div>
 
-      {/* Indicators */}
+
       <Indicators
         currentPage={currentPage}
         totalPages={totalPages}

@@ -10,18 +10,10 @@ import { usePrivy } from '@privy-io/react-auth';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
+import NotFoundContent from '@/components/common/notFoundContent';
+import { Listing } from '../../../../../types/global.types';
 
-interface Listing {
-  owner: string;
-  price: bigint;
-  tokenId: bigint;
-  leaseYear: bigint;
-  title: string;
-  music: string;
-  image: string;
-  genre: string;
-  isListed: boolean;
-}
+
 
 function UploadMusicHolder() {
   const { user } = usePrivy();
@@ -50,7 +42,6 @@ function UploadMusicHolder() {
 
   return (
     <div className='my-10 h-auto p-10 rounded-2xl w-full bg-[#252B36]'>
-
 <SearchFilterColumn filterFunction={filteredListings ? (item, query) => 
   item.title.toLowerCase().includes(query.toLowerCase()) ||
   item.genre.toLowerCase().includes(query.toLowerCase()) || 
@@ -78,7 +69,11 @@ function UploadMusicHolder() {
           />
         ))
       ) : (
-        <p className="text-white text-center mt-4">No results found for "{query}"</p>
+     
+        <NotFoundContent 
+        title="Music not found"
+         description={`No resutls found for ${query}`}
+         image='/images/errors.png'/>
       )}
 
       <Link href="/dashboard/upload" className='flex justify-center py-10'>

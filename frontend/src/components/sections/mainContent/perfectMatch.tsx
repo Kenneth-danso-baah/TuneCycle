@@ -13,7 +13,7 @@ function PerfectMatch() {
             </div>
 
             <div>
-                <Image src='/images/notice1.svg' alt='notice-1' width={700} height={600}/>
+                <Image src='/images/barsito.svg' alt='notice-1' width={700} height={600}/>
             </div>
 
             <div className='space-y-5'>
