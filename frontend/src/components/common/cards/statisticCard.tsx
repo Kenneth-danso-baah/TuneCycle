@@ -18,7 +18,7 @@ function StatisticCard({name,amount,base,info}: StatsProps) {
     </div>
 
     <div>
-       <h1 className='text-6xl font-monoBold'>$ {amount}</h1>
+       <h1 className='text-6xl font-monoBold'> {amount} ETH</h1>
     </div>
 
     <div>

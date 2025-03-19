@@ -2,13 +2,7 @@
 
 import { getContract } from "viem";
 import { contractAbi, contractAddress, stableCoinAbi, stableCoinAddress } from "./abi";
-import { client } from "./client";
- 
-
-
-
-
-       
+import { client } from "./client";     
 
 interface Request {
     requestor:string;

@@ -5,9 +5,9 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis, LabelList } from "recharts"
 import {
     ChartContainer,
 } from "@/components/ui/chart"
-import { yearlyData } from "@/lib/data";
-
-
+import { useEffect, useState } from 'react';
+import { readUserListings } from "@/lib/integrations/viem/contract";
+import { usePrivy } from "@privy-io/react-auth";
 
 const chartConfig = {
   desktop: {
@@ -20,7 +20,60 @@ const chartConfig = {
   },
 };
 
-function ChartA() {
+interface Listing {
+  owner:string;
+  price:bigint;
+  tokenId: bigint;
+  leaseYear:bigint;
+  title:string;
+  music: string;
+  image:string;
+  genre: string;
+  isListed:boolean;
+}
+
+// Add this interface to define the structure of chart data
+interface ChartData {
+  month: string;
+  desktop: number;
+}
+
+function ChartA(
+
+) {
+  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const { user} = usePrivy()
+  const walletAddress = user?.wallet?.address;
+  const [listing, setListing] = useState<Listing[]>();
+  const [totalSongs, setTotalSongs] = useState<number>(0);
+  const [totalListed, setTotalListed] = useState<number>(0);
+  const [totalUnlisted, setTotalUnlisted] = useState<number>(0);
+
+  useEffect(()=> {
+    const fetchUserData = async () => {
+        if(walletAddress){
+            const balance = await readUserListings(`${walletAddress}` as `0x${string}`);
+            if (balance) {
+              setListing(balance);
+              setTotalSongs(balance.length);
+              setTotalListed(balance.filter(item => item.isListed).length);
+              setTotalUnlisted(balance.filter(item => !item.isListed).length);
+            }
+            
+        }
+    };
+    fetchUserData();
+},[walletAddress])  
+
+  useEffect(() => {
+    // Prepare data for the chart
+    setChartData([
+      { month: 'Total Songs', desktop: totalSongs },
+      { month: 'Total Listed', desktop: totalListed },
+      { month: 'Total Unlisted', desktop: totalUnlisted },
+    ]);
+  }, [totalSongs, totalListed, totalUnlisted]);
+
   return (
     <div className="p-5 ">
 
@@ -31,7 +84,7 @@ function ChartA() {
 
 
       <ChartContainer config={chartConfig}>
-        <BarChart data={yearlyData} width={500} height={300}>
+        <BarChart data={chartData} width={500} height={300}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           
         <XAxis 

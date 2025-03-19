@@ -14,7 +14,7 @@ interface Listing {
   music: string;
   image:string;
   genre: string;
-  isListed:boolean;
+  isListed:boolean; 
 }
 
 function Summary() {
