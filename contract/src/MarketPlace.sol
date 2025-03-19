@@ -15,6 +15,7 @@ contract MarketPlace {
         string genre;
         string artiste;
         bool isListed;
+        bool isRented;
     }
 
     Item private _itemContract;
@@ -50,7 +51,8 @@ contract MarketPlace {
             leaseYear: leaseYear,
             genre: genre,
             artiste: artiste,
-            isListed: false
+            isListed: false,
+            isRented: false
         });
         s_eachListing[reciever].push(newListing);
         s_allListing.push(newListing);
@@ -98,6 +100,8 @@ contract MarketPlace {
 
         allListing.isListed = false;
         listing.isListed = false;
+        allListing.isRented = true;
+        listing.isRented = true;
     }
 
     // Getter for s_allListing
@@ -113,4 +117,19 @@ contract MarketPlace {
     }
 
     // Getter for _itemContract
+
+    function getListingsByRentedTokens(
+        address user
+    ) public view returns (Listing[] memory) {
+        uint256[] memory rentedTokenIds = _itemContract.getRentedTokenIdsByUser(
+            user
+        );
+        Listing[] memory userListings = new Listing[](rentedTokenIds.length);
+
+        for (uint256 i = 0; i < rentedTokenIds.length; i++) {
+            userListings[i] = _listings[rentedTokenIds[i]];
+        }
+
+        return userListings;
+    }
 }

@@ -70,4 +70,30 @@ contract ERC4097 is ERC721 {
             delete _users[tokenId];
         }
     }
+
+    function getRentedTokenIdsByUser(
+        address user
+    ) public view returns (uint256[] memory) {
+        uint256 totalTokens = s_tokenCounter; // Total minted tokens
+        uint256[] memory rentedTokenIds = new uint256[](totalTokens);
+        uint256 count = 0;
+
+        for (uint256 tokenId = 0; tokenId < totalTokens; tokenId++) {
+            if (
+                _users[tokenId].user == user &&
+                _users[tokenId].expires >= block.timestamp
+            ) {
+                rentedTokenIds[count] = tokenId;
+                count++;
+            }
+        }
+
+        // Resize the array to the actual number of rented tokens
+        uint256[] memory result = new uint256[](count);
+        for (uint256 i = 0; i < count; i++) {
+            result[i] = rentedTokenIds[i];
+        }
+
+        return result;
+    }
 }
