@@ -1,17 +1,10 @@
 "use client"
 
 import { getContract } from "viem";
-import { contractAbi, contractAddress, stableCoinAbi, stableCoinAddress } from "./abi";
+import { contractAbi, contractAddress } from "./abi";
 import { client } from "./client";     
 
-interface Request {
-    requestor:string;
-    amount:bigint;
-    message:string;
-    name:string;
-    stableCoin:string;
-    time:bigint;
-}
+
 
         // address owner;
         // uint256 price;

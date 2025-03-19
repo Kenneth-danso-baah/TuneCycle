@@ -21,7 +21,7 @@ function Summary() {
 
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
-  const [listing, setListing] = useState<Listing[]>();
+  const [, setListing] = useState<Listing[]>();
   const [totalSongs, setTotalSongs] = useState<number>(0);
   const [totalListed, setTotalListed] = useState<number>(0);
   const [totalUnlisted, setTotalUnlisted] = useState<number>(0);

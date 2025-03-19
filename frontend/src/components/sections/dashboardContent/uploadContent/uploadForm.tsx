@@ -1,14 +1,12 @@
 "use client";
 import { DropDownCategories } from '@/components/common/dropDownCategories';
 import LeaseYearsSlider from '@/components/common/leaseSlider';
-import { Button } from '@/components/ui/button';
-import { cryptoOptions, genreOptions, leasingOptions } from '@/lib/data';
+import { cryptoOptions, genreOptions } from '@/lib/data';
 import React, { useState } from 'react';
 import { pinata } from '@/lib/pinanta';
 import { sepolia } from 'viem/chains'
-import { createWalletClient, custom,getContract } from 'viem'
 import {  contractAbi,contractAddress } from '@/lib/integrations/viem/abi'
-import { usePrivy, useWallets } from '@privy-io/react-auth';
+import { usePrivy } from '@privy-io/react-auth';
 import { useSmartWallets } from "@privy-io/react-auth/smart-wallets";
 import { encodeFunctionData } from "viem";
 
@@ -34,7 +32,7 @@ function UploadForm() {
 
 
 
-  const handleChange = (e:any) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
     if (files) {
       setFormData((prev) => ({ ...prev, [name]: files[0] }));
@@ -43,7 +41,7 @@ function UploadForm() {
     }
   };
 
-  const  handleSubmit  = async (e:any) => {
+  const  handleSubmit  = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setNftTx("");

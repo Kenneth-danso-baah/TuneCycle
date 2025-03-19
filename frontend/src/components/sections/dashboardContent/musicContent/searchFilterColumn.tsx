@@ -2,17 +2,25 @@ import { setQuery } from '@/app/features/search/searchSlice';
 import React, { ChangeEvent } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch} from '@/app/store';
+import { RootState, AppDispatch } from '@/app/store';
 import { selectFilteredData } from '@/app/features/search/searchSelectors';
 
-interface SearchFilterColumnProps {
-  filterFunction: (item: any, query: string) => boolean;
+interface SearchItem {
+  title: string;
+  genre: string;
+  owner: string;
+  id: string | number;
+  name: string;
 }
 
-const SearchFilterColumn: React.FC<SearchFilterColumnProps> = ({ filterFunction }) => {
+interface SearchFilterColumnProps<T extends SearchItem> {
+  filterFunction: (item: T, query: string) => boolean;
+}
+
+const SearchFilterColumn = <T extends SearchItem>({ filterFunction }: SearchFilterColumnProps<T>) => {
   const dispatch = useDispatch<AppDispatch>();
   const query = useSelector((state: RootState) => state.search.query);
-  const filteredData = useSelector((state: RootState) => selectFilteredData(state, filterFunction));
+  const filteredData = useSelector((state: RootState) => selectFilteredData<T>(state, filterFunction));
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setQuery({ query: e.target.value }));
@@ -30,11 +38,10 @@ const SearchFilterColumn: React.FC<SearchFilterColumnProps> = ({ filterFunction 
           className="bg-transparent w-full outline-none placeholder:font-bold text-[18px] italic"
         />
       </div>
- 
- 
+
       <div className="mt-3">
-        {filteredData.map((item: any) => (
-          <div key={item.id}>{item.name}</div>
+        {filteredData.map((item) => (
+          <div key={item.id}>{item.name}</div> 
         ))}
       </div>
     </div>
@@ -42,3 +49,4 @@ const SearchFilterColumn: React.FC<SearchFilterColumnProps> = ({ filterFunction 
 };
 
 export default SearchFilterColumn;
+

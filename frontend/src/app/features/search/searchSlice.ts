@@ -1,29 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
-export interface SearchState<T = any> {
+export interface SearchState<T> {
   query: string;
   data: T[];
   filteredData: T[];
 }
 
-const initialState: SearchState = {
+// Define a generic function for the initial state
+const initialState = <T = unknown>(): SearchState<T> => ({
   query: '',
   data: [],
   filteredData: [],
-};
+});
 
 const searchSlice = createSlice({
   name: 'search',
-  initialState,
+  initialState: initialState<unknown>(), // Use `unknown` instead of `any`
   reducers: {
-    setQuery: (
-      state, 
-      action: PayloadAction<{ query: string }>
-    ) => {
+    setQuery: (state, action: PayloadAction<{ query: string }>) => {
       state.query = action.payload.query;
     },
-    setData: (state, action: PayloadAction<any[]>) => {
+    setData: <T>(state: SearchState<T>, action: PayloadAction<T[]>) => {
       state.data = action.payload;
       state.filteredData = action.payload;
     },

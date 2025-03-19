@@ -7,7 +7,7 @@ import Summary from './summary'
 function LeasePage() {
   return (
     <div className=' p-10  h-auto bg-[#161212]'>
-         <DashboardHeaderSearchInfo dashboard_location="leases"/>
+         <DashboardHeaderSearchInfo dashboard_location="Lease Music"/>
          <LeaseHolder/>
          <Summary/>
       </div>

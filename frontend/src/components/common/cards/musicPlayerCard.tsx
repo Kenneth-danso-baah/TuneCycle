@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import clsx from 'clsx';
 import { Button } from '@/components/ui/button';
 
 
@@ -10,14 +9,12 @@ type CardPropsMusic={
     title:string;
     artist:string;
     price:string;
-    //state:string;
     duration:string;
-    // isNegotiable:boolean;  
 }
 
 
 
-function MusicPlayerCard({mainImage,subImage,artist,duration,title,price}:CardPropsMusic) {
+function MusicPlayerCard({mainImage,subImage,artist,duration,title}:CardPropsMusic) {
     return (
  
         <div className=" w-96 border border-brand-mouve rounded-[10px] h-auto py-5 bg-music-card-gradient font-poppins mb-10">
@@ -42,16 +39,7 @@ function MusicPlayerCard({mainImage,subImage,artist,duration,title,price}:CardPr
                 </div>
     
                 <div className="flex items justify-between capitalize font-bold py-5">
-                    {/* <div>
-                        <h1>{price}</h1>
-                        <p className={clsx(`text-[12px], ${isNegotiable ? ' text-[#FFA500]' : 'text-red-500'}`)}>
-                            {isNegotiable ? 'Negotiable' : 'Not-Negotiable'}
-                        </p>
-                    </div> */}
-    
-                    {/* <div>
-                        <h1 className={`${state ? 'text-[#ccc]' : 'text-gray-500'}`}> {state ? 'Available' : 'Not available'}</h1>
-                    </div> */}
+
     
                     <div>
                         <h1>{duration}</h1>
@@ -59,7 +47,7 @@ function MusicPlayerCard({mainImage,subImage,artist,duration,title,price}:CardPr
                 </div>
     
                 <div className="mt-5">
-                    <Button className="bg-btn-gradient w-full p-8 text-2xl font-bold rounded-[5px] capitalize">Buy me</Button>
+                    <Button className="bg-btn-gradient w-full p-8 text-2xl font-bold rounded-[5px] capitalize">Purchase</Button>
                 </div>
              </div>
         </div>

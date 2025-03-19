@@ -23,7 +23,7 @@ function GetSupport() {
     </div>
 
     <div className='mt-5 flex justify-center '>
-        <h1 className='font-bold w-[80%] text-[18px]'>We're here to support you with dedicated assistance, 24/7. Whether you have a quick question or need in-depth help with licensing, royalties, or anything else, our team and resources are available to empower you on your musical journey.</h1>
+        <h1 className='font-bold w-[80%] text-[18px]'>We&apos;re here to support you with dedicated assistance, 24/7. Whether you have a quick question or need in-depth help with licensing, royalties, or anything else, our team and resources are available to empower you on your musical journey.</h1>
     </div>
     
 </div>

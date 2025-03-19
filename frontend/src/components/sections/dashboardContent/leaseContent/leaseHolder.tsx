@@ -2,24 +2,18 @@
 import LeasedCard from '@/components/common/cards/leasedCard'
 import React, { useEffect, useState } from 'react'
 import { readUserListings } from "@/lib/integrations/viem/contract";
-import { usePrivy, useWallets } from '@privy-io/react-auth';
+import { usePrivy } from '@privy-io/react-auth';
 import { useSmartWallets } from '@privy-io/react-auth/smart-wallets';
 import { sepolia } from 'viem/chains';
 import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { encodeFunctionData } from 'viem';
+import SearchFilterColumn from '../musicContent/searchFilterColumn';
+import { Listing } from '../../../../../types/global.types';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
+import NotFoundContent from '@/components/common/notFoundContent';
 
-interface Listing {
-  owner:string;
-  price:bigint;
-  tokenId: bigint;
-  leaseYear:bigint;
-  artiste?:string;
-  title:string;
-  music: string;
-  image:string;
-  genre: string;
-  isListed:boolean;
-}
+
 
 function LeaseHolder() {
 
@@ -27,9 +21,10 @@ function LeaseHolder() {
   const walletAddress = user?.wallet?.address;
   const [listing, setListing] = useState<Listing[]>();
   const { client } = useSmartWallets();
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [nftTx, setNftTx] = useState("");
-  const [errorMessageNft, setErrorMessageNft] = useState("");
+  const [, setErrorMessageNft] = useState("");
+  const query= useSelector((state:RootState)=>state.search.query)
 
 
   useEffect(()=> {
@@ -123,28 +118,47 @@ const  handleSubmit  = async (index: number) => {
     setLoading(false);
   }
 };
- 
+
   return (
     <div className='py-10'>
+
+      <div className='py-5'>
+        <SearchFilterColumn
+          filterFunction={filteredListings ? (item, query)=>
+            item.title.toLowerCase().includes(query.toLowerCase()) ||
+            item.genre.toLowerCase().includes(query.toLowerCase()) ||
+            item.owner.toLowerCase().includes(query.toLowerCase()) 
+            : ()=>false
+          }
+        />
+      </div>
+
     <div className='pb-5'>
-        <h1 className='text-3xl font-bold'>Unleased Music</h1>
+        <h1 className='text-3xl font-extralight'>Unleased Music</h1>
     </div>
 
     <div className='grid grid-cols-3 gap-10'>
-      {listing?.map((item, originalIndex) => {
-        if (!item.isListed) {
-          return (
-            <LeasedCard
-              key={originalIndex}
-              imageSrc={item.image || "/images/mgg.svg"}
-              amount={(Number(item.price) / 1e18).toString()}
-              duration={item.leaseYear.toString()}
-              title={item.title}
-              onClick={() => handleSubmit(originalIndex)} artiste={item.artiste || 'unknown artiste'}              />
-          );
-        }
-        return null;
-      })}
+      {filteredListings && filteredListings.length > 0 ? (
+        filteredListings.map((data,index)=>(
+          <LeasedCard
+          key={index}
+          imageSrc={data.image || "/images/mgg.svg"}
+          amount={(Number(data.price) / 1e18).toString()}
+          duration={data.leaseYear.toString()}
+          title={data.title}
+          onClick={() => handleSubmit(index)} artiste={data.artiste || 'unknown artiste'} />
+        ))
+      ):(
+   
+           <NotFoundContent 
+        title="Leased Music not added"
+         description={`No resutls found for ${query}`}
+         image='/images/errors.png'/>
+   
+
+      )}
+
+
     </div>
 </div>
 

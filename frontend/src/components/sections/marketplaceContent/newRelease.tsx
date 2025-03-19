@@ -20,9 +20,8 @@ function NewRelease() {
                   title={item.title} 
                   artist={item.artist}
                 price={item.price}
-                state={item.state}
                  duration={item.duration} 
-                 isNegotiable={item.isNegotiable}/>
+                 />
              
             ))}
         </div>

@@ -9,7 +9,7 @@ function SupportHolder() {
 
 
         <div className='mb-10'>
-            <h1 className='text-3xl capitalize font-monoBold'>Find answers and get support (FAQ's)</h1>
+            <h1 className='text-3xl capitalize font-monoBold'>Find answers and get support (FAQ&apos;s)</h1>
         </div>
 
        <div className='grid grid-cols-3 gap-10'>

@@ -1,7 +1,6 @@
 import React from "react";
 import CarouselWrapper from "./carouselWrapper";
 import RecentlyAdded from "./recentlyAdded";
-import { HiDotsHorizontal } from "react-icons/hi";
 import { MdOutlineClear } from "react-icons/md";
 import { purchaseHistory, recentlyAddedMusic, recommendedSongs } from "@/lib/data";
 import HistoryPurchase from "./historyPurchase";

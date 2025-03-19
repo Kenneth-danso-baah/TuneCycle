@@ -1,8 +1,6 @@
-import { resultsMusic } from '@/lib/data'
 import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import MusicPlayerCard from '@/components/common/cards/musicPlayerCard'
-import { useWallets } from '@privy-io/react-auth';
 import { usePrivy } from '@privy-io/react-auth';
 import { readListings } from '@/lib/integrations/viem/contract';
 import { useSmartWallets } from '@privy-io/react-auth/smart-wallets';
@@ -22,7 +20,6 @@ interface Listing {
 }
 
 function MusicContentContainer() {
-  const { wallets} = useWallets();
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
   const [listing, setListing] = useState<Listing[]>();  

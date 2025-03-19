@@ -1,5 +1,5 @@
 import { IoInformationCircleOutline } from 'react-icons/io5'
-import { MdKeyboardArrowDown } from 'react-icons/md'
+
 
 
 interface StatsProps{
@@ -9,7 +9,7 @@ interface StatsProps{
    base:string;
 }
 
-function StatisticCard({name,amount,base,info}: StatsProps) {
+function StatisticCard({name,amount}: StatsProps) {
   return (
     <div className='w-full rounded-[10px]  bg-[#252B36] p-5 space-y-5'>
     <div className='flex items-center gap-3'>
@@ -21,16 +21,6 @@ function StatisticCard({name,amount,base,info}: StatsProps) {
        <h1 className='text-6xl font-monoBold'> {amount} ETH</h1>
     </div>
 
-    <div>
-       <h1 className='text-[#A2A8B4] text-[20px]'>{info}</h1>
-    </div>
-
-    <div className='w-full h-[0.5px] bg-[#A2A8B4]'/>
-
-    <div className='text-[20px] text-[#A2A8B4] font-extrabold flex gap-2'>
-       <h1>{base}</h1>
-       <MdKeyboardArrowDown/>
-    </div>
 </div>
   )
 }
