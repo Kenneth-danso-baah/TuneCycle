@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { footerLinks } from '@/lib/data';
-import X from '../../../public/images/x.svg'
 
 
 
@@ -13,7 +12,7 @@ function Footer() {
 
             <div className='space-y-5 md:max-w-[30%] lg:max-w-[20%]'>
             <div>
-                <Image src='/images/logox.svg' alt="app-image" width={250} height={250}/>
+                <Image src='/images/tc-turner.svg' alt="app-image" width={250} height={250}/>
             </div>
 
             <p className='font-bold'>Our vision is to provide convenience for both music artists and buyers.</p>
@@ -45,10 +44,10 @@ function Footer() {
 
         </div>
 
-        <div className='border pt-5 md:pt-16 pb-10 text-[13px] md:text-[18px] font-bold border-t border-l-0  border-r-0 border-b border-brand-hue-color flex flex-col md:flex-row justify-between'>
+        <div className='border pt-5 md:pt-16 pb-10 text-[13px] md:text-[18px] font-bold border-t border-l-0  border-r-0 border-b-0 border-brand-rcc flex flex-col md:flex-row justify-between'>
         
           <div>
-            <h1> &copy;2025 BeatBack.Allrights reserved</h1>
+            <h1> &copy;2025 TuneCycle, Allrights reserved</h1>
           </div>
 
           <div className='flex flex-col md:flex-row gap-10 md:gap-20 mb-5'>
