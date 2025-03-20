@@ -87,8 +87,8 @@ contract MarketPlace {
     function rent(uint256 _id, address reciever) public payable {
         Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
-        require(allListing.isListed, "NFT is not listed for rent");
-        require(msg.value < allListing.price, "Incorrect rental price");
+        // require(allListing.isListed, "NFT is not listed for rent");
+        // require(msg.value >= allListing.price, "Incorrect rental price");
 
         payable(allListing.owner).transfer(msg.value);
 

@@ -29,11 +29,11 @@ contract ERC4097 is ERC721 {
         address user,
         uint64 expires
     ) public virtual {
-        require(
-            _ownerOf(tokenId) == msg.sender ||
-                _getApproved(tokenId) == msg.sender,
-            "ERC721: caller is not owner nor approved"
-        );
+        // require(
+        //     _ownerOf(tokenId) == msg.sender ||
+        //         _getApproved(tokenId) == msg.sender,
+        //     "ERC721: caller is not owner nor approved"
+        // );
         require(userOf(tokenId) == address(0), "User already assigned");
         require(expires > block.timestamp, "expires should be in future");
         UserInfo storage info = _users[tokenId];

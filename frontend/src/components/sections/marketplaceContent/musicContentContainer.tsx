@@ -9,16 +9,17 @@ import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { encodeFunctionData } from 'viem';
 
 interface Listing {
-  owner: string;
-  price: bigint;
+  owner:string;
+  price:bigint;
   tokenId: bigint;
-  leaseYear: bigint;
-  artiste?:string;
-  title: string;
+  leaseYear:bigint;
+  title:string;
   music: string;
-  image: string;
-  genre: string;
-  isListed: boolean;
+  image:string;
+  genre:string;
+  artiste:string;
+  isListed:boolean;
+  isRented: boolean;
 }
 
 function MusicContentContainer() {
@@ -53,53 +54,11 @@ const  handleSubmit  = async (index: number, price: bigint) => {
 
   setErrorMessageNft("");
   try {
-    // if (!wallets || wallets.length === 0) {
-    //   console.error("No wallet connected");
-    //   return;
-    // }
 
-    // const wallet = wallets[0];
-    // if (!wallet) {
-    //   console.error("Wallet is undefined");
-    //   return;
-    // }
-
-
-    // const provider = await wallet.getEthereumProvider();
-    // if (!provider) {
-    //   console.error("Provider is undefined");
-    //   return;
-    // }
-
-    // const currentChainId = await provider.request({ method: "eth_chainId" });
-
-    // if (currentChainId !== `0x${sepolia.id.toString(16)}`) {
-    //   await wallet.switchChain(sepolia.id);
-    // }
-
-
-    // const client = createWalletClient({
-    //   chain: sepolia,
-    //   transport: custom(provider),
-    //   account: walletAddress as `0x${string}`,
-    // });
-    // const contract = getContract({
-    //   address: contractAddress,
-    //   abi: contractAbi,
-    //   client,
-    // });
-
-    // const tsxx =    await contract.write.mint([
-    //   formData.musicFile, 
-    //   formData.coverImage,
-    //   formData.title,
-    //   BigInt(formData.amount),
-    //   BigInt(formData.leaseYears)
-    //   ]);
     const tx = await client.sendTransaction({
       chain: sepolia,
       to: contractAddress,
-      value: BigInt(0),
+      value: BigInt(Number(price)),
       data: encodeFunctionData({
         abi: contractAbi,
         functionName: "rent",
@@ -125,21 +84,21 @@ const  handleSubmit  = async (index: number, price: bigint) => {
 
   return (
     <div className='mx-5 w-full pb-10 p-5'>
- 
-
         <div  className='grid grid-cols-3 gap-5 '>
-        {listing?.map((item, index) => {
-          if (item.isListed) return null;
+        {listing?.map((item, index) => ({ ...item, originalIndex: index }))
+         .filter(item => item.isListed)
+         .map((item) => {
+          
           return (
             <MusicPlayerCard
-              key={index}
+              key={item.originalIndex}
               mainImage={item.image || "/images/mgg.svg"} 
               subImage={item.image || "/images/mgg.svg"}
               title={item.title} 
               artist={item.artiste || ""}
               price={item.price.toString()}
-              duration={(Number(item.price) / 1e18).toString()} 
-              onClick={() => handleSubmit(index, item.price)}
+              duration={item.originalIndex.toString()} 
+              onClick={() => handleSubmit(item.originalIndex, item.price)}
             />
           );
         })}
