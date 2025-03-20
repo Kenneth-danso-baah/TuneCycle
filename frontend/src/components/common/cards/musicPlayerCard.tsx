@@ -10,13 +10,14 @@ type CardPropsMusic={
     artist:string;
     price:string;
     duration:string;
+    onClick: () => void;
 }
 
 
 
-function MusicPlayerCard({mainImage,subImage,artist,duration,title}:CardPropsMusic) {
+function MusicPlayerCard({mainImage,subImage,artist,duration,title, onClick}:CardPropsMusic) {
     return (
- 
+  
         <div className=" w-96 border border-brand-mouve rounded-[10px] h-auto py-5 bg-music-card-gradient font-poppins mb-10">
              <div className="mx-5">
                 <div className="shadow-2xl">
@@ -42,12 +43,14 @@ function MusicPlayerCard({mainImage,subImage,artist,duration,title}:CardPropsMus
 
     
                     <div>
-                        <h1>{duration}</h1>
+                        <h1>{duration} ETH</h1> 
                     </div>
                 </div>
     
                 <div className="mt-5">
-                    <Button className="bg-btn-gradient w-full p-8 text-2xl font-bold rounded-[5px] capitalize">Purchase</Button>
+                    <Button className="bg-btn-gradient w-full p-8 text-2xl font-bold rounded-[5px] capitalize"
+                    onClick={onClick}
+                    >Purchase</Button>
                 </div>
              </div>
         </div>

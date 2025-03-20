@@ -19,7 +19,7 @@ function LeaseHolder() {
 
   const { user} = usePrivy()
   const walletAddress = user?.wallet?.address;
-  const [listing, setListing] = useState<Listing[]>();
+  const [listing, setListing] = useState<Listing[]>([]);
   const { client } = useSmartWallets();
   const [, setLoading] = useState(false);
   const [nftTx, setNftTx] = useState("");
@@ -27,14 +27,13 @@ function LeaseHolder() {
   const query= useSelector((state:RootState)=>state.search.query)
 
 
-  useEffect(()=> {
+  useEffect(()=> { 
     const fetchUserData = async () => {
         if(walletAddress){
-            const balance = await readUserListings(`${walletAddress}` as `0x${string}`);
+            const balance = await readUserListings(`${walletAddress}` as `0x{string}`);
             if (balance) {
               setListing(balance);
             }
-            
         }
     };
     fetchUserData();
@@ -50,7 +49,7 @@ const  handleSubmit  = async (index: number) => {
 
   setErrorMessageNft("");
   try {
-    // if (!wallets || wallets.length === 0) {
+    // if (!wallets  wallets.length === 0) {
     //   console.error("No wallet connected");
     //   return;
     // }
@@ -118,12 +117,15 @@ const  handleSubmit  = async (index: number) => {
     setLoading(false);
   }
 };
-
-const filteredListings = listing?.filter((item)=>
-  item.title.toLowerCase().includes(query.toLowerCase()) ||
-  item.genre.toLowerCase().includes(query.toLowerCase()) ||
-  item.owner.toLowerCase().includes(query.toLowerCase())
-);
+ 
+const filteredListings = listing
+  .map((item, index) => ({ ...item, originalIndex: index }))
+  .filter(item => !item.isListed)
+  .filter((item) =>
+    item.title.toLowerCase().includes(query.toLowerCase()) ||
+    item.genre.toLowerCase().includes(query.toLowerCase()) ||
+    item.owner.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <div className='py-10'>
@@ -132,7 +134,7 @@ const filteredListings = listing?.filter((item)=>
         <SearchFilterColumn
           filterFunction={filteredListings ? (item, query)=>
             item.title.toLowerCase().includes(query.toLowerCase()) ||
-            item.genre.toLowerCase().includes(query.toLowerCase()) ||
+            item.genre.toLowerCase().includes(query.toLowerCase())||
             item.owner.toLowerCase().includes(query.toLowerCase()) 
             : ()=>false
           }
@@ -144,27 +146,25 @@ const filteredListings = listing?.filter((item)=>
     </div>
 
     <div className='grid grid-cols-3 gap-10'>
-      {filteredListings && filteredListings.length > 0 ? (
-        filteredListings.map((data,index)=>(
+      {filteredListings.length > 0 ? (
+        filteredListings.map((data) => (
           <LeasedCard
-          key={index}
-          imageSrc={data.image || "/images/mgg.svg"}
-          amount={(Number(data.price) / 1e18).toString()}
-          duration={data.leaseYear.toString()}
-          title={data.title}
-          onClick={() => handleSubmit(index)} artiste={data.artiste || 'unknown artiste'} />
+            key={data.originalIndex}
+            imageSrc={data.image}
+            amount={(Number(data.price) / 1e18).toString()}
+            duration={data.leaseYear.toString()}
+            title={data.title}
+            onClick={() => handleSubmit(data.originalIndex)}
+            artiste={data.artiste || 'unknown artiste'}
+          />
         ))
-      ):(
-   
-           <NotFoundContent 
-        title="Leased Music not added"
-         description={`No resutls found for ${query}`}
-         image='/images/errors.png'/>
-   
-
+      ) : (
+        <NotFoundContent 
+          title="Leased Music not added"
+          description={`No results found for ${query}`}
+          image='/images/errors.png'
+        />
       )}
-
-
     </div>
 </div>
 
