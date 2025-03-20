@@ -57,7 +57,10 @@ function MarketPlacePage() {
 
           <MarketPlaceSubHeader />
           <MarketPlaceHolder />
-          <Footer />
+
+          <div className='mt-20'>
+          <Footer/>
+          </div>
         </>
       )}
     </div>
