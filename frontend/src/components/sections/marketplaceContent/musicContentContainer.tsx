@@ -99,7 +99,7 @@ const  handleSubmit  = async (index: number, price: bigint) => {
     const tx = await client.sendTransaction({
       chain: sepolia,
       to: contractAddress,
-      value: price,
+      value: BigInt(0),
       data: encodeFunctionData({
         abi: contractAbi,
         functionName: "rent",

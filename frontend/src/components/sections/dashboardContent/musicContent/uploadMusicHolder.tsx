@@ -89,6 +89,7 @@ function UploadMusicHolder() {
             owner={data.owner}
             price={data.price}
             tokenId={data.tokenId}
+            artiste={data.artiste || ""}
             music={data.music}
           />
         ))
