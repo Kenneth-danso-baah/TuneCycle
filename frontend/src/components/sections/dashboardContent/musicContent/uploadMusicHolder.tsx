@@ -82,7 +82,7 @@ function UploadMusicHolder() {
             key={index}
             image={data.image}
             title={data.title}
-            index={index.toString()}
+            index={index+1}
             genre={data.genre}
             leaseYear={data.leaseYear}
             isListed={data.isListed}

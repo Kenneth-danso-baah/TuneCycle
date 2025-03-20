@@ -6,6 +6,7 @@ import { RootState, AppDispatch } from '@/app/store';
 import { selectFilteredData } from '@/app/features/search/searchSelectors';
 
 interface SearchItem {
+  className?:string;
   title: string;
   genre: string;
   owner: string;
@@ -23,7 +24,7 @@ const SearchFilterColumn = <T extends SearchItem>({ filterFunction }: SearchFilt
   const filteredData = useSelector((state: RootState) => selectFilteredData<T>(state, filterFunction));
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setQuery({ query: e.target.value }));
+    dispatch(setQuery(e.target.value ));
   };
 
   return (

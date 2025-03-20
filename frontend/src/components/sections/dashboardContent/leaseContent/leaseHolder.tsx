@@ -174,7 +174,7 @@ const filteredListings = listing
     <div className='grid grid-cols-3 gap-10'>
       {visibleListings.map((data) => (
         <LeasedCard
-          key={data.originalIndex}
+          key={data.title}
           imageSrc={data.image}
           amount={(Number(data.price) / 1e18).toString()}
           duration={data.leaseYear.toString()}
@@ -194,7 +194,7 @@ const filteredListings = listing
     </div>
   )}
 
-  {/* Pagination Controls */}
+
   <div className='mt-20'>
     <Indicators
       currentPage={currentPage}

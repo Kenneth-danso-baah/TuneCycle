@@ -7,6 +7,11 @@ import { useSmartWallets } from '@privy-io/react-auth/smart-wallets';
 import { sepolia } from 'viem/chains';
 import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { encodeFunctionData } from 'viem';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
+import { setData } from '@/app/features/search/searchSlice';
+import NotFoundContent from '@/components/common/notFoundContent';
+
 
 interface Listing {
   owner: string;
@@ -32,6 +37,10 @@ function MusicContentContainer() {
   const [itemsToShow, setItemsToShow] = useState(8);
   const [totalItems, setTotalItems] = useState(0);
 
+
+  const {filteredData} = useSelector((state:RootState)=>state.search)
+  const dispatch = useDispatch()
+
   useEffect(() => {
     const fetchUserData = async () => {
       if (walletAddress) {
@@ -39,12 +48,13 @@ function MusicContentContainer() {
         if (balance) {
           setListing(balance);
           const filtered = balance.filter((item) => !item.isListed); 
-          setTotalItems(filtered.length); 
+          setTotalItems(filtered.length);
+          dispatch(setData(balance))
         }
       }
     };
     fetchUserData();
-  }, [walletAddress]);
+  }, [walletAddress,dispatch]);
 
   const handleSubmit = async (index: number, price: bigint) => {
     setLoading(true);
@@ -81,27 +91,35 @@ function MusicContentContainer() {
     setItemsToShow((prev) => prev + 8);
   };
 
-  const filteredListings = listing.filter((item) => !item.isListed); 
-  const visibleListings = filteredListings.slice(0, itemsToShow);
+
+  const visibleListings = filteredData.slice(0, itemsToShow);
 
   return (
     <div className='w-full p-5 my-10'>
-      <div className='flex flex-wrap gap-5'>
-        {visibleListings.map((item, index) => (
+      {visibleListings.length === 0 ? (
+                <NotFoundContent 
+                title="Hmmm not available"
+                 description={`No resutls found `}
+                 image='/images/errors.png'/>
+      ): (
+        <div className="flex flex-wrap gap-5">
+        {visibleListings.slice(0, itemsToShow).map((item, index) => (
           <MusicPlayerCard
-            key={index}
-            mainImage={item.image || '/images/mgg.svg'}
-            subImage={item.image || '/images/mgg.svg'}
+            key={item.tokenId.toString()}
+            mainImage={item.image || "/images/mgg.svg"}
+            subImage={item.image || "/images/mgg.svg"}
             title={item.title}
-            artist={item.artiste || ''}
+            artist={item.artiste || ""}
             price={item.price.toString()}
             duration={(Number(item.price) / 1e18).toString()}
             onClick={() => handleSubmit(index, item.price)}
           />
         ))}
       </div>
+      )}
 
-      {visibleListings.length < filteredListings.length && (
+
+      {visibleListings.length < filteredData.length && (
         <div className='py-10 grid place-content-center'>
           <Button
             className='gradient-border-button text-[20px] font-bold py-7'
