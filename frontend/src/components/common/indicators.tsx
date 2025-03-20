@@ -1,14 +1,8 @@
 import React from 'react';
 import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
 import { FaCircle } from 'react-icons/fa';
+import { PaginationFunctionProps } from '../../../types/global.types';
 
-type RecommendationCarouselProps = {
-  currentPage: number;
-  totalPages: number;
-  onPrev: () => void;
-  onNext: () => void;
-  onGoToPage: (pageIndex: number) => void;
-};
 
 function Indicators({
   currentPage,
@@ -16,7 +10,7 @@ function Indicators({
   onPrev,
   onNext,
   onGoToPage,
-}: RecommendationCarouselProps) {
+}: PaginationFunctionProps) {
   return (
     <div className='leftRightSpacing flex items-center justify-between mb-20'>
 

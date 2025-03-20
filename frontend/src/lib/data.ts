@@ -308,6 +308,7 @@ export const yearlyOption = Array.from({ length: 26 }, (_, i) => {
     {name:'home', href:'/dashboard/',images:'/images/home.svg'},
     {name:'music', href:'/dashboard/music',images:'/images/music.svg'},
     {name:'leases', href:'/dashboard/leases',images:'/images/leases.svg'},
+    {name:'market', href:'/dashboard/market_place',images:'/images/wallet.svg'},
     {name:'profile', href:'/dashboard/profile',images:'/images/profile.svg'},
     {name:'support', href:'/dashboard/support',images:'/images/support.svg'},
   

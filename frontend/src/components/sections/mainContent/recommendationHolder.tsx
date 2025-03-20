@@ -1,41 +1,38 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { recommendationData } from '@/lib/data';
 import Indicators from '@/components/common/indicators';
 import RecommendationCard from '@/components/common/cards/recommendationCard';
+import { useDispatch, useSelector } from 'react-redux'
+import { goToNextPage, goToPage, goToPrevPage, setTotalItems } from '@/app/features/pagination/paginationSlice';
+import { AppDispatch, RootState } from '@/app/store';
 
 
 function RecommendationHolder() {
-  const itemsPerPage = 3;
-  const totalItems = recommendationData.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const dispatch = useDispatch<AppDispatch>();
+  const {currentPage, itemsPerPage, totalItems} = useSelector((state:RootState)=>state.pagination)
 
-  const [currentPage, setCurrentPage] = useState(0);
-
+  useEffect(()=>{
+    dispatch(setTotalItems(recommendationData.length))
+  },[dispatch])
 
   const startIndex = currentPage * itemsPerPage;
-  const visibleRecommendations = recommendationData.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  const visibleRecommendations = recommendationData.slice(startIndex, startIndex + itemsPerPage);
 
 
-  const handlePrev = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
+  const handlePrev=()=>{
+    dispatch(goToPrevPage())
   };
 
-  const handleNext = () => {
-    if (currentPage < totalPages - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  const handleNext=()=>{
+    dispatch(goToNextPage());
+  }
 
-  const handleGoToPage = (pageIndex: number) => {
-    setCurrentPage(pageIndex);
-  };
+  const handleGoToPage=(pageIndex:number)=>{
+    dispatch(goToPage(pageIndex))
+  }
+
 
   return (
     <div>
@@ -56,7 +53,7 @@ function RecommendationHolder() {
 
       <Indicators
         currentPage={currentPage}
-        totalPages={totalPages}
+        totalPages={Math.ceil(totalItems / itemsPerPage)}
         onPrev={handlePrev}
         onNext={handleNext}
         onGoToPage={handleGoToPage}
