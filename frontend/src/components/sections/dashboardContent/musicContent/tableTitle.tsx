@@ -21,7 +21,7 @@ function TableTitle() {
         <div className="flex-1">Status</div>
 
         <div className="flex-1 flex items-center gap-2">
-          <h1>Leased By</h1>
+          <h1>Artist</h1>
           <FiArrowUpRight />
         </div>
 

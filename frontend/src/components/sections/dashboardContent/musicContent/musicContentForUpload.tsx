@@ -13,10 +13,11 @@ interface SongsIdProps{
   music: string;
   image:string;
   genre: string;
+  artiste: string;
   isListed:boolean;
 }
 
-function MusicContentForUpload({image,genre,title,isListed,price,leaseYear,index}:SongsIdProps) {
+function MusicContentForUpload({image,genre,title,isListed,price,leaseYear,index,artiste}:SongsIdProps) {
   return (
     <div className='flex items-center gap-10 py-4 border-b border-gray-300'>
     <div className='flex-1 text-center'>{index}</div>
@@ -35,7 +36,7 @@ function MusicContentForUpload({image,genre,title,isListed,price,leaseYear,index
 
     <div className="flex-1 flex items-center gap-1">
       <Dot className="text-3xl text-blue-500" />
-      <h1>Passion Records</h1>
+      <h1>{artiste}</h1>
     </div>
 
     <div className='flex-1'>{(Number(price)/1e18).toString()} Eth</div>

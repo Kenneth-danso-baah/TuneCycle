@@ -99,7 +99,7 @@ const  handleSubmit  = async (index: number, price: bigint) => {
     const tx = await client.sendTransaction({
       chain: sepolia,
       to: contractAddress,
-      value: price,
+      value: BigInt(0),
       data: encodeFunctionData({
         abi: contractAbi,
         functionName: "rent",
@@ -129,7 +129,7 @@ const  handleSubmit  = async (index: number, price: bigint) => {
 
         <div  className='grid grid-cols-3 gap-5 '>
         {listing?.map((item, index) => {
-          if (!item.isListed) return null;
+          if (item.isListed) return null;
           return (
             <MusicPlayerCard
               key={index}
