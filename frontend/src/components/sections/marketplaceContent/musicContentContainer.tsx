@@ -9,14 +9,16 @@ import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { encodeFunctionData } from 'viem';
 
 interface Listing {
-  owner:string;
-  price:bigint;
+  owner: string;
+  price: bigint;
   tokenId: bigint;
-  leaseYear:bigint;
-  title:string;
+  leaseYear: bigint;
+  artiste?:string;
+  title: string;
   music: string;
-  image:string;
-  isListed:boolean;
+  image: string;
+  genre: string;
+  isListed: boolean;
 }
 
 function MusicContentContainer() {
@@ -30,7 +32,7 @@ function MusicContentContainer() {
 
   useEffect(()=> {
     const fetchUserData = async () => {
-        if(walletAddress){
+        if(walletAddress){ 
             const balance = await readListings();
             if (balance) {
               setListing(balance);
@@ -41,7 +43,7 @@ function MusicContentContainer() {
     fetchUserData();
 },[walletAddress])
 
-const  handleSubmit  = async (index: number) => {
+const  handleSubmit  = async (index: number, price: bigint) => {
   setLoading(true);
   setNftTx("");
   if (!client) {
@@ -97,10 +99,10 @@ const  handleSubmit  = async (index: number) => {
     const tx = await client.sendTransaction({
       chain: sepolia,
       to: contractAddress,
-      value: BigInt(0),
+      value: price,
       data: encodeFunctionData({
         abi: contractAbi,
-        functionName: "list",
+        functionName: "rent",
         args: [
                 BigInt(index),
               `${walletAddress}`
@@ -125,30 +127,31 @@ const  handleSubmit  = async (index: number) => {
     <div className='mx-5 w-full pb-10 p-5'>
  
 
-        <div className='grid grid-cols-3 gap-5 '>
-            {listing?.filter(item => item.isListed).map((item, index)=>(
-                <MusicPlayerCard
-                key={index}
-                 mainImage={item.image || "/images/mgg.svg"} 
-                 subImage={item.image || "/images/mgg.svg"}
-                  title={item.title} 
-                artist={`Kenny Danso`}
-                price={item.price.toString()}
-              
-                 duration={`3.4`} 
-               //  isNegotiable={item.isNegotiable
-                  
-                 />
-             
-            ))}
-        </div>
-
+        <div  className='grid grid-cols-3 gap-5 '>
+        {listing?.map((item, index) => {
+          if (!item.isListed) return null;
+          return (
+            <MusicPlayerCard
+              key={index}
+              mainImage={item.image || "/images/mgg.svg"} 
+              subImage={item.image || "/images/mgg.svg"}
+              title={item.title} 
+              artist={item.artiste || ""}
+              price={item.price.toString()}
+              duration={(Number(item.price) / 1e18).toString()} 
+              onClick={() => handleSubmit(index, item.price)}
+            />
+          );
+        })}
         <div className='py-10 grid place-content-center'>
-           <Button className='gradient-border-button text-[20px] font-bold py-7'>
+           <Button className='gradient-border-button text-[20px] font-bold py-7'
+        
+           >
            Load more
           </Button>
       </div>
-     
+        </div>
+      
     </div>
   )
 }
