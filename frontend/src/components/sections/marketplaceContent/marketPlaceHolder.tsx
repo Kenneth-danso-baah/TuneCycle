@@ -1,12 +1,13 @@
 import React from 'react'
 import MusicContentContainer from './musicContentContainer'
+import { Button } from '@/components/ui/button'
 
 
 function MarketPlaceHolder() {
     return (
-        <div className='flex items-center border-b border-brand-mouve h-auto'>
+        <div className='flex items-center flex-col border-b  border-brand-mouve h-auto'>
     
-            <div className='flex-[80%]  '>
+            <div className='mb-10'>
                <MusicContentContainer />
               </div>
         </div>

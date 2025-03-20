@@ -9,9 +9,12 @@ import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { encodeFunctionData } from 'viem';
 import SearchFilterColumn from '../musicContent/searchFilterColumn';
 import { Listing } from '../../../../../types/global.types';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/app/store';
 import NotFoundContent from '@/components/common/notFoundContent';
+import Indicators from '@/components/common/indicators';
+import {setTotalItems, setItemsPerpage, goToPrevPage, goToNextPage, goToPage} from '@/app/features/pagination/paginationSlice'
+
 
 
 
@@ -24,7 +27,10 @@ function LeaseHolder() {
   const [, setLoading] = useState(false);
   const [nftTx, setNftTx] = useState("");
   const [, setErrorMessageNft] = useState("");
-  const query= useSelector((state:RootState)=>state.search.query)
+  const query= useSelector((state:RootState)=>state.search.query);
+  const {currentPage, itemsPerPage, totalItems} = useSelector((state:RootState)=>state.pagination)
+  const dispatch = useDispatch<AppDispatch>();
+
 
 
   useEffect(()=> { 
@@ -33,6 +39,8 @@ function LeaseHolder() {
             const balance = await readUserListings(`${walletAddress}` as `0x{string}`);
             if (balance) {
               setListing(balance);
+              dispatch(setTotalItems(balance.length))
+              dispatch(setItemsPerpage(6))
             }
         }
     };
@@ -127,45 +135,75 @@ const filteredListings = listing
     item.owner.toLowerCase().includes(query.toLowerCase())
   );
 
+  const startIndex = currentPage * itemsPerPage;
+  const visibleListings = filteredListings?.slice(startIndex, startIndex + itemsPerPage);
+
+
+  const handlePrev=()=>{
+    dispatch(goToPrevPage())
+  }
+
+  const handleNext=()=>{
+    dispatch(goToNextPage());
+  }
+
+  const handleGoToPage=(pageIndex:number)=>{
+    dispatch(goToPage(pageIndex))
+  }
+
+  
   return (
-    <div className='py-10'>
+<div className='my-10 h-auto p-10 rounded-2xl w-full bg-[#252B36]'>
+  <div className='py-5'>
+    <SearchFilterColumn
+      filterFunction={filteredListings ? (item, query) =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item.genre.toLowerCase().includes(query.toLowerCase()) ||
+        item.owner.toLowerCase().includes(query.toLowerCase())
+        : () => false
+      }
+    />
+  </div>
 
-      <div className='py-5'>
-        <SearchFilterColumn
-          filterFunction={filteredListings ? (item, query)=>
-            item.title.toLowerCase().includes(query.toLowerCase()) ||
-            item.genre.toLowerCase().includes(query.toLowerCase())||
-            item.owner.toLowerCase().includes(query.toLowerCase()) 
-            : ()=>false
-          }
-        />
-      </div>
+  <div className='pb-5'>
+    <h1 className='text-3xl font-extralight'>Unleased Music</h1>
+  </div>
 
-    <div className='pb-5'>
-        <h1 className='text-3xl font-extralight'>Unleased Music</h1>
-    </div>
-
+  {/* Conditionally render the grid or the NotFoundContent */}
+  {visibleListings.length > 0 ? (
     <div className='grid grid-cols-3 gap-10'>
-      {filteredListings.length > 0 ? (
-        filteredListings.map((data) => (
-          <LeasedCard
-            key={data.originalIndex}
-            imageSrc={data.image}
-            amount={(Number(data.price) / 1e18).toString()}
-            duration={data.leaseYear.toString()}
-            title={data.title}
-            onClick={() => handleSubmit(data.originalIndex)}
-            artiste={data.artiste || 'unknown artiste'}
-          />
-        ))
-      ) : (
-        <NotFoundContent 
-          title="Leased Music not added"
-          description={`No results found for ${query}`}
-          image='/images/errors.png'
+      {visibleListings.map((data) => (
+        <LeasedCard
+          key={data.originalIndex}
+          imageSrc={data.image}
+          amount={(Number(data.price) / 1e18).toString()}
+          duration={data.leaseYear.toString()}
+          title={data.title}
+          onClick={() => handleSubmit(data.originalIndex)}
+          artiste={data.artiste || 'unknown artiste'}
         />
-      )}
+      ))}
     </div>
+  ) : (
+    <div className='flex items-center justify-center h-[50vh]'> {/* Center the NotFoundContent */}
+      <NotFoundContent
+        title="Leased Music not added"
+        description={`No results found for ${query}`}
+        image='/images/errors.png'
+      />
+    </div>
+  )}
+
+  {/* Pagination Controls */}
+  <div className='mt-20'>
+    <Indicators
+      currentPage={currentPage}
+      totalPages={Math.ceil(visibleListings.length / itemsPerPage)}
+      onPrev={handlePrev}
+      onNext={handleNext}
+      onGoToPage={handleGoToPage}
+    />
+  </div>
 </div>
 
   )

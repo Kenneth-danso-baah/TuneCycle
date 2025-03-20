@@ -66,7 +66,7 @@ function UploadMusicHolder() {
 
   return (
     <div className='my-10 h-auto p-10 rounded-2xl w-full bg-[#252B36]'>
-<SearchFilterColumn filterFunction={filteredListings ? (item, query) => 
+    <SearchFilterColumn filterFunction={filteredListings ? (item, query) => 
   item.title.toLowerCase().includes(query.toLowerCase()) ||
   item.genre.toLowerCase().includes(query.toLowerCase()) || 
   item.owner.toLowerCase().includes(query.toLowerCase())
@@ -115,7 +115,7 @@ function UploadMusicHolder() {
 
       onNext={handleNext} 
       
-      onGoToPage={handleGoToPage}     />
+      onGoToPage={handleGoToPage}/>
 
     </div>
   );
