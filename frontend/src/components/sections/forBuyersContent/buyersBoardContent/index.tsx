@@ -96,8 +96,8 @@ function BuyersBoard() {
                 image={data.image}
                 name={data.title}
                 genre={data.genre}
-                date={new Date().toISOString()}
-                duration={formatLeaseDuration(Number(data.leaseYear))}
+                date={(Number(data.price)/1e18).toString()}
+                duration={data.leaseYear.toString()}
               />
             ))}
           </div>
@@ -105,7 +105,7 @@ function BuyersBoard() {
       </div>
 
       <div className=" flex items-start p-10 gap-10 mb-10">
-
+{/* 
       <div className="flex-1 bg-[#252B36] p-5 rounded-md">
       <div className="py-10">
           <h1 className="font-poppins text-3xl ">Recommended Songs</h1>
@@ -126,7 +126,7 @@ function BuyersBoard() {
 
         <div className="flex-1">
           <HotSales/>
-        </div>
+        </div> */}
 
       </div>
     <Footer/>

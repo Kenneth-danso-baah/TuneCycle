@@ -39,8 +39,6 @@ contract MarketPlace {
         uint64 leaseYear,
         address reciever
     ) public {
-        _itemContract.mintNft(musicFile, reciever);
-
         Listing memory newListing = Listing({
             owner: reciever,
             price: amount,
@@ -56,15 +54,17 @@ contract MarketPlace {
         });
         // s_eachListing[reciever].push(newListing);
         s_allListing.push(newListing);
+
+        _itemContract.mintNft(musicFile, reciever);
     }
 
     function list(uint256 _id, address reciever) public {
         // Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
-        // require(
-        //     _itemContract.ownerOf(allListing.tokenId) == reciever,
-        //     "Only the owner can list the NFT"
-        // );
+        require(
+            _itemContract.ownerOf(allListing.tokenId) == reciever,
+            "Only the owner can list the NFT"
+        );
 
         //listing.isListed = true;
         allListing.isListed = true;
@@ -75,6 +75,7 @@ contract MarketPlace {
         //     isListed: true
         // });
 
+        allListing.isRented = false;
         // s_allListing.push(newListing);
 
         // _listings[tokenId] = Listing({
