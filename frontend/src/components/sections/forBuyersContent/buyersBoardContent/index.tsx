@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+
+import React, { useEffect, useState } from "react";
 import CarouselWrapper from "./carouselWrapper";
 import RecentlyAdded from "./recentlyAdded";
 import { MdOutlineClear } from "react-icons/md";
@@ -8,8 +10,52 @@ import Header from "@/components/layouts/header";
 import RecommendSongs from "./recommendSongs";
 import HotSales from "./hotSales";
 import Footer from "@/components/layouts/footer";
+import { readListingsByRentedTokens } from "@/lib/integrations/viem/contract";
+import { usePrivy } from "@privy-io/react-auth";
+
+interface Listing {
+  owner:string;
+  price:bigint;
+  tokenId: bigint;
+  leaseYear:bigint;
+  title:string;
+  music: string;
+  image:string;
+  genre:string;
+  artiste:string;
+  isListed:boolean;
+  isRented: boolean;
+}
+
+// Helper function to format lease duration
+const formatLeaseDuration = (leaseYear: number) => {
+    // Convert the lease year (which is in seconds) to milliseconds
+    const leaseDate = new Date(leaseYear * 1000);
+    // Format the date to a readable string
+    return leaseDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+};
 
 function BuyersBoard() {
+
+  const [listing, setListing] = useState<Listing[]>([]);
+  const { user } = usePrivy();
+  const walletAddress = user?.wallet?.address;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (walletAddress) {
+        const balance = await readListingsByRentedTokens(`${walletAddress}` as `0x${string}`);
+        if (balance) {
+          setListing(balance);
+          console.log(balance)
+        }
+      }
+    };
+    fetchUserData();
+  }, [walletAddress]);
   return (
     <div>
       <Header />
@@ -26,13 +72,13 @@ function BuyersBoard() {
           </div>
 
           <div className="space-y-4">
-            {recentlyAddedMusic.map((data, index) => (
+            {listing.map((data, index) => (
               <RecentlyAdded
                 key={index}
                 image={data.image}
                 title={data.title}
-                artist={data.artist}
-                type={data.type}
+                artist={data.artiste}
+                type={data.genre}
               />
             ))}
           </div>
@@ -43,15 +89,15 @@ function BuyersBoard() {
           <h1 className="text-3xl py-5">History of Songs Purchased</h1>
 
           <div className="space-y-4">
-            {purchaseHistory.map((data, index) => (
+            {listing.map((data, index) => (
               <HistoryPurchase
                 key={index}
-                id={data.id}
+                id={index}
                 image={data.image}
-                name={data.name}
+                name={data.title}
                 genre={data.genre}
-                date={data.date}
-                duration={data.duration}
+                date={new Date().toISOString()}
+                duration={formatLeaseDuration(Number(data.leaseYear))}
               />
             ))}
           </div>

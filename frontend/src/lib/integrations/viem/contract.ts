@@ -139,6 +139,31 @@ export async function readUserListings(userAddress: `0x${string}`): Promise<List
     }
 }
 
+export async function readListingsByRentedTokens(userAddress: `0x${string}`): Promise<Listing[] | null> {
+    try {
+        const contract = getContract({
+            address: contractAddress,
+            abi: contractAbi,
+            client,
+        });
+
+        const data = await contract.read.getListingsByRentedTokens([userAddress]);
+
+        console.log("History Data:", data);
+
+        if (Array.isArray(data)) {
+            return data as Listing[];
+        } else {
+            
+            return null;
+        }
+    } catch (error) {
+        
+        console.error("Error reading history:", error);
+        return null;
+    }
+}
+
 export async function readListings(): Promise<Listing[] | null> {
     try {
         const contract = getContract({
