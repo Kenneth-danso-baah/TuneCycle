@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { recommendationData } from '@/lib/data';
 import Indicators from '@/components/common/indicators';
 import RecommendationCard from '@/components/common/cards/recommendationCard';

@@ -1,13 +1,16 @@
+// searchSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Listing } from "../../../../types/global.types";
 
-export interface SearchState<T> {
+
+export interface SearchState {
   query: string;
-  data: T[];
-  filteredData: T[];
+  data: Listing[];
+  filteredData: Listing[];
   loading: boolean;
 }
 
-const initialState: SearchState<any> = {
+const initialState: SearchState = {
   query: "",
   data: [],
   filteredData: [],
@@ -21,7 +24,7 @@ const searchSlice = createSlice({
     setQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
     },
-    setData: (state, action: PayloadAction<any[]>) => {
+    setData: (state, action: PayloadAction<Listing[]>) => {
       state.data = action.payload;
       state.filteredData = action.payload;
     },

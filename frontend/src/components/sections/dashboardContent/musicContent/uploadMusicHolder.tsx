@@ -38,7 +38,7 @@ function UploadMusicHolder() {
       }
     };
     fetchUserData();
-  }, [walletAddress]);
+  }, [walletAddress, dispatch]);
 
 
   const filteredListings = listing?.filter((item) => 

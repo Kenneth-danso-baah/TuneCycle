@@ -28,7 +28,7 @@ function LeaseHolder() {
   const [nftTx, setNftTx] = useState("");
   const [, setErrorMessageNft] = useState("");
   const query= useSelector((state:RootState)=>state.search.query);
-  const {currentPage, itemsPerPage, totalItems} = useSelector((state:RootState)=>state.pagination)
+  const {currentPage, itemsPerPage} = useSelector((state:RootState)=>state.pagination)
   const dispatch = useDispatch<AppDispatch>();
 
 
@@ -45,7 +45,7 @@ function LeaseHolder() {
         }
     };
     fetchUserData();
-},[walletAddress,nftTx])
+},[walletAddress,nftTx, dispatch])
 
 const  handleSubmit  = async (index: number) => {
   setLoading(true);

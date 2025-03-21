@@ -11,31 +11,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/store';
 import { setData } from '@/app/features/search/searchSlice';
 import NotFoundContent from '@/components/common/notFoundContent';
+import { Listing } from '../../../../types/global.types';
 
 
-interface Listing {
-  owner: string;
-  price: bigint;
-  tokenId: bigint;
-  leaseYear: bigint;
-  artiste?: string;
-  title: string;
-  music: string;
-  image: string;
-  genre: string;
-  isListed: boolean;
-}
+
 
 function MusicContentContainer() {
   const { user } = usePrivy();
   const walletAddress = user?.wallet?.address;
-  const [listing, setListing] = useState<Listing[]>([]);
+  const [, setListing] = useState<Listing[]>([]);
   const { client } = useSmartWallets();
   const [, setLoading] = useState(false);
   const [, setNftTx] = useState('');
   const [, setErrorMessageNft] = useState('');
   const [itemsToShow, setItemsToShow] = useState(8);
-  const [totalItems, setTotalItems] = useState(0);
+  const [, setTotalItems] = useState(0);
 
 
   const {filteredData} = useSelector((state:RootState)=>state.search)
@@ -69,7 +59,7 @@ function MusicContentContainer() {
       const tx = await client.sendTransaction({
         chain: sepolia,
         to: contractAddress,
-        value: BigInt(0),
+        value: price,
         data: encodeFunctionData({
           abi: contractAbi,
           functionName: 'rent',
