@@ -17,12 +17,11 @@ function MusicPlayerCard({ mainImage, subImage, artist, duration, title, onClick
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Debug musicUrl
+
   useEffect(() => {
     console.log("Music URL:", musicUrl);
   }, [musicUrl]);
 
-  // Handle play/pause functionality
   const togglePlay = () => {
     console.log("Play button clicked");
     if (!audioRef.current) {
@@ -105,7 +104,7 @@ function MusicPlayerCard({ mainImage, subImage, artist, duration, title, onClick
         </div>
       </div>
 
-      {/* Audio element */}
+    
       {musicUrl && (
         <audio
           ref={audioRef}

@@ -180,6 +180,7 @@ const filteredListings = listing
           title={data.title}
           onClick={() => handleSubmit(data.originalIndex)}
           artiste={data.artiste || 'unknown artiste'}
+          musicUrl={data.music}
         />
       ))}
     </div>

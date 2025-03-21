@@ -1,17 +1,55 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import React, {useEffect, useRef, useState} from 'react'
+
 
 
 interface LeasedCardProps {
   imageSrc: string;
   amount: string;
+  musicUrl?:string;
   duration: string;
   artiste:string;
   title: string;
   onClick: () => void;
 }
 
-function LeasedCard({ imageSrc, amount, duration, title, onClick, artiste }: LeasedCardProps) {
+
+
+function LeasedCard({ imageSrc, amount, duration, title, onClick, artiste,musicUrl }: LeasedCardProps) {
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    useEffect(() => {
+      console.log("Music URL:", musicUrl);
+    }, [musicUrl]);
+
+    const togglePlay = () => {
+      console.log("Play button clicked");
+      if (!audioRef.current) {
+        console.error("audioRef is not set");
+        return;
+      }
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((error) => {
+          console.error("Failed to play audio:", error);
+          setIsPlaying(false);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    };
+
+      useEffect(() => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          setIsPlaying(false);
+        }
+      }, [musicUrl]);
+
+
+
   return (
     <div className='p-5 w-full bg-gradient-to-br from-[#101111] via-[#1a1b1b] to-[#00ffcc] rounded-xl'>
         <div className='flex items-center justify-between'>
@@ -24,9 +62,16 @@ function LeasedCard({ imageSrc, amount, duration, title, onClick, artiste }: Lea
             <h1 className='font-bold'>{title}</h1>
           </div>
 
-          <div>
-          <Image src="/images/press_play.svg" width={50} height={50} alt='hulio'/>
-          </div>
+          <button onClick={togglePlay} className="cursor-pointer">
+            <Image
+              src={isPlaying ? '/images/playbutton.svg' : '/images/pause.png' } 
+              alt="Play Button"
+              width={50}
+              height={50}
+              style={{ objectFit: 'cover' }}
+            />
+          </button>
+
         </div>
 
         <div className='py-5 space-y-3 font-bold'>
@@ -59,6 +104,14 @@ function LeasedCard({ imageSrc, amount, duration, title, onClick, artiste }: Lea
             </Button>
           </div>
         </div>
+
+        {musicUrl && (
+        <audio
+          ref={audioRef}
+          src={musicUrl}
+          onEnded={() => setIsPlaying(false)}
+        />
+      )}
 
     </div>
   )
