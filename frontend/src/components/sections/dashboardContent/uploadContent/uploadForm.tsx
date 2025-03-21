@@ -9,6 +9,9 @@ import {  contractAbi,contractAddress } from '@/lib/integrations/viem/abi'
 import { usePrivy } from '@privy-io/react-auth';
 import { useSmartWallets } from "@privy-io/react-auth/smart-wallets";
 import { encodeFunctionData } from "viem";
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { FaImage, FaMusic } from 'react-icons/fa';
 
 function UploadForm() {
   const { user} = usePrivy()
@@ -17,6 +20,10 @@ function UploadForm() {
   const [loading, setLoading] = useState(false);
   const [nftTx, setNftTx] = useState("");
   const [errorMessageNft, setErrorMessageNft] = useState("");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     title: '',
@@ -52,49 +59,6 @@ function UploadForm() {
 
     setErrorMessageNft("");
     try {
-      // if (!wallets || wallets.length === 0) {
-      //   console.error("No wallet connected");
-      //   return;
-      // }
-  
-      // const wallet = wallets[0];
-      // if (!wallet) {
-      //   console.error("Wallet is undefined");
-      //   return;
-      // }
-  
-
-      // const provider = await wallet.getEthereumProvider();
-      // if (!provider) {
-      //   console.error("Provider is undefined");
-      //   return;
-      // }
-  
-      // const currentChainId = await provider.request({ method: "eth_chainId" });
-
-      // if (currentChainId !== `0x${sepolia.id.toString(16)}`) {
-      //   await wallet.switchChain(sepolia.id);
-      // }
-
-
-      // const client = createWalletClient({
-      //   chain: sepolia,
-      //   transport: custom(provider),
-      //   account: walletAddress as `0x${string}`,
-      // });
-      // const contract = getContract({
-      //   address: contractAddress,
-      //   abi: contractAbi,
-      //   client,
-      // });
-  
-      // const tsxx =    await contract.write.mint([
-      //   formData.musicFile, 
-      //   formData.coverImage,
-      //   formData.title,
-      //   BigInt(formData.amount),
-      //   BigInt(formData.leaseYears)
-      //   ]);
       const tx = await client.sendTransaction({
         chain: sepolia,
         to: contractAddress,
@@ -116,6 +80,22 @@ function UploadForm() {
       });
       console.log("tx", tx);
       setNftTx(tx);
+      setShowSuccessPopup(true)
+
+      setFormData({
+        title: '',
+        artiste: '',
+        amount: '',
+        currency: 'ETH',
+        leaseYears: 1,
+        musicFile: '',
+        coverImage: '',
+        genre: ''
+      });
+
+      setTimeout(()=>{
+        router.push('/dashboard/leases/')
+      },3000)
   
     } catch (error) {
       console.error("Failed to update blockchain:", error);
@@ -172,6 +152,19 @@ function UploadForm() {
       
       {nftTx && <p className='text-green-500'>Transaction Successful: {nftTx}</p>}
       {errorMessageNft && <p className='text-red-500'>Error: {errorMessageNft}</p>}
+
+      {showSuccessPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-[#252B36] p-10 rounded-lg text-center">
+            <h2 className="text-2xl font-bold text-green-500">Success!</h2>
+            <Image src="/images/yeey.png" alt="congrats" className='flex items-center justify-center' width={80} height={80}/>
+            <p className="mt-4">Your music has been successfully uploaded.</p>
+            <p className="mt-2">Redirecting to the leased page...</p>
+          </div>
+        </div>
+      )}
+
+
 
       <div className='grid grid-cols-2 gap-10'>
         <div>
@@ -231,34 +224,61 @@ function UploadForm() {
             />
           </div>
 
-          <div className='flex flex-col py-5 space-y-3'>
-            <label className='block text-[18px] font-bold'>Upload Music</label>
-            <input
-              type='file'
-              name='musicFile'
-              onChange={ handleMusicUpload}
-              className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
-              accept='audio/*'
-            />
-          </div>
+<div className='flex flex-col py-5 space-y-3'>
+  <label className='block text-[18px] font-bold'>Upload Cover Image</label>
+  <div className="relative">
+    <input
+      type='file'
+      name='coverImage'
+      onChange={handleImageUpload}
+      className="hidden"
+      id="coverImageInput"
+      accept='image/*'
+    />
+    <label
+      htmlFor="coverImageInput"
+      className="cursor-pointer bg-[#363c46] text-white px-4 py-2 rounded-lg border border-[#363346]  transition-colors duration-200 flex items-center gap-2"    >
+      <FaImage /> Choose Image
+    </label>
+    {formData.coverImage && (
+      <div className="mt-2">
+        <img src={formData.coverImage} alt="Cover Preview" className="w-20 h-20 object-cover rounded-lg" />
+      </div>
+    )}
+  </div>
+</div>
 
-          <div className='flex flex-col py-5 space-y-3'>
-            <label className='block text-[18px] font-bold'>Upload Cover Image</label>
-            <input
-              type='file'
-              name='coverImage'
-              onChange={ handleImageUpload}
+<div className='flex flex-col py-5 space-y-3'>
+  <label className='block text-[18px] font-bold'>Upload Music</label>
+  <div className="relative">
+    <input
+      type='file'
+      name='musicFile'
+      onChange={handleMusicUpload}
+      className="hidden"
+      id="musicFileInput"
+      accept='audio/*'
+    />
+    <label
+      htmlFor="musicFileInput"
+      className="cursor-pointer bg-[#363c46] text-white px-4 py-2 rounded-lg border border-[#363346]  transition-colors duration-200 flex items-center gap-2"
+    >
+      <FaMusic /> Choose Music File
+    </label>
+    {formData.musicFile && (
+      <p className="mt-2 text-sm text-gray-500">Music file selected</p>
+    )}
+  </div>
+</div>
 
-              className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'
-              accept='image/*'
-            />
-          </div>
+
 
           <div className='flex flex-col py-5 space-y-3'>
             <label className='block text-[18px] font-bold'>Artiste</label>
             <input
               type='text'
               name='artiste'
+              placeholder='Artist Name'
               onChange={ handleChange}
               value={formData.artiste}
               className='p-3 outline-none bg-[#363c46] border border-[#363346] placeholder:font-bold'

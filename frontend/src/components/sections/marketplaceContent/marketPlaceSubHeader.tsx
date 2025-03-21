@@ -36,7 +36,7 @@ function MarketPlaceSubHeader() {
              placeholder:font-extrabold 
               placeholder:text-start 
               placeholder:ml-10'
-               placeholder='Search for any'
+               placeholder='Search for leased music'
                />
              {loading ? (
               <div className="mr-10 animate-spin w-5 h-5 border-2 border-gray-300 border-t-brand-mouve rounded-full"></div>
