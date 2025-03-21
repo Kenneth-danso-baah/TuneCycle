@@ -21,7 +21,7 @@ function SidebarContent({ text, icon, onClick }: SidebarProps) {
         <Image src={icon} width={20} height={20} alt="logo" className="object-contain" />
       </div>
 
-      <span className="text-[18px] capitalize font-bold whitespace-nowrap flex-shrink-0">
+      <span className="hidden lg:block text-[18px] capitalize font-bold whitespace-nowrap flex-shrink-0">
         {text}
       </span>
     </div>

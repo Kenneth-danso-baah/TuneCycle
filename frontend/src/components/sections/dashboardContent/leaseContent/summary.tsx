@@ -51,8 +51,8 @@ function Summary() {
 
         <div className='grid grid-cols-3 gap-10'>
             <Summarycard title='Total Songs' description='All your total songs' totalLeases={totalSongs}/>
-            <Summarycard title='Total Listed Songs' description='All your listed songs' totalLeases={totalListed}/>
-            <Summarycard title='Total Unlisted Songs' description='All your unlisted songs' totalLeases={totalUnlisted}/>          
+            <Summarycard title='Total Leased Songs' description='All your leased songs' totalLeases={totalListed}/>
+            <Summarycard title='Total Unleased Songs' description='All your unleased songs' totalLeases={totalUnlisted}/>          
         </div>
 
     </div>

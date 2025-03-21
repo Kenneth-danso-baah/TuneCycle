@@ -42,7 +42,7 @@ function DashBoardStatisticContent() {
 
   return (
     <div className='py-10'>   
-        <div className='grid grid-cols-3 gap-10'>    
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>    
                 <StatisticCard key={1} name={"Total Songs Price"} amount={listing?.reduce((acc, item) => acc + Number(Number(item.price) / 1e18), 0).toString() || "0"} info={"One"} base={"Two"}/>
                 <StatisticCard key={1} name={"Total Leased Price"} amount={listing?.filter(item => item.isListed).reduce((acc, item) => acc + Number(Number(item.price) / 1e18), 0).toString() || "0"} info={"One"} base={"Two"}/>
                 <StatisticCard key={1} name={"Total Unleased Price"} amount={listing?.filter(item => !item.isListed).reduce((acc, item) => acc + Number(Number(item.price) / 1e18), 0).toString() || "0"} info={"One"} base={"Two"}/>    

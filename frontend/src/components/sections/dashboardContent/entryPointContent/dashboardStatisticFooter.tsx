@@ -45,16 +45,16 @@ function DashBoardFooter() {
        <IoInformationCircleOutline className='text-3xl text-[#A2A8B4]'/>
     </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col  lg:flex-row items-center justify-between">
 
-        <div className='space-y-3'> 
-            <h1 className="text-3xl font-monoBold">{totalSongs}</h1>
-            <h1 className='text-brand-brew text-3xl  font-bold'>Total Songs</h1>
+        <div className='space-y-5 lg:space-y-3'> 
+            <h1 className="text-[15px] font-monoBold lg:text-3xl">{totalSongs}</h1>
+            <h1 className='text-brand-brew text-[15px] lg:text-3xl  font-bold'>Total Songs</h1>
         </div>
 
         <div className='space-y-3'>
-             <h1 className="text-3xl font-monoBold">{totalListed}</h1>
-            <h1 className='text-brand-brew text-3xl  capitalize font-bold'>Total Leased</h1>
+             <h1 className="text-[15px] font-monoBold lg:text-3xl">{totalListed}</h1>
+            <h1 className='text-brand-brew  lg:text-3xl  capitalize font-bold'>Total Leased</h1>
         </div>
 
         <div className='space-y-3'>
