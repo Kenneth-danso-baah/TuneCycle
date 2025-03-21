@@ -73,7 +73,7 @@ function UploadForm() {
                 formData.genre,
                 formData.artiste,
                 BigInt(Number(formData.amount) * 1e18),
-                BigInt(Date.now() + (formData.leaseYears * 365 * 24 * 60 * 60 * 1000)),
+                BigInt(formData.leaseYears),
                 `${walletAddress}`
                 ],
         }),
