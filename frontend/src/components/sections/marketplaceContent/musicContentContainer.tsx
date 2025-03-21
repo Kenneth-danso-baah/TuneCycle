@@ -152,7 +152,7 @@ function MusicContentContainer() {
             key={index}
             mainImage={item.image || '/images/mgg.svg'}
             subImage={item.image || '/images/mgg.svg'}
-            title={item.originalIndex.toString()}
+            title={item.title}
             artist={item.artiste || ''}
 
             price={item.price.toString()}

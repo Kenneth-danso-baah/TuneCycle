@@ -61,10 +61,10 @@ contract MarketPlace {
     function list(uint256 _id, address reciever) public {
         // Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
-        require(
-            _itemContract.ownerOf(allListing.tokenId) == reciever,
-            "Only the owner can list the NFT"
-        );
+        // require(
+        //     _itemContract.ownerOf(allListing.tokenId) == reciever,
+        //     "Only the owner can list the NFT"
+        // );
 
         //listing.isListed = true;
         allListing.isListed = true;
@@ -85,23 +85,25 @@ contract MarketPlace {
     }
 
     function rent(uint256 _id, address reciever) public payable {
-        // Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
         // require(allListing.isListed, "NFT is not listed for rent");
         // require(msg.value >= allListing.price, "Incorrect rental price");
+
+        // Calculate expiration timestamp (current time + lease years in seconds)
+        uint64 expirationTime = uint64(
+            block.timestamp + (allListing.leaseYear * 365 days)
+        );
 
         payable(allListing.owner).transfer(msg.value);
 
         _itemContract.setUser(
             allListing.tokenId,
             reciever,
-            allListing.leaseYear
+            expirationTime // Pass the expiration timestamp
         );
 
         allListing.isListed = false;
-        // listing.isListed = false;
         allListing.isRented = true;
-        // listing.isRented = true;
     }
 
     // Getter for s_allListing
