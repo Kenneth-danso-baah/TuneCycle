@@ -3,11 +3,9 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import clsx from 'clsx';
 import { musicNavLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import Logo from '../../../public/images/tc-turner.svg'
 import { CgMenuOreos } from "react-icons/cg";
 import MenuDrawer from '../common/menuDrawer';
 import { usePrivy } from '@privy-io/react-auth';
@@ -33,7 +31,7 @@ function Header() {
 
         <Link href="/" className='flex-shrink-0 '>
           <Image
-            src={Logo}
+            src="/images/tc-turner.svg"
             alt=" Logo"
             width={150}
             height={150} 
