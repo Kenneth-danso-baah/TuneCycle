@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { recommendationData } from '@/lib/data';
 import Indicators from '@/components/common/indicators';
 import RecommendationCard from '@/components/common/cards/recommendationCard';
 import { useDispatch, useSelector } from 'react-redux'
-import { goToNextPage, goToPage, goToPrevPage, setTotalItems } from '@/app/features/pagination/paginationSlice';
+import { goToNextPage, goToPage, goToPrevPage, setItemsPerpage, setTotalItems } from '@/app/features/pagination/paginationSlice';
 import { AppDispatch, RootState } from '@/app/store';
 
 
@@ -15,6 +15,7 @@ function RecommendationHolder() {
 
   useEffect(()=>{
     dispatch(setTotalItems(recommendationData.length))
+    dispatch(setItemsPerpage(3))
   },[dispatch])
 
   const startIndex = currentPage * itemsPerPage;
@@ -36,7 +37,6 @@ function RecommendationHolder() {
 
   return (
     <div>
-      {/* Recommendations */}
       <div className='p-5 lg:p-0 lg:leftRightSpacing flex flex-col lg:flex-row gap-10 mb-10 md:mb-32'>
         {visibleRecommendations.map((item, index) => (
           <RecommendationCard

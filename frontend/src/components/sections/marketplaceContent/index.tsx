@@ -28,8 +28,6 @@ function MarketPlacePage() {
       ) : (
         <>
           <div className='flex items-center justify-between py-5 mx-10'>
-
-            
           <Link href="/" className='flex-shrink-0 '>
           <Image
             src="/images/tc-turner.svg"
@@ -45,9 +43,7 @@ function MarketPlacePage() {
               DISCOVER <span className='text-brand-brew'>UNLIMITED</span> MUSIC
             </h1>
 
-            
             <div className='hidden  lg:flex-shrink-0 lg:flex items-center gap-20  '>
-
 
             <Link href="/for_buyers/buyers_board">
                 <h1 className='text-[20px] font-poppins text-nowrap  hover:text-blue-500'>Buyers Board</h1>

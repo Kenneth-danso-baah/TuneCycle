@@ -17,7 +17,7 @@ function OwnSound() {
                 you to focus on what you do best: creating exceptional music</p>
             </div>
 
-            <ArrowTextLink name='Less now' href='/contacts'/>
+            <ArrowTextLink name='Leased now' href='/contacts'/>
 
         </div>
     </div>

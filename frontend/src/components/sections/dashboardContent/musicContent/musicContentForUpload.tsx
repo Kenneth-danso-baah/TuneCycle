@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 
 interface SongsIdProps{
-  index: string;
+  index: number;
   owner:string;
   price:bigint;
   tokenId: bigint;
@@ -23,7 +23,7 @@ function MusicContentForUpload({image,genre,title,isListed,price,leaseYear,index
     <div className='flex-1 text-center'>{index}</div>
     <div className="flex-1 flex items-center gap-3">
       <Image src={image} alt={`${image}.txt`} width={30} height={30} />
-      <h1>{title}</h1>
+      <h1 className='text-nowrap'>{title}</h1>
     </div>
 
     <div className='flex-1 w-14 px-2 p-1  bg-[#274539]  border-4 rounded-full border-[#70d84d]'>

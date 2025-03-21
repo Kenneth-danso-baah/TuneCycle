@@ -6,7 +6,7 @@ import { readListings } from '@/lib/integrations/viem/contract';
 import { useSmartWallets } from '@privy-io/react-auth/smart-wallets';
 import { sepolia } from 'viem/chains';
 import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
-import { createWalletClient, custom, encodeFunctionData } from 'viem';
+import { createWalletClient, custom } from 'viem';
 
 interface Listing {
   owner:string;
@@ -22,17 +22,32 @@ interface Listing {
   isRented: boolean;
 }
 
+import { encodeFunctionData } from 'viem';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/app/store';
+import { setData } from '@/app/features/search/searchSlice';
+import NotFoundContent from '@/components/common/notFoundContent';
+
+
+
+
 function MusicContentContainer() {
   const { user } = usePrivy();
   const walletAddress = user?.wallet?.address;
+
   const { wallets} = useWallets();
   const [listing, setListing] = useState<Listing[]>([]);
+
   const { client } = useSmartWallets();
   const [, setLoading] = useState(false);
   const [nftTx, setNftTx] = useState('');
   const [, setErrorMessageNft] = useState('');
   const [itemsToShow, setItemsToShow] = useState(8);
-  const [totalItems, setTotalItems] = useState(0);
+  const [, setTotalItems] = useState(0);
+
+
+  const {filteredData} = useSelector((state:RootState)=>state.search)
+  const dispatch = useDispatch()
 
   
   useEffect(() => {
@@ -42,12 +57,13 @@ function MusicContentContainer() {
         if (balance) {
           setListing(balance);
           const filtered = balance.filter((item) => !item.isListed); 
-          setTotalItems(filtered.length); 
+          setTotalItems(filtered.length);
+          dispatch(setData(balance))
         }
       }
     };
     fetchUserData();
-  }, [walletAddress,nftTx]);
+  }, [walletAddress,dispatch,nftTx]);
 
   const handleSubmit = async (index: number, price: bigint) => {
     setLoading(true);
@@ -120,16 +136,25 @@ function MusicContentContainer() {
   const filteredListings = listing.map((item, index) => ({ ...item, originalIndex: index })).filter((item) => item.isListed && !item.isRented); 
   const visibleListings = filteredListings.slice(0, itemsToShow);
 
+
+
   return (
     <div className='w-full p-5 my-10'>
-      <div className='flex flex-wrap gap-5'>
-        {visibleListings.map((item, index) => (
+      {visibleListings.length === 0 ? (
+                <NotFoundContent 
+                title="Hmmm not available"
+                 description={`No resutls found `}
+                 image='/images/errors.png'/>
+      ): (
+        <div className="flex flex-wrap gap-5">
+        {visibleListings.slice(0, itemsToShow).map((item, index) => (
           <MusicPlayerCard
             key={index}
             mainImage={item.image || '/images/mgg.svg'}
             subImage={item.image || '/images/mgg.svg'}
             title={item.originalIndex.toString()}
             artist={item.artiste || ''}
+
             price={item.price.toString()}
             duration={(Number(item.price) / 1e18).toString()}
             onClick={() => handleSubmit(item.originalIndex, item.price)}
@@ -137,8 +162,10 @@ function MusicContentContainer() {
         ))}
 
       </div>
+      )}
 
-      {visibleListings.length < filteredListings.length && (
+
+      {visibleListings.length < filteredData.length && (
         <div className='py-10 grid place-content-center'>
           <Button
             className='gradient-border-button text-[20px] font-bold py-7'

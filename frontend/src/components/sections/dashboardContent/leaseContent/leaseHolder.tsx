@@ -28,7 +28,7 @@ function LeaseHolder() {
   const [nftTx, setNftTx] = useState("");
   const [, setErrorMessageNft] = useState("");
   const query= useSelector((state:RootState)=>state.search.query);
-  const {currentPage, itemsPerPage, totalItems} = useSelector((state:RootState)=>state.pagination)
+  const {currentPage, itemsPerPage} = useSelector((state:RootState)=>state.pagination)
   const dispatch = useDispatch<AppDispatch>();
 
 
@@ -45,7 +45,7 @@ function LeaseHolder() {
         }
     };
     fetchUserData();
-},[walletAddress,nftTx])
+},[walletAddress,nftTx, dispatch])
 
 const  handleSubmit  = async (index: number) => {
   setLoading(true);
@@ -174,7 +174,7 @@ const filteredListings = listing
     <div className='grid grid-cols-3 gap-10'>
       {visibleListings.map((data) => (
         <LeasedCard
-          key={data.originalIndex}
+          key={data.title}
           imageSrc={data.image}
           amount={(Number(data.price) / 1e18).toString()}
           duration={data.leaseYear.toString()}
@@ -194,7 +194,7 @@ const filteredListings = listing
     </div>
   )}
 
-  {/* Pagination Controls */}
+
   <div className='mt-20'>
     <Indicators
       currentPage={currentPage}
