@@ -98,7 +98,7 @@ Before you begin, ensure you have the following installed:
   - This combination provides a streamlined user experience while maintaining security.
 
 - **Testing the DApp**:
-  - Use testnet stablecoins (e.g., USDC on Sepolia) to simulate payments.
+  - Use testnet ETH (e.g., Sepolia) to simulate payments.
   - Ensure your wallet is connected to the correct Ethereum network (e.g., Sepolia Testnet).
 
 ---
@@ -128,7 +128,7 @@ The `contracts` folder contains all the code related to the blockchain and smart
     
 - **`src/`**:
   - Contains the main Solidity smart contract files.
-  - Organized into logical modules (e.g., `JustPay.sol`).
+  - Organized into logical modules (e.g., `MarketPlace.sol`).
 
 ---
 
@@ -160,34 +160,6 @@ The `frontend` folder contains the code for the user interface and application l
 
 ---
 
-### **Wow Factor: Schedule Payments with Smart Contracts**
-
-This feature allows users to **schedule payments** to be sent to someone at a specific date and time. The smart contract will automatically execute the payment at the scheduled time **without requiring further interaction** from the user or the application.
-
----
-
-#### **How It Works**
-1. **User Input**:
-   - The user specifies:
-     - The recipient's address.
-     - The amount to send.
-     - The date and time for the payment.
-
-2. **Smart Contract**:
-   - A smart contract is deployed to handle scheduled payments.
-   - The contract stores:
-     - The payment details (recipient, amount, timestamp).
-     - The sender's address and funds.
-
-3. **Automated Execution**:
-   - The smart contract uses a **time-based trigger** (e.g., block timestamp) to execute the payment at the specified time.
-   - Once the scheduled time is reached, the contract automatically sends the funds to the recipient.
-
-4. **No Code Interaction**:
-   - After the payment is scheduled, no further interaction with the application or code is required.
-   - The smart contract handles everything autonomously.
-
----
 
 ### **Key Features of the App**  
 
