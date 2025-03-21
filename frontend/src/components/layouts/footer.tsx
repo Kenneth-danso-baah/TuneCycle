@@ -50,7 +50,7 @@ function Footer() {
             <h1> &copy;2025 TuneCycle, Allrights reserved</h1>
           </div>
 
-          <div className='flex flex-col md:flex-row gap-10 md:gap-20 mb-5'>
+          <div className='flex flex-col lg:flex-row gap-10 md:gap-20 mb-5'>
             <div>
             <Link href="#">Privacy&Policy</Link>
             </div>

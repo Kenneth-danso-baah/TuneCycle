@@ -16,27 +16,27 @@ interface LeasingRight {
 
 function CoupleOfStepsCard({data}:CoupleOfStepsCardProps) {
   return (
-    <div className='py-20 w-[400px]  p-3 space-y-3 bg-[#1F2231]'>
+    <div className='py-20 w-full p-3 space-y-3 bg-[#1F2231] lg:w-[400px] '>
         <div>
             <h1 className='text-center text-2xl font-monoBold '>{data.title}</h1>
         </div>
         <div>
-            <p className='text-[15px] leading-[2rem] text-center font-bold'>{data.description}</p>
+            <p className='line-clamp-3  text-[15px] leading-[2rem] md:line-clamp-none text-center font-bold'>{data.description}</p>
         </div>
 
 
             <div className='my-10'>
-            <h1 className='capitalize text-[20px] text-center font-monoBold '>{data.feature}</h1>
+            <h1 className='capitalize text-[16px] text-center font-monoBold lg:text-[20px]'>{data.feature}</h1>
             </div>
 
 
-        <div className='mx-52'>
+        <div className='lg:mx-52'>
 
             <div className='flex flex-col items-center gap-5'>
                 {data.terms.map((term,index)=>(
                     <div className='flex items-center gap-3 ' key={index}>
                        <Image  src={term.icon}width={20} height={20} alt="arrow"/>
-                     <h1 className='text-wrap w-64 text-[15px] font-bold'>{term.name}</h1>
+                     <h1 className='text-wrap lg:w-64 text-[15px] font-bold'>{term.name}</h1>
                     </div>
                 ))}
 

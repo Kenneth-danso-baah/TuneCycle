@@ -5,12 +5,12 @@ import EarnCard from '@/components/common/cards/earnCard'
 
 function EarningPrice() {
   return (
-    <div className='mb-40 leftRightSpacing'>
-        <div className='mb-20'>
-            <h1 className='text-5xl font uppercase font-monoBold'>Pricing and earnings</h1>
+    <div className='mb-20 lg:mb-40 mx-5 lg:leftRightSpacing'>
+        <div className='mb-10 lg:mb-20'>
+            <h1 className='text-[20px] text-center text-nowrap font uppercase lg:text-start md:text-3xl font-monoBold lg:text-5xl'>Pricing and earnings</h1>
         </div>
 
-        <div className='flex gap-2'>
+        <div className='flex flex-col lg:gap-2 gap-10 lg:flex-row'>
             <EarnCard
              p1='At TuneCycle, we believe in a straightforward and transparent commission structure. For every successful lease transaction on our platform, we take a 20% commission. '
              p2='This means that if you lease a track for 1 ETH, you will earn 0.8 ETH, and our fee will be 0.2 ETH. Currently, we operate with a flat 20% commission rate for all artists, ensuring fairness and simplicity. '
@@ -22,6 +22,7 @@ function EarningPrice() {
                   src='/images/money_bar.svg'
                   width={600}
                   height={600}
+                  className='w-full'
                   alt='bar'
                 />
             </div>

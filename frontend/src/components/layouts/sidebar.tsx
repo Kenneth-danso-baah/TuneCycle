@@ -27,7 +27,8 @@ function Sidebar() {
    
 
         <Link href="/" className='py-10 p-5'>
-          <Image src="/images/tc-turner.svg" alt="" width={200} height={150}/>
+          <Image src="/images/tc-turner.svg" className='hidden lg:block' alt="" width={200} height={150}/>
+          <Image src="/images/strip.svg" className='block lg:hidden' alt="" width={200} height={150}/>
         </Link>
 
        
@@ -60,7 +61,7 @@ function Sidebar() {
 
     
                 <span className={clsx(
-                  "text-[16px] capitalize font-bold whitespace-nowrap flex-shrink-0", 
+                  "hidden text-[16px] capitalize font-bold lg:block whitespace-nowrap flex-shrink-0", 
                   { "text-black": isActive }
                 )}>
                   {data.name}

@@ -17,16 +17,17 @@ export type BotMessgeProps = {
 }
 
 export interface Listing {
-  owner: string;
-  price: bigint;
-  tokenId: bigint;
-  leaseYear: bigint;
-  artiste?:string;
-  title: string;
-  music: string;
-  image: string;
-  genre: string;
-  isListed: boolean;
+    owner:string;
+    price:bigint;
+    tokenId: bigint;
+    leaseYear:bigint;
+    title:string;
+    music: string;
+    image:string;
+    genre:string;
+    artiste:string;
+    isListed:boolean;
+    isRented: boolean;
 }
 
 export interface PaginationStateProps{

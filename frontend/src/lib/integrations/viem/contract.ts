@@ -6,15 +6,17 @@ import { client } from "./client";
 
 
 
-        // address owner;
-        // uint256 price;
-        // uint256 tokenId;
-        // uint64 leaseYear;
-        // string title;
-        // string music;
-        // string image;
-        // string genre;
-        // bool isListed;
+// address owner;
+// uint256 price;
+// uint256 tokenId;
+// uint64 leaseYear;
+// string title;
+// string music;
+// string image;
+// string genre;
+// string artiste;
+// bool isListed;
+// bool isRented;
 
 
 interface Listing {
@@ -26,7 +28,9 @@ interface Listing {
     music: string;
     image:string;
     genre:string;
+    artiste:string;
     isListed:boolean;
+    isRented: boolean;
 }
 
 export async function readContractData(userAddress: `0x${string}`): Promise<[string, string, string, string, string, string, string, string,string,string,string,string, boolean] | null> {
@@ -119,6 +123,31 @@ export async function readUserListings(userAddress: `0x${string}`): Promise<List
         });
 
         const data = await contract.read.getUserListings([userAddress]);
+
+        console.log("History Data:", data);
+
+        if (Array.isArray(data)) {
+            return data as Listing[];
+        } else {
+            
+            return null;
+        }
+    } catch (error) {
+        
+        console.error("Error reading history:", error);
+        return null;
+    }
+}
+
+export async function readListingsByRentedTokens(userAddress: `0x${string}`): Promise<Listing[] | null> {
+    try {
+        const contract = getContract({
+            address: contractAddress,
+            abi: contractAbi,
+            client,
+        });
+
+        const data = await contract.read.getListingsByRentedTokens([userAddress]);
 
         console.log("History Data:", data);
 

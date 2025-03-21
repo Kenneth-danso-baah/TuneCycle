@@ -17,7 +17,7 @@ function MenuDrawer() {
     <div className='flex flex-col items-center text-[18px] font-dmMono capitalize'>
      {musicNavLinks.map((items,index)=>(
         <Link className={clsx(`py-5 px-10  border-zinc-800
-         first:border-zinc-800  hover:text-zinc-800`,{
+         first:border-zinc-800  hover:text-zinc-800 text-nowrap text-start`,{
           
          })} href={items.href} key={index}>
             {items.name}

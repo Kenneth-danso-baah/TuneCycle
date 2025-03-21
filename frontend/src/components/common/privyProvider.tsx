@@ -14,7 +14,7 @@ export function Providers({children}:{children:ReactNode}){
             "google", 
         ],
         embeddedWallets:{
-            createOnLogin: 'all-users',
+            createOnLogin: 'users-without-wallets',
             
         },
         defaultChain: sepolia,

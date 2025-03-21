@@ -31,12 +31,12 @@ function HistoryPurchase({id,image, name, genre, date, duration}:PurchaseHistory
         </div>
 
         <div className="flex-1 min-w-0">
-        <h1>{date}</h1>
+        <h1>{date} ETH</h1>
       </div>
 
 
       <div className="flex-1 min-w-0">
-        <h1>{duration}</h1>
+        <h1>{duration} years</h1>
       </div>
 
 

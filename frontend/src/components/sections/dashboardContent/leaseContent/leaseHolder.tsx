@@ -17,7 +17,6 @@ import {setTotalItems, setItemsPerpage, goToPrevPage, goToNextPage, goToPage} fr
 
 
 
-
 function LeaseHolder() {
 
   const { user} = usePrivy()
@@ -128,7 +127,7 @@ const  handleSubmit  = async (index: number) => {
  
 const filteredListings = listing
   .map((item, index) => ({ ...item, originalIndex: index }))
-  .filter(item => !item.isListed)
+  .filter(item => !item.isListed && !item.isRented)
   .filter((item) =>
     item.title.toLowerCase().includes(query.toLowerCase()) ||
     item.genre.toLowerCase().includes(query.toLowerCase()) ||
