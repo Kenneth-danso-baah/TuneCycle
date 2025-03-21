@@ -2,9 +2,7 @@
 
 import { getContract } from "viem";
 import { contractAbi, contractAddress } from "./abi";
-import { client } from "./client";     
-
-
+import { client } from "./client";   
 
 // address owner;
 // uint256 price;
@@ -17,6 +15,15 @@ import { client } from "./client";
 // string artiste;
 // bool isListed;
 // bool isRented;
+interface Profiles {
+     name : string;
+     profession: string;
+     email: string;
+     firstName: string;
+     lastName: string;
+     dateOfBirth: string;
+     mobilePhone: string;
+}
 
 
 interface Listing {
@@ -76,43 +83,6 @@ export async function readContractData(userAddress: `0x${string}`): Promise<[str
 } 
 
 
-export async function readERC20Balance(tokenAddress: `0x${string}`,userAddress: `0x${string}`): Promise<bigint | null> {
-    // const {toast} = useToast();
-    try {
-        const contract = getContract({
-            address: contractAddress,
-            abi: contractAbi,
-            client,
-        });
-
-        const data = await contract.read.getERC20Balance([tokenAddress,userAddress]);
-
-        console.log("Read ERC20 Balance", data);
-
-        if (typeof data === "bigint"
-             && data !== null 
-           
-            ) {
-          
-            return data;
-        } else {
-            // toast({
-            //     variant: 'destructive',
-            //     title:'Unexpected data format',
-            //     description: 'Unexpected data format sent !!!'
-            // })
-            return null;
-        }
-    } catch (error) {
-        // toast({
-        //     variant: 'destructive',
-        //     title:'Error occured',
-        //     description: 'Error reading contract !!!'
-        // })
-        console.error("Error reading contract:", error);
-        return null;
-    }
-}
 
 export async function readUserListings(userAddress: `0x${string}`): Promise<Listing[] | null> {
     try {
@@ -185,6 +155,29 @@ export async function readListings(): Promise<Listing[] | null> {
     } catch (error) {
         
         console.error("Error reading history:", error);
+        return null;
+    }
+}
+ 
+export async function readUserProfile(userAddress: `0x${string}`): Promise<Profiles | null> {
+    try {
+        const contract = getContract({
+            address: contractAddress,
+            abi: contractAbi,
+            client,
+        });
+
+        const data = await contract.read.getUserProfile([userAddress]);
+
+        console.log("User Profile Data:", data);
+
+        if (typeof data === "object" && data !== null) {
+            return data as Profiles; // Ensure you have a Profiles type defined
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Error reading user profile:", error);
         return null;
     }
 }
