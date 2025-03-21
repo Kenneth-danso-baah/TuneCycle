@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import MusicPlayerCard from '@/components/common/cards/musicPlayerCard';
 import { usePrivy, useWallets } from '@privy-io/react-auth';
 import { readListings } from '@/lib/integrations/viem/contract';
-import { useSmartWallets } from '@privy-io/react-auth/smart-wallets';
 import { sepolia } from 'viem/chains';
 import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { createWalletClient, custom } from 'viem';
@@ -37,8 +36,6 @@ function MusicContentContainer() {
 
   const { wallets} = useWallets();
   const [listing, setListing] = useState<Listing[]>([]);
-
-  const { client } = useSmartWallets();
   const [, setLoading] = useState(false);
   const [nftTx, setNftTx] = useState('');
   const [, setErrorMessageNft] = useState('');

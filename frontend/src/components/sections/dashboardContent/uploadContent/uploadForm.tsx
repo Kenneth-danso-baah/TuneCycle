@@ -244,7 +244,7 @@ function UploadForm() {
     </label>
     {formData.coverImage && (
       <div className="mt-2">
-        <img src={formData.coverImage} alt="Cover Preview" className="w-20 h-20 object-cover rounded-lg" />
+        <Image src={formData.coverImage} alt="Cover Preview" className="w-20 h-20 object-cover rounded-lg" width={20} height={20}/>
       </div>
     )}
   </div>

@@ -66,7 +66,7 @@ function ChartA(
 },[walletAddress])  
 
   useEffect(() => {
-    // Prepare data for the chart
+   
     setChartData([
       { month: 'Total Songs', desktop: totalSongs },
       { month: 'Total Listed', desktop: totalListed },
@@ -78,7 +78,7 @@ function ChartA(
     <div className="p-5 ">
 
       <div className='flex items-center gap-3 py-10'>
-        <h1 className='text-[20px] font-bold text-[#A2A8B4] capitalize'>Wallet Balance, USD</h1>
+        <h1 className='text-[15px] text-nowrap font-bold text-[#A2A8B4] capitalize lg:text-[20px]'>Wallet Balance, USD</h1>
         <IoInformationCircleOutline className='text-[20px] text-[#A2A8B4]'/>
       </div>
 

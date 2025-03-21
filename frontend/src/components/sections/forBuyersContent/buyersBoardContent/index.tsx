@@ -4,11 +4,8 @@ import React, { useEffect, useState } from "react";
 import CarouselWrapper from "./carouselWrapper";
 import RecentlyAdded from "./recentlyAdded";
 import { MdOutlineClear } from "react-icons/md";
-import { purchaseHistory, recentlyAddedMusic, recommendedSongs } from "@/lib/data";
 import HistoryPurchase from "./historyPurchase";
 import Header from "@/components/layouts/header";
-import RecommendSongs from "./recommendSongs";
-import HotSales from "./hotSales";
 import Footer from "@/components/layouts/footer";
 import { readListingsByRentedTokens } from "@/lib/integrations/viem/contract";
 import { usePrivy } from "@privy-io/react-auth";
@@ -28,16 +25,16 @@ interface Listing {
 }
 
 // Helper function to format lease duration
-const formatLeaseDuration = (leaseYear: number) => {
-    // Convert the lease year (which is in seconds) to milliseconds
-    const leaseDate = new Date(leaseYear * 1000);
-    // Format the date to a readable string
-    return leaseDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-};
+// const formatLeaseDuration = (leaseYear: number) => {
+//     // Convert the lease year (which is in seconds) to milliseconds
+//     const leaseDate = new Date(leaseYear * 1000);
+//     // Format the date to a readable string
+//     return leaseDate.toLocaleDateString('en-US', {
+//         year: 'numeric',
+//         month: 'long',
+//         day: 'numeric'
+//     });
+// };
 
 function BuyersBoard() {
 
@@ -74,7 +71,7 @@ function BuyersBoard() {
           <div className="space-y-4">
             {listing.map((data, index) => (
               <RecentlyAdded
-                key={index}
+                key={index+1}
                 image={data.image}
                 title={data.title}
                 artist={data.artiste}
@@ -92,7 +89,7 @@ function BuyersBoard() {
             {listing.map((data, index) => (
               <HistoryPurchase
                 key={index}
-                id={index}
+                id={index+1}
                 image={data.image}
                 name={data.title}
                 genre={data.genre}
