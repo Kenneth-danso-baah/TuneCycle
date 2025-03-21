@@ -23,7 +23,7 @@ contract MarketPlace {
 
     Listing[] public s_allListing;
 
-    mapping(address => Listing[]) private s_eachListing;
+    // mapping(address => Listing[]) private s_eachListing;
 
     constructor(address itemContractAddress) {
         _itemContract = Item(itemContractAddress);
@@ -54,19 +54,19 @@ contract MarketPlace {
             isListed: false,
             isRented: false
         });
-        s_eachListing[reciever].push(newListing);
+        // s_eachListing[reciever].push(newListing);
         s_allListing.push(newListing);
     }
 
     function list(uint256 _id, address reciever) public {
-        Listing storage listing = s_eachListing[reciever][_id];
+        // Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
         require(
-            _itemContract.ownerOf(listing.tokenId) == reciever,
+            _itemContract.ownerOf(allListing.tokenId) == reciever,
             "Only the owner can list the NFT"
         );
 
-        listing.isListed = true;
+        //listing.isListed = true;
         allListing.isListed = true;
         // Create a memory copy for the all users array
         // Listing memory newListing = Listing({
@@ -85,10 +85,10 @@ contract MarketPlace {
     }
 
     function rent(uint256 _id, address reciever) public payable {
-        Listing storage listing = s_eachListing[reciever][_id];
+        // Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
-        require(allListing.isListed, "NFT is not listed for rent");
-        require(msg.value < allListing.price, "Incorrect rental price");
+        // require(allListing.isListed, "NFT is not listed for rent");
+        // require(msg.value >= allListing.price, "Incorrect rental price");
 
         payable(allListing.owner).transfer(msg.value);
 
@@ -99,9 +99,9 @@ contract MarketPlace {
         );
 
         allListing.isListed = false;
-        listing.isListed = false;
+        // listing.isListed = false;
         allListing.isRented = true;
-        listing.isRented = true;
+        // listing.isRented = true;
     }
 
     // Getter for s_allListing
@@ -109,11 +109,29 @@ contract MarketPlace {
         return s_allListing;
     }
 
-    // Getter for s_eachListing
+    // Getter for listings by user address
     function getUserListings(
         address user
     ) public view returns (Listing[] memory) {
-        return s_eachListing[user];
+        // Count listings owned by user first
+        uint256 count = 0;
+        for (uint256 i = 0; i < s_allListing.length; i++) {
+            if (s_allListing[i].owner == user) {
+                count++;
+            }
+        }
+
+        // Create array of correct size and populate it
+        Listing[] memory userListings = new Listing[](count);
+        uint256 currentIndex = 0;
+        for (uint256 i = 0; i < s_allListing.length; i++) {
+            if (s_allListing[i].owner == user) {
+                userListings[currentIndex] = s_allListing[i];
+                currentIndex++;
+            }
+        }
+
+        return userListings;
     }
 
     // Getter for _itemContract
@@ -127,7 +145,7 @@ contract MarketPlace {
         Listing[] memory userListings = new Listing[](rentedTokenIds.length);
 
         for (uint256 i = 0; i < rentedTokenIds.length; i++) {
-            userListings[i] = _listings[rentedTokenIds[i]];
+            userListings[i] = s_allListing[rentedTokenIds[i]];
         }
 
         return userListings;
