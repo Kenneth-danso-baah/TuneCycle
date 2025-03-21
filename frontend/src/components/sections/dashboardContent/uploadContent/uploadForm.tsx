@@ -157,7 +157,9 @@ function UploadForm() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-[#252B36] p-10 rounded-lg text-center">
             <h2 className="text-2xl font-bold text-green-500">Success!</h2>
-            <Image src="/images/yeey.png" alt="congrats" className='flex items-center justify-center' width={80} height={80}/>
+            <div  className='w-full flex items-center justify-center'>
+            <Image src="/images/yeey.png" alt="congrats" width={80} height={80}/>
+            </div>
             <p className="mt-4">Your music has been successfully uploaded.</p>
             <p className="mt-2">Redirecting to the leased page...</p>
           </div>

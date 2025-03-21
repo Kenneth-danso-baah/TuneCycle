@@ -4,14 +4,13 @@ import FrequentAskQuestionCard from '@/components/common/cards/frequentAskCard'
 
 function FrequentAskQuestion() {
   return (
-    <div className='mb-32 leftRightSpacing'>
+    <div className='mb-32 mx-5 lg:leftRightSpacing'>
         <div className='flex justify-center mb-10'>
-            <h1 className='text-4xl font-monoBold'>Frequently Asked Questions(FAQs)</h1>
+            <h1 className='text-[23px] text-center font-monoBold lg:text-start lg:text-4xl'>Frequently Asked Questions(FAQs)</h1>
         </div>
-        <div className='grid grid-cols-2 gap-5'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-5'>
           {askQuestion.map((item,index)=>(
             <FrequentAskQuestionCard key={index} question={item.question} answer={item.answers} />
-
           ))}
         </div>
     </div>

@@ -8,17 +8,17 @@ interface EarnProps{
 
 function EarnCard({p1,p2,p3}:EarnProps) {
   return (
-    <div className='space-y-5 p-3  w-[100%] text-[18px] font-bold py-5 leading-[2.5rem] bg-[#1F2231]'>
+    <div className='space-y-5 p-3  w-[100%] text-[15px] font-bold py-5 leading-[2.5rem] bg-[#1F2231] lg:text-[18px]'>
         <div>
-            <p>{p1}</p>
+        <p className='line-clamp-3 md:line-clamp-none'>{p1}</p>
         </div>
 
         <div>
-            <p>{p2}</p>
+            <p className='line-clamp-2 md:line-clamp-none'>{p2}</p>
         </div>
 
         <div>
-            <p>{p3}</p>
+            <p className='line-clamp-3 md:line-clamp-none'>{p3}</p>
         </div>
 
     </div>
