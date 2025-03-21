@@ -28,3 +28,17 @@ export interface Listing {
   genre: string;
   isListed: boolean;
 }
+
+export interface PaginationStateProps{
+    currentPage:number;
+    itemsPerPage:number;
+    totalItems:number;
+}
+
+export interface PaginationFunctionProps{
+    currentPage:number;
+    totalPages: number;
+    onPrev:()=>void;
+    onNext:()=>void;
+    onGoToPage: (pageIndex: number)=>void;
+}

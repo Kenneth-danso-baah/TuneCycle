@@ -17,9 +17,17 @@ function ProfileBanner() {
                <div className='rounded-full'>
                 <Image src="/images/male.svg" className='rounded-full' alt="" width={150} height={150}/>
                </div>
-               <div className='font-bold text-[18px] space-y-2 '>
+               <div className='font-bold text-[18px] space-y-2 flex items-center gap-10'>
+                <div>
                 <h1>Anthony Daniels</h1>
                 <p>Musician</p>
+                </div>
+
+                <div>
+                <h1>kwakusakyihues@gmail.com</h1>
+                <p>Musician</p>
+                </div>
+
                </div>
             </div>
 

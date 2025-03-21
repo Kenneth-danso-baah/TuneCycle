@@ -13,7 +13,7 @@ interface LeasedCardProps {
 
 function LeasedCard({ imageSrc, amount, duration, title, onClick, artiste }: LeasedCardProps) {
   return (
-    <div className='p-5 w-full bg-[#252B36] rounded-xl'>
+    <div className='p-5 w-full bg-gradient-to-br from-[#101111] via-[#1a1b1b] to-[#00ffcc] rounded-xl'>
         <div className='flex items-center justify-between'>
           <div className='space-y-2'>
             <h1 className='text-[12px]'>Song Title</h1>

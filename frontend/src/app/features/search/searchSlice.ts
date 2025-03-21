@@ -1,31 +1,44 @@
+// searchSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Listing } from "../../../../types/global.types";
 
-export interface SearchState<T> {
+
+export interface SearchState {
   query: string;
-  data: T[];
-  filteredData: T[];
+  data: Listing[];
+  filteredData: Listing[];
+  loading: boolean;
 }
 
-// Define a generic function for the initial state
-const initialState = <T = unknown>(): SearchState<T> => ({
-  query: '',
+const initialState: SearchState = {
+  query: "",
   data: [],
   filteredData: [],
-});
+  loading: false,
+};
 
 const searchSlice = createSlice({
-  name: 'search',
-  initialState: initialState<unknown>(), // Use `unknown` instead of `any`
+  name: "search",
+  initialState,
   reducers: {
-    setQuery: (state, action: PayloadAction<{ query: string }>) => {
-      state.query = action.payload.query;
+    setQuery: (state, action: PayloadAction<string>) => {
+      state.query = action.payload;
     },
-    setData: <T>(state: SearchState<T>, action: PayloadAction<T[]>) => {
+    setData: (state, action: PayloadAction<Listing[]>) => {
       state.data = action.payload;
       state.filteredData = action.payload;
+    },
+    setFilteredQuery: (state, action: PayloadAction<string>) => {
+      state.query = action.payload;
+      state.filteredData = state.data.filter((item) =>
+        item.title.toLowerCase().includes(action.payload.toLowerCase())
+      );
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
     },
   },
 });
 
-export const { setQuery, setData } = searchSlice.actions;
+export const { setQuery, setData, setFilteredQuery, setLoading } = searchSlice.actions;
 export default searchSlice.reducer;
