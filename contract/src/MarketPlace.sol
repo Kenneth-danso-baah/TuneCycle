@@ -61,10 +61,10 @@ contract MarketPlace {
     function list(uint256 _id, address reciever) public {
         // Listing storage listing = s_eachListing[reciever][_id];
         Listing storage allListing = s_allListing[_id];
-        require(
-            _itemContract.ownerOf(allListing.tokenId) == reciever,
-            "Only the owner can list the NFT"
-        );
+        // require(
+        //     _itemContract.ownerOf(allListing.tokenId) == reciever,
+        //     "Only the owner can list the NFT"
+        // );
 
         //listing.isListed = true;
         allListing.isListed = true;
