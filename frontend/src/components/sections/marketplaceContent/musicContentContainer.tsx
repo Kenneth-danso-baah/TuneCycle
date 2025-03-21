@@ -46,7 +46,9 @@ function MusicContentContainer() {
   const {filteredData} = useSelector((state:RootState)=>state.search)
   const dispatch = useDispatch()
 
+
   
+
   useEffect(() => {
     const fetchUserData = async () => {
       if (walletAddress) {
@@ -151,7 +153,7 @@ function MusicContentContainer() {
             subImage={item.image || '/images/mgg.svg'}
             title={item.title}
             artist={item.artiste || ''}
-
+            musicUrl={item.music} 
             price={item.price.toString()}
             duration={(Number(item.price) / 1e18).toString()}
             onClick={() => handleSubmit(item.originalIndex, item.price)}

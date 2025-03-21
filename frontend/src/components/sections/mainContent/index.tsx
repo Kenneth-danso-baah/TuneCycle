@@ -12,6 +12,7 @@ import Header from '@/components/layouts/header'
 import Footer from '@/components/layouts/footer'
 
 
+
 function  MainPage() {
   return (
     <div>
@@ -25,6 +26,9 @@ function  MainPage() {
          <RecommendationHolder/>
          <WhatMakesUsGreat/>
          <Footer/>
+
+
+         
     </div>
   )
 }

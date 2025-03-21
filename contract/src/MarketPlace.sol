@@ -18,6 +18,20 @@ contract MarketPlace {
         bool isRented;
     }
 
+    // Add this mapping to store user details
+    mapping(address => Profiles) private userProfiles;
+
+    // Define a struct to hold user details
+    struct Profiles {
+        string name;
+        string profession;
+        string email;
+        string firstName;
+        string lastName;
+        string dateOfBirth;
+        string mobilePhone;
+    }
+
     Item private _itemContract;
     mapping(uint256 => Listing) private _listings;
 
@@ -152,5 +166,34 @@ contract MarketPlace {
         }
 
         return userListings;
+    }
+
+    // Add this function to update user details
+    function updateUserDetails(
+        string memory name,
+        string memory profession,
+        string memory email,
+        string memory firstName,
+        string memory lastName,
+        string memory dateOfBirth,
+        string memory mobilePhone,
+        address user
+    ) public {
+        userProfiles[user] = Profiles({
+            name: name,
+            profession: profession,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: dateOfBirth,
+            mobilePhone: mobilePhone
+        });
+    }
+
+    // Add this function to retrieve user profile by address
+    function getUserProfile(
+        address user
+    ) public view returns (Profiles memory) {
+        return userProfiles[user];
     }
 }

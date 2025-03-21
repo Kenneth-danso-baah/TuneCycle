@@ -11,7 +11,7 @@ interface StatsProps{
 
 function StatisticCard({name,amount}: StatsProps) {
   return (
-    <div className='w-full rounded-[10px]  bg-[#252B36] p-5 space-y-5'>
+    <div className='w-full rounded-[10px]  bg-[#252B36] lg:p-5 space-y-5'>
     <div className='flex items-center gap-3'>
        <h1 className='text-[15px] font-bold text-[#A2A8B4] text-nowrap capitalize lg:text-[20px]'>{name}</h1>
        <IoInformationCircleOutline className='text-[20px] text-[#A2A8B4]'/>

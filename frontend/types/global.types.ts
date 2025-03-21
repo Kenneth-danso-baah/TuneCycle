@@ -43,3 +43,13 @@ export interface PaginationFunctionProps{
     onNext:()=>void;
     onGoToPage: (pageIndex: number)=>void;
 }
+
+export interface ProfilesProps{
+  name:string;
+  profession:string;
+  email:string;
+  firstName:string;
+  lastName:string;
+  dateOfBirth:string;
+  mobilePhone:string;
+}
