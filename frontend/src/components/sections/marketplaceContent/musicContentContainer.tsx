@@ -46,14 +46,7 @@ function MusicContentContainer() {
   const {filteredData} = useSelector((state:RootState)=>state.search)
   const dispatch = useDispatch()
 
-  const getIPFSUrl = (url: string) => {
-    if (!url) return ''; 
-    if (url.startsWith("ipfs://")) {
-      return url.replace("ipfs://", "https://ipfs.io/ipfs/");
-    }
-  
-    return url; 
-  };
+
   
 
   useEffect(() => {

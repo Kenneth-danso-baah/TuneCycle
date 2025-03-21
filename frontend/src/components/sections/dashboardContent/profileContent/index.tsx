@@ -9,7 +9,6 @@ import { contractAbi, contractAddress } from '@/lib/integrations/viem/abi';
 import { encodeFunctionData } from 'viem';
 import { sepolia } from "viem/chains";
 import { usePrivy } from "@privy-io/react-auth";
-import { setTotalItems } from "@/app/features/pagination/paginationSlice";
 import { readUserProfile } from "@/lib/integrations/viem/contract";
 
 interface ProfilesProps {
@@ -38,15 +37,15 @@ function ProfilePage() {
 
   const { client } = useSmartWallets();
 
-  const handleUpdateUserDetails = (updatedDetails: Partial<ProfilesProps>) => {
-    setUserDetails((prev) => ({
-      ...prev,
-      ...updatedDetails,
-      name: `${updatedDetails.firstName || prev.firstName} ${
-        updatedDetails.lastName || prev.lastName
-      }`, // Ensure full name updates dynamically
-    }));
-  };
+  // const handleUpdateUserDetails = (updatedDetails: Partial<ProfilesProps>) => {
+  //   setUserDetails((prev) => ({
+  //     ...prev,
+  //     ...updatedDetails,
+  //     name: `${updatedDetails.firstName || prev.firstName} ${
+  //       updatedDetails.lastName || prev.lastName
+  //     }`, // Ensure full name updates dynamically
+  //   }));
+  // };
 
   useEffect(()=> { 
     const fetchUserData = async () => {
